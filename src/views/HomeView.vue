@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Header />
+    <Header :mainPage="true"/>
     <About />
     <v-divider></v-divider>
     <Projects />
@@ -10,11 +10,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Header from '../components/Header.vue';
-import Footer from '../components/Footer.vue';
-import Projects from '../components/Projects.vue';
-import About from '../components/About.vue';
-import projects from '../assets/data/project';
+import Header from '@/components/Header.vue';
+import Footer from '@/components/Footer.vue';
+import Projects from '@/components/Projects.vue';
+import About from '@/components/About.vue';
+import projects from '@/assets/data/project';
 
 @Component({
   components: {

@@ -22,5 +22,10 @@ export default Vue.extend({
 .section{
   margin-top: 50px;
   margin-bottom: 50px;
+  padding-bottom: 250px;
+}
+a{
+  color: black !important;
+  text-decoration: none;
 }
 </style>
