@@ -24,15 +24,19 @@ import Project from '@/components/Project.vue';
     Footer,
     Project
   },
+  computed: {
+    // uploadProject(){
+    //   if(this.)
+    // }
+  }
 })
 export default class ProjectView extends Vue {
-  
   project : ProjectClass = {
     description: this.$route.params.description,
     title: this.$route.params.title,
     id: parseInt(this.$route.params.id),
     place: this.$route.params.place,
-    images: this.$route.params.images as unknown as Array<string | number>
+    images: this.$route.params.images as unknown as Array<string>
   };
 }
 </script>

@@ -29,35 +29,35 @@
                     </v-slide-group>
                 </v-sheet>
             </v-card>
-            <v-overlay :value="overlay" :z-index="100">
+            <v-overlay :value="overlay" :z-index="100" opacity="0.9">
                 <div >
+                    <v-btn class="overlay-btn" fixed right style="top:50%" @click="nextImage()">
+                        <v-icon>
+                            mdi-chevron-right
+                        </v-icon>
+                    </v-btn>
+                    <v-btn class="overlay-btn" fixed left style="top:50%" @click="previousImage()">
+                        <v-icon>
+                            mdi-chevron-left
+                        </v-icon>
+                    </v-btn>
+                    <v-btn class="overlay-btn" fixed top right @click="overlay = false">
+                        <v-icon>
+                            mdi-close
+                        </v-icon>
+                    </v-btn>
+                    <v-img :src="getImageOverlay()" max-height="90vh" max-width="90vw">
+                        <template v-slot:placeholder>
+                            <v-row class="fill-height ma-0" align="center" justify="center" >
+                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                            </v-row>
+                        </template>
+                    </v-img>
                 </div>
-                <v-btn class="overlay-btn" relative right>
-                    <v-icon>
-                        mdi-chevron-right
-                    </v-icon>
-                </v-btn>
-                <v-btn class="overlay-btn" relative left>
-                    <v-icon>
-                        mdi-chevron-left
-                    </v-icon>
-                </v-btn>
-                <v-btn class="overlay-btn" fixed top right @click="overlay = false">
-                    <v-icon>
-                        mdi-close
-                    </v-icon>
-                </v-btn>
-                <v-img :src="getOverlayImage()" max-height="90vh" max-width="90vw">
-                    <template v-slot:placeholder>
-                        <v-row class="fill-height ma-0" align="center" justify="center" >
-                            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                        </v-row>
-                    </template>
-                </v-img>
             </v-overlay>
         </div>
         <div v-else> <!-- MAIN PAGE -->
-                <v-card class="mx-auto" elevation="0" max-width="55vw">
+                <v-card class="mx-auto project-card" elevation="0" max-width="55vw">
                     <router-link :to="{ name: 'project', params: getParams() }">
                         <v-card-title>{{project.title}}</v-card-title>
                         <v-row>
@@ -103,11 +103,11 @@ export default class Project extends Vue {
     overlay = false;
     imageOverlay = "";
 
-    getOverlayImage() {
+    getImageOverlay() {
         return this.imageOverlay ? require("@/assets/images/" + this.imageOverlay + ".jpg") : "";
     }
-    getProjectImage(index : string | number){
-        return require("../assets/images/" + index + ".jpg");
+    getProjectImage(image : string | number){
+        return require("../assets/images/" + image + ".jpg");
     }
     getImages(){
         return this.project.images;
@@ -118,6 +118,17 @@ export default class Project extends Vue {
     openOverlay(image: string){
         this.overlay = true;
         this.imageOverlay = image;
+    }
+    nextImage(){
+        const images = this.project.images ? this.project.images : [];
+        console.log(images);
+        console.log(this.imageOverlay);
+        console.log(images.indexOf(this.imageOverlay));
+        let index = images.indexOf(this.imageOverlay) > - 1 ? images.indexOf(this.imageOverlay) + 1 : 0;
+        console.log(index);
+        index = index > images.length-1 ? 0 : index;
+        console.log(index);
+        this.imageOverlay = images[index];
     }
 }
 
@@ -140,6 +151,15 @@ export default class Project extends Vue {
 .overlay-btn:hover{
     background-color: #ae1026 !important;
     color: white !important;
+}
+.project-card{
+    padding: 10px;
+}
+.project-card:hover{
+    background-color: #5e5e5e3b !important;
+    .v-card__title{
+        // color: white !important;
+    }
 }
 // .v-icon{
 //     border-radius: 50%;

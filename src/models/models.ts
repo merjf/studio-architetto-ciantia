@@ -3,5 +3,5 @@ export default class ProjectModel {
     title: string | undefined
     description: string | undefined;
     place: string | undefined;
-    images: Array<string | number> | undefined;
+    images: Array<string> | undefined;
 }
