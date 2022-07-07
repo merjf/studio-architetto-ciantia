@@ -13,16 +13,18 @@
                         <v-slide-item v-for="image in getImages()" :key="image" class="ma-4">
                             <v-hover>
                                 <template v-slot:default="{ hover }">
-                                    <v-img height="300" width="300" class="image" :src="getProjectImage(image)" :lazy-src="getProjectImage(image)" @click="openOverlay(image)">
-                                        <template v-slot:placeholder>
-                                            <v-row class="fill-height ma-0" align="center" justify="center" >
-                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                                            </v-row>
-                                        </template>
-                                        <v-fade-transition>
-                                            <v-overlay v-if="hover" absolute color="#cedee2de"/>
-                                        </v-fade-transition>
-                                    </v-img>
+                                    <v-card :elevation="hover ? 14 : 6">
+                                        <v-img height="300" width="300" class="image" :src="getProjectImage(image)" :lazy-src="getProjectImage(image)" @click="openOverlay(image)">
+                                            <template v-slot:placeholder>
+                                                <v-row class="fill-height ma-0" align="center" justify="center" >
+                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                </v-row>
+                                            </template>
+                                            <v-fade-transition>
+                                                <v-overlay v-if="hover" absolute color="#cedee2de"/>
+                                            </v-fade-transition>
+                                        </v-img>
+                                    </v-card>
                                 </template>
                             </v-hover>
                         </v-slide-item>
@@ -155,6 +157,9 @@ export default class Project extends Vue {
         font-size: 18px;
     }
     .image{
+        cursor: pointer;
+    }
+    .image:hover{
         cursor: pointer;
     }
     .overlay-btn{

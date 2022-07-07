@@ -13,7 +13,7 @@
     </div>
     <div v-else-if="page === 'projectList'">
       <Menu :positionMenu="'absolute'"/>
-      <v-app-bar color="white" dense light>
+      <v-app-bar color="white" dense light height="60">
         <v-spacer></v-spacer>
 
         <v-toolbar-title>Projects</v-toolbar-title>

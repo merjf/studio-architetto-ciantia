@@ -13,7 +13,7 @@
                             <v-icon>mdi-home</v-icon>
                         </v-list-item-icon>
 
-                        <v-list-item-title>{{pages.home.value}}</v-list-item-title>
+                        <v-list-item-title >{{pages.home.value}}</v-list-item-title>
                     </v-list-item>
                 </router-link>
                 <v-list-group prepend-icon="mdi-briefcase" active-class="active">
@@ -89,6 +89,7 @@ export default class Menu extends Vue {
     top: 5px;
     left: 5px;
     z-index: 1;
+    padding: 20px;
     background-color: $primary-color;
     color: $secondary-color !important;
 }
@@ -96,6 +97,9 @@ export default class Menu extends Vue {
     z-index: 1;
     color: $secondary-color !important;
     background-color: $tertiary-color;
+}
+.v-list-item__title{
+    font-size: 1.1rem !important;
 }
 // .v-list-item:hover{
 //     background-color: $tertiary-color !important;
