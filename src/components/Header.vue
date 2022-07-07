@@ -1,7 +1,8 @@
 <template>
   <div class="header">
-    <div v-if="mainPage">
-      <!-- <v-img src="@/assets/images/logo.png" class="logo"></v-img> -->
+    <div v-if="page === 'main'">
+      <Menu :positionMenu="'fixed'"/>
+      <v-img src="@/assets/images/logo.png" class="logo"></v-img>
       <v-carousel hide-delimiters cycle :show-arrows-on-hover="true" height="95vh">
         <v-carousel-item
           v-for="(item,i) in items"
@@ -10,18 +11,20 @@
         ></v-carousel-item>
       </v-carousel>
     </div>
-    <div v-else>
+    <div v-else-if="page === 'projectList'">
+      <Menu :positionMenu="'absolute'"/>
       <v-app-bar color="white" dense light>
-      <router-link :to="{ path: '/', hash: '#'+ project.id}">
-        <v-icon large>
-          mdi-chevron-left
-        </v-icon>
-      </router-link>
+        <v-spacer></v-spacer>
 
-      <v-spacer></v-spacer>
-
-      <v-toolbar-title>{{project.title}}</v-toolbar-title>
-    </v-app-bar>
+        <v-toolbar-title>Projects</v-toolbar-title>
+      </v-app-bar>
+    </div>
+    <div v-else-if="page === 'project'">
+      <Menu :positionMenu="'absolute'"/>
+      <v-app-bar color="white" dense light>
+        <v-spacer></v-spacer>
+        <v-toolbar-title>{{project.title}}</v-toolbar-title>
+      </v-app-bar>
     </div>
   </div>
 </template>
@@ -29,10 +32,15 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import ProjectModel from '@/models/models'
+import Menu from '@/components/Menu.vue'
 
-@Component
+@Component({
+  components:{
+    Menu
+  }
+})
 export default class Header extends Vue {
-  @Prop() public mainPage!: boolean;
+  @Prop() public page!: string;
   @Prop() public project!: ProjectModel;
   items = [{
     src: require("@/assets/images/13.jpg")
@@ -46,23 +54,15 @@ export default class Header extends Vue {
 
 <style scoped lang="scss">
 .logo{
-  position: fixed;
-  right: 15px;
-  top: 15px;
-  width: 50px;
+  position: absolute;
+  left: 35vw;
+  top: 15vh;
+  width: 30vw;
   z-index: 100;
-  border-radius: 50%;
-}
-.v-icon{
-  color: #ae1026 !important;
-  border-radius: 50%;
-}
-.v-icon:hover{
-  border-radius: 50%;
-  color: white !important;
-  background-color: #ae1026;
 }
 .v-toolbar__title{
+  // margin-top: 10px;
   margin-right: 40px;
+  // text-align: right;
 }
 </style>

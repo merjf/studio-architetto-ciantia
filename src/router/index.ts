@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
+import ProjectListView from '@/views/ProjectListView.vue'
 import ProjectView from '@/views/ProjectView.vue'
 
 Vue.use(VueRouter)
@@ -12,6 +13,12 @@ const routes: Array<RouteConfig> = [
     component: HomeView
   },
   {
+    path: '/projects',
+    name: 'projects',
+    component: ProjectListView,
+    props: true
+  },
+  {
     path: '/project/:id',
     name: 'project',
     component: ProjectView,
@@ -21,7 +28,7 @@ const routes: Array<RouteConfig> = [
 
 const router = new VueRouter({
   mode: 'history',
-  scrollBehavior: function(to, from, savedPosition) {
+  scrollBehavior: function(to) {
     if (to.hash) {
       return {selector: to.hash}
     } else {
@@ -29,7 +36,7 @@ const router = new VueRouter({
     }
   },
   base: process.env.BASE_URL,
-  routes
+  routes,
 })
 
 export default router

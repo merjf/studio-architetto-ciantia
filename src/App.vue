@@ -18,14 +18,13 @@ export default Vue.extend({
 });
 </script>
 
-<style>
+<style lang="scss">
 .section{
   margin-top: 50px;
-  margin-bottom: 50px;
-  padding-bottom: 250px;
+  margin-bottom: 300px;
 }
 a{
-  color: black !important;
+  color: unset !important;
   text-decoration: none;
 }
 </style>

@@ -1,9 +1,7 @@
 <template>
   <div class="home">
-    <Header :mainPage="true"/>
+    <Header :page="'main'"/>
     <About />
-    <v-divider></v-divider>
-    <Projects />
     <Footer />
   </div>
 </template>
@@ -12,7 +10,6 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
-import Projects from '@/components/Projects.vue';
 import About from '@/components/About.vue';
 import projects from '@/assets/data/project';
 
@@ -21,7 +18,6 @@ import projects from '@/assets/data/project';
     Header,
     Footer,
     About,
-    Projects
   },
   methods: {
     getProjects(){

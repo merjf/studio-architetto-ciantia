@@ -1,8 +1,8 @@
  <template>
     <div :id="project.id">
-        <div v-if="detailed"> <!-- PROJECT PAGE -->
+        <div v-if="detailed" class="project-detailed"> <!-- PROJECT DETAILED PAGE -->
             <v-card class="mx-auto" elevation="0" max-width="75vw">
-                <v-card-text>
+                <v-card-text class="project-card">
                     <div class="text-subtitle-1" >
                         {{project.place}}
                     </div>
@@ -13,7 +13,7 @@
                         <v-slide-item v-for="image in getImages()" :key="image" class="ma-4">
                             <v-hover>
                                 <template v-slot:default="{ hover }">
-                                    <v-img height="300" width="300" :src="getProjectImage(image)" :lazy-src="getProjectImage(image)" @click="openOverlay(image)">
+                                    <v-img height="300" width="300" class="image" :src="getProjectImage(image)" :lazy-src="getProjectImage(image)" @click="openOverlay(image)">
                                         <template v-slot:placeholder>
                                             <v-row class="fill-height ma-0" align="center" justify="center" >
                                                 <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
@@ -32,17 +32,17 @@
             <v-overlay :value="overlay" :z-index="100" opacity="0.9">
                 <div >
                     <v-btn class="overlay-btn" fixed right style="top:50%" @click="nextImage()">
-                        <v-icon>
+                        <v-icon large>
                             mdi-chevron-right
                         </v-icon>
                     </v-btn>
                     <v-btn class="overlay-btn" fixed left style="top:50%" @click="previousImage()">
-                        <v-icon>
+                        <v-icon large>
                             mdi-chevron-left
                         </v-icon>
                     </v-btn>
                     <v-btn class="overlay-btn" fixed top right @click="overlay = false">
-                        <v-icon>
+                        <v-icon large>
                             mdi-close
                         </v-icon>
                     </v-btn>
@@ -56,36 +56,28 @@
                 </div>
             </v-overlay>
         </div>
-        <div v-else> <!-- MAIN PAGE -->
-                <v-card class="mx-auto project-card" elevation="0" max-width="55vw">
-                    <router-link :to="{ name: 'project', params: getParams() }">
-                        <v-card-title>{{project.title}}</v-card-title>
-                        <v-row>
-                            <v-col v-for="index in getImages().slice(0, 3)" :key="index" class="d-flex child-flex" cols="4">
-                                <v-img height="200" :src="getProjectImage(index)" aspect-ratio="1" class="grey lighten-2">
-                                    <template v-slot:placeholder>
-                                        <v-row class="fill-height ma-0" align="center" justify="center">
-                                            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                                        </v-row>
-                                    </template>
-                                </v-img>
-                            </v-col>
-                        </v-row>
-                    </router-link>
-                    <!-- <v-card-text>
-                        <div class="text-subtitle-1">
-                            {{project.place}}
-                        </div>
-                        <div>{{project.description}}</div>
-                    </v-card-text> -->
-                    <!-- <v-card-actions>
+        <div v-else class="project-item"> <!-- PROJECT LIST PAGE -->
+            <v-hover>
+                <template v-slot:default="{ hover }">
+                    <v-card class="mx-auto project-card" max-width="55vw" :elevation="hover ? 24 : 6">
                         <router-link :to="{ name: 'project', params: getParams() }">
-                            <v-icon large>
-                                mdi-chevron-right
-                            </v-icon>
+                            <v-card-title>{{project.title}}</v-card-title>
+                            <v-row>
+                                <v-col v-for="index in getImages().slice(0, 3)" :key="index" class="d-flex child-flex" cols="4">
+                                    <v-img height="200" :src="getProjectImage(index)" aspect-ratio="1" class="grey lighten-2">
+                                        <template v-slot:placeholder>
+                                            <v-row class="fill-height ma-0" align="center" justify="center">
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                    </v-img>
+                                </v-col>
+                            </v-row>
                         </router-link>
-                    </v-card-actions> -->
-                </v-card>
+                    </v-card>
+                </template>
+            </v-hover>
+            
         </div>
     </div>
 </template>
@@ -121,13 +113,8 @@ export default class Project extends Vue {
     }
     nextImage(){
         const images = this.project.images ? this.project.images : [];
-        console.log(images);
-        console.log(this.imageOverlay);
-        console.log(images.indexOf(this.imageOverlay));
         let index = images.indexOf(this.imageOverlay) > - 1 ? images.indexOf(this.imageOverlay) + 1 : 0;
-        console.log(index);
         index = index > images.length-1 ? 0 : index;
-        console.log(index);
         this.imageOverlay = images[index];
     }
 }
@@ -135,45 +122,52 @@ export default class Project extends Vue {
 </script>
 
 <style scoped lang="scss">
-.v-card__actions{
-    position: absolute;
-    right: 10px;
-    bottom: 15px;
-}
-.overlay-btn{
-    min-width: auto !important;
-    border-radius: 50%;
-    height: 30px !important;
-    width: 30px !important;
-    background-color: white !important;
-    color: #ae1026 !important;
-}
-.overlay-btn:hover{
-    background-color: #ae1026 !important;
-    color: white !important;
-}
-.project-card{
-    padding: 10px;
-}
-.project-card:hover{
-    background-color: #5e5e5e3b !important;
-    .v-card__title{
-        // color: white !important;
+.project-item{
+    .v-card__actions{
+        position: absolute;
+        right: 10px;
+        bottom: 15px;
     }
+    .project-card{
+        padding: 10px;
+        .v-image{
+            cursor: pointer;
+        }
+    }
+    // .project-card:hover{
+    //     // background-color: rgba($tertiary-color, 0.5) !important;
+    //     border: 1px solid rgba($tertiary-color, 0.5);
+    //     border-radius: 10px;
+        
+    //     // .v-card__title{
+    //     //     color: $secondary-color !important;
+    //     // }
+    // }
 }
-// .v-icon{
-//     border-radius: 50%;
-//     background-color: #ae1026;
-//     color: white !important;
-// }
-// .v-icon:hover{
-//     border-radius: 50%;
-//     background-color: white;
-//     color: #ae1026 !important;
-//     border: 1px solid #ae1026;
-// }
-.description{
-    margin: 20px 0px;
-    font-size: 18px;
+.project-detailed{
+    margin-top: 75px;
+    .project-card{
+        margin-top: 20px;
+        margin-bottom: 25px;
+    }
+    .description{
+        margin: 20px 0px;
+        font-size: 18px;
+    }
+    .image{
+        cursor: pointer;
+    }
+    .overlay-btn{
+        min-width: auto !important;
+        border-radius: 50%;
+        height: 40px !important;
+        width: 40px !important;
+        background-color: $secondary-color !important;
+        color: $primary-color !important;
+    }
+    .overlay-btn:hover{
+        background-color: $tertiary-color !important;
+        color: $secondary-color !important;
+    }
 }
 </style>

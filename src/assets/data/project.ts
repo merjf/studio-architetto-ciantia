@@ -2,8 +2,9 @@ import ProjectClass from '@/models/models'
 
 const projects = [{
         id: 1001,
-        title: "Casa Residenziale",
-        description: "Descrizione Progetto Casa Residenziale",
+        title: "Frette",
+        // subtitle: "Negozio Abbigliamento - Sicilia Outlet Village",
+        description: "Collaborazione con Filippo",
         place: "Via Noto 26 - Piazza Armerina (EN)",
         images: ["7", "8", "9", "10", "11", "12"]
     },{
