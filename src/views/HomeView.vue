@@ -18,14 +18,15 @@ import projects from '@/assets/data/project';
     Header,
     Footer,
     About,
-  },
-  methods: {
-    getProjects(){
-      return projects;
-    }
   }
 })
-export default class Home extends Vue {}
+class Home extends Vue {
+  getProjects(){
+    return projects;
+  }
+}
+
+export default Home;
 </script>
 
 <style scoped>

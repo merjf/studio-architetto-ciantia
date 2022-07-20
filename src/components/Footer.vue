@@ -1,6 +1,6 @@
 <template>
   <v-footer absolute :padless="true" class="text-center">
-    <v-card flat tile width="100%" class="text-center white--text">
+    <!-- <v-card flat tile width="100%" class="text-center white--text">
       <v-row justify="center">
         <v-col cols="1" style="align-self: center;">
           <v-img src="@/assets/images/logo.png" class="logo"></v-img>
@@ -26,12 +26,18 @@
         </v-btn>
       </v-card-text>
 
-      <!-- <v-divider></v-divider>
+      <v-divider></v-divider>
 
       <v-card-text class="white--text">
         {{ new Date().getFullYear() }} — <strong>Salvatore Ciantia</strong>
-      </v-card-text> -->
-    </v-card>
+      </v-card-text>
+    </v-card> -->
+     <v-card flat tile width="100%" class="text-center white--text">
+      <v-row justify="center" no-gutters>
+        <v-img src="@/assets/images/logo.png" class="logo"/>
+        <strong class="subheading">Salvatore Ciantia Architetto</strong>
+      </v-row>
+     </v-card>
   </v-footer>
 </template>
 
@@ -39,24 +45,11 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
-export default class Footer extends Vue {
-  icons = [{
-    name: 'mdi-facebook',
-    link: 'https://www.facebook.com/salvatore.ciantia.3'
-  }, {
-  //   name: 'mdi-twitter',
-  //   link: ''
-  // }, {
-    name: 'mdi-linkedin',
-    link: 'https://www.linkedin.com/in/salvatore-ciantia-6a904699/'
-  }, {
-    name: 'mdi-instagram',
-    link: 'https://www.instagram.com/salvatore_ciantia_architetto/'
-  }]
-  goToPage(link : string){
-    window.open(link);
-  }
+class Footer extends Vue {
+  
 }
+
+export default Footer;
 </script>
 
 <style scoped lang="scss">
@@ -65,6 +58,12 @@ footer{
     background-color: $primary-color !important;
     padding-top: 15px;
     padding-bottom: 15px;
+    .row{
+      align-items: center;
+      .logo{
+        max-width: 70px !important;
+      }
+    }
   }
   hr{
     border-color: rgba(255, 255, 255, .55) !important;
@@ -81,10 +80,6 @@ footer{
     border-radius: 50%;
     background-color: $tertiary-color;
     color: $secondary-color !important;
-  }
-  .logo{
-    width: 150px;
-    margin: auto;
   }
 }
 </style>

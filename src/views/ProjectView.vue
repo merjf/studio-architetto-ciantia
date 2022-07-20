@@ -24,26 +24,24 @@ import projects from '@/assets/data/project';
     Header,
     Footer,
     Project,
-  },
-  methods: {
-    getProjects(){
-      return projects;
-    }
-  },
-  computed:{
-    getCurrentProject(){
-      return  {
-        description: this.$route.params.description,
-        title: this.$route.params.title,
-        id: parseInt(this.$route.params.id),
-        place: this.$route.params.place,
-        images: this.$route.params.images as unknown as Array<string>
-      }
-    }
   }
 })
-export default class ProjectView extends Vue {
+class ProjectView extends Vue {
+  getCurrentProject(){
+    return  {
+      description: this.$route.params.description,
+      title: this.$route.params.title,
+      id: parseInt(this.$route.params.id),
+      place: this.$route.params.place,
+      images: this.$route.params.images as unknown as Array<string>
+    }
+  }
+  getProjects(){
+    return projects;
+  }
 }
+
+export default ProjectView;
 </script>
 
 <style scoped lang="scss">

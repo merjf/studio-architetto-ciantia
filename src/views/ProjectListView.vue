@@ -25,14 +25,9 @@ import projects from '@/assets/data/project';
     Header,
     Footer,
     Project,
-  },
-  methods: {
-    getProjects(){
-      return projects;
-    }
   }
 })
-export default class ProjectListView extends Vue {
+class ProjectListView extends Vue {
   detailed = false;
   project : ProjectClass = {
     description: this.$route.params.description,
@@ -41,7 +36,11 @@ export default class ProjectListView extends Vue {
     place: this.$route.params.place,
     images: this.$route.params.images as unknown as Array<string>
   };
+  getProjects(){
+    return projects;
+  }
 }
+export default ProjectListView;
 </script>
 
 <style scoped lang="scss">

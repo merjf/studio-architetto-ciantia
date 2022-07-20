@@ -19,9 +19,12 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+.v-main{
+  min-height: 100vh;
+}
 .section{
-  margin-top: 50px;
-  margin-bottom: 300px;
+  margin-top: 100px;
+  margin-bottom: 150px;
 }
 a{
   color: unset !important;

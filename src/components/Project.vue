@@ -89,7 +89,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import ProjectModel from '@/models/models'
 
 @Component
-export default class Project extends Vue {
+class Project extends Vue {
     @Prop() public detailed!: boolean;
     @Prop() public project!: ProjectModel;
 
@@ -120,7 +120,7 @@ export default class Project extends Vue {
         this.imageOverlay = images[index];
     }
 }
-
+export default Project;
 </script>
 
 <style scoped lang="scss">
