@@ -29,12 +29,16 @@ export default Header;
 
 <style scoped lang="scss">
 .about{
-  margin-right: 15vw;
-  margin-left: 15vw;
+  max-width: 50rem;
+  margin: auto;
   padding: 0px;
-  .v-card >*{
-    margin-top: 20px;
-    margin-bottom: 20px;
+  margin-bottom: 150px;
+  .v-card {
+    margin-top: 100px;;
+    > * {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
   }
 }
 .me-img{

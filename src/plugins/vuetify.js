@@ -3,16 +3,16 @@ import Vuetify from 'vuetify'
 // import 'vuetify/dist/vuetify.min.css'
 
 const vuetify = new Vuetify({
-    theme: {
-        themes: {
-          light: {
-            primary: '#747474',
-            secondary: '#6bc6fa',
-            accent: '#white',
-            error: '#b71c1c',
-          },
-        },
+  theme: {
+    themes: {
+      light: {
+        primary: '#747474',
+        secondary: '#6bc6fa',
+        accent: '#white',
+        error: '#b71c1c',
       },
+    },
+  },
 })
 Vue.use(Vuetify)
 

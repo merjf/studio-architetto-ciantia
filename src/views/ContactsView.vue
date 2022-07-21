@@ -1,11 +1,12 @@
 <template>
   <div class="contacts">
     <Header :page="'contacts'" />
-    <div class="section">
-        <v-card class="mx-auto my-12" max-width="50vw" elevation="0">
-            <v-img  src="@/assets/images/16.jpg" />
+    <v-container class="section">
+        <v-row>
+            <v-card class="mx-auto my-12" max-width="90vw" elevation="0">
+            <v-img src="@/assets/images/15.jpg" class="contact-img"/>
             <v-card-text>
-                <div>salvatore.ciantia@gmail.com</div>
+                <div><a href="mailto:salvatore.ciantia@gmail.com">salvatore.ciantia@gmail.com</a></div>
                 <div>+39 340 12345678</div>
             </v-card-text>
             <v-divider class="mx-4"></v-divider>
@@ -17,7 +18,11 @@
                 </v-btn>
             </v-card-actions>
         </v-card>
-    </div>
+        </v-row>
+    </v-container>
+    <!-- <div class="section">
+        
+    </div> -->
     <Footer />
   </div>
 </template>
@@ -56,9 +61,39 @@ export default Contacts;
 </script>
 
 <style scoped lang="scss">
-.section{
-    .v-card__actions{
-        justify-content: center;
-    }
+.v-card__actions{
+    justify-content: center;
+}
+.v-card__text{
+    text-align: center;
+    margin-top: 25px;
+    font-size: 1.1rem;
+    line-height: 2rem;
+    letter-spacing: .0071428571em;
+}
+hr{
+    margin: 15px 0px;
+}
+.contact-img{
+    width: 40vw;
+}
+.v-btn:hover{
+    background-color: $secondary-color !important;
+    color: $tertiary-color !important;
+}
+@media screen and (max-width: 1180px) {
+  .contact-img{
+    width: 60vw;
+  }
+}
+@media screen and (max-width: 820px) {
+  .contact-img{
+    width: 90vw;
+  }
+}
+@media screen and (max-width: 600px) {
+  .contact-img{
+    width: 90vw;
+  }
 }
 </style>
