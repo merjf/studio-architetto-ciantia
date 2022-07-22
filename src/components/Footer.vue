@@ -2,8 +2,8 @@
   <v-footer absolute :padless="true" class="text-center">
      <v-card flat tile width="100%" class="text-center white--text">
       <v-row justify="center" no-gutters>
-        <v-img src="@/assets/images/logo_simple1.png" class="logo"/>
-        <span>Salvatore Ciantia Architetto</span>
+        <v-img src="@/assets/images/logo_simple.png" class="logo"/>
+        <span>{{ new Date().getFullYear() }} - Salvatore Ciantia Architetto</span>
       </v-row>
      </v-card>
   </v-footer>

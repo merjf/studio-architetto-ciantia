@@ -18,24 +18,23 @@
       <v-list>
         <template v-for="page in pages">
           <router-link v-if="page.simple" :key="page.number" :to="{ name: page.name }">
-            <v-list-item :class="{'highlighted' : getCurrentPath === page.name }" link>
+            <v-list-item :class="{'highlighted' : getCurrentPath?.includes(page.name) }" link>
               <v-list-item-icon>
                 <v-icon>{{page.icon}}</v-icon>
               </v-list-item-icon>
               <v-list-item-title>{{page.value}}</v-list-item-title>
             </v-list-item>
           </router-link>
-          <v-list-group v-if="!page.simple" v-model="model" :key="page.number" active-class="highlighted" prepend-icon="mdi-briefcase" :value="false">
+          <v-list-group v-if="!page.simple" v-model="model" :key="page.number" active-class="highlighted" prepend-icon="mdi-briefcase">
             <template v-slot:activator>
               <v-list-item-title>{{page.value}}</v-list-item-title>
             </template>
             <v-list-item-group active-class="highlighted" style="margin-left:20px;">
-              <v-list-item v-for="([title, icon], i) in admins" :key="i" link>
-                <v-list-item-title v-text="title"></v-list-item-title>
-                <v-list-item-icon>
-                  <v-icon v-text="icon"></v-icon>
-                </v-list-item-icon>
-              </v-list-item>
+              <router-link v-for="project in getProjectList" :key="project.id" :to="{ name: 'project', params: project }">
+                <v-list-item link :class="{'highlighted' : getCurrentPath?.includes(project.id) }">
+                  <v-list-item-title v-text="project.title"></v-list-item-title>
+                </v-list-item>
+              </router-link>
             </v-list-item-group>
           </v-list-group>
         </template>
@@ -52,7 +51,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-container v-if="isMobileVersion && getCurrentPage != 'Home'">
-      <v-row justify="center" no-gutters>
+      <v-row justify="center" class="page-title">
         <h2>
           {{getCurrentPage}}
         </h2>
@@ -93,7 +92,6 @@ class Header extends Vue {
     home: {
       value: "Home",
       name: "home",
-      active: true,
       number: 1,
       icon: 'mdi-home',
       simple: true
@@ -102,13 +100,11 @@ class Header extends Vue {
       value: "Works",
       number: 2,
       icon: 'mdi-briefcase',
-      simple: false,
-
+      simple: false
     },
     contacts: {
       value: "Contacts",
       name: "contacts",
-      active: true,
       number: 3,
       icon: 'mdi-account-box',
       simple: true
@@ -128,17 +124,22 @@ class Header extends Vue {
     }
   }
   get getCurrentPath(): string | undefined | null{
-    console.log(this.$route);
-    return this.$route.name;
+    return this.$route.fullPath;
   }
   get isMobileVersion(): boolean{
     return this.windowWidth <= 800
   }
   get getCurrentPage(): string | undefined | null{
-    if(this.getCurrentPath){
-      return this.getCurrentPath.charAt(0).toUpperCase() + this.getCurrentPath.slice(1);
+    var currentPageName = "";
+    if(this.$route.params && this.$route.params.title){
+      currentPageName = this.$route.params.title;
+    } else if(this.$route.name){
+      currentPageName = this.$route.name.charAt(0).toUpperCase() + this.$route.name.slice(1);
     }
-    return "";
+    return currentPageName;
+  }
+  get getProjectList(): ProjectModel[]{
+    return projects;
   }
   mounted(){
     if(this.page === 'main'){
@@ -178,6 +179,11 @@ export default Header;
 </script>
 
 <style scoped lang="scss">
+.page-title{
+  max-width: 70vw;
+  margin: auto;
+  text-align: center;
+}
 .logo{
   position: absolute;
   left: 35vw;
@@ -211,11 +217,6 @@ export default Header;
 }
 .v-toolbar__title{
   margin-right: 40px;
-}
-.vertical {
-  border-left: 1px solid v-bind(color);
-  height: 90%;
-  margin: auto;
 }
 .app-bar-light{
   background-color: white !important;

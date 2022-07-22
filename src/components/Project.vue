@@ -8,12 +8,12 @@
                     </div>
                     <p class="description">{{project.description}}</p>
                 </v-card-text>
-                <v-sheet elevation="8">
+                <v-sheet elevation="0">
                     <v-slide-group v-model="model" class="pa-4" show-arrows>
                         <v-slide-item v-for="image in getImages()" :key="image" class="ma-4">
                             <v-hover>
                                 <template v-slot:default="{ hover }">
-                                    <v-card :elevation="hover ? 14 : 6">
+                                    <v-card :elevation="hover ? 6 : 1">
                                         <v-img height="300" width="300" class="image" :src="getProjectImage(image)" :lazy-src="getProjectImage(image)" @click="openOverlay(image)">
                                             <template v-slot:placeholder>
                                                 <v-row class="fill-height ma-0" align="center" justify="center" >
@@ -61,7 +61,7 @@
         <div v-else class="project-item"> <!-- PROJECT LIST PAGE -->
             <v-hover>
                 <template v-slot:default="{ hover }">
-                    <v-card class="mx-auto project-card" max-width="55vw" :elevation="hover ? 24 : 6">
+                    <v-card class="mx-auto project-card" max-width="55vw" :elevation="hover ? 6 : 0">
                         <router-link :to="{ name: 'project', params: getParams() }">
                             <v-card-title>{{project.title}}</v-card-title>
                             <v-row>
