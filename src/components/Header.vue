@@ -20,13 +20,13 @@
                   <v-card elevation="1" class="project-list-menu">
                     <v-list>
                       <router-link :to="{ name: 'projects'}">
-                        <v-list-item link :class="{'highlighted' : getCurrentPath?.includes('projects') }">
+                        <v-list-item link :class="{'highlighted' : getCurrentPath.includes('projects') }">
                           <v-list-item-title>Project List</v-list-item-title>
                         </v-list-item>
                       </router-link>
                       <v-divider></v-divider>
                       <router-link v-for="project in getProjectList" :key="project.id" :to="{ name: 'project', params: project }">
-                        <v-list-item link :class="{'highlighted' : getCurrentPath?.includes(project.id)}">
+                        <v-list-item link :class="{'highlighted' : getCurrentPath.includes(project.id)}">
                           <v-list-item-title v-text="project.title" class='sub-item'></v-list-item-title>
                         </v-list-item>
                       </router-link>
@@ -44,7 +44,7 @@
       <v-list>
         <template v-for="page in pages">
           <router-link v-if="page.simple" :key="page.number" :to="{ name: page.name }">
-            <v-list-item :class="{'highlighted' : getCurrentPath?.includes(page.name) }" link>
+            <v-list-item :class="{'highlighted' : getCurrentPath.includes(page.name) }">
               <v-list-item-icon>
                 <v-icon>{{page.icon}}</v-icon>
               </v-list-item-icon>
@@ -57,13 +57,13 @@
             </template>
             <v-list-item-group active-class="highlighted" style="margin-left:20px;">
               <router-link :to="{ name: 'projects'}">
-                <v-list-item link :class="{'highlighted' : getCurrentPath?.includes('projects') }">
+                <v-list-item link :class="{'highlighted' : getCurrentPath.includes('projects') }">
                   <v-list-item-title class='sub-item'>Project List</v-list-item-title>
                 </v-list-item>
               </router-link>
               <v-divider></v-divider>
               <router-link v-for="project in getProjectList" :key="project.id" :to="{ name: 'project', params: project }">
-                <v-list-item link :class="{'highlighted' : getCurrentPath?.includes(project.id) }">
+                <v-list-item link :class="{'highlighted' : getCurrentPath.includes(project.id) }">
                   <v-list-item-title v-text="project.title" class='sub-item'></v-list-item-title>
                 </v-list-item>
               </router-link>
@@ -135,18 +135,13 @@ class Header extends Vue {
   };
   drawer = false;
   windowWidth = window.innerWidth;
-  data() {
-    return {
-      
-    }
-  }
-  get getCurrentPath(): string | undefined | null{
-    return this.$route.fullPath;
+  get getCurrentPath(): string{
+    return this.$route.fullPath ? this.$route.fullPath : "";
   }
   get isMobileVersion(): boolean{
     return this.windowWidth <= 800
   }
-  get getCurrentPage(): string | undefined | null{
+  get getCurrentPage(): string{
     var currentPageName = "";
     if(this.$route.params && this.$route.params.title){
       currentPageName = this.$route.params.title;
