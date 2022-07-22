@@ -51,7 +51,7 @@
               <v-list-item-title>{{page.value}}</v-list-item-title>
             </v-list-item>
           </router-link>
-          <v-list-group v-if="!page.simple" v-model="model" :key="page.number" active-class="highlighted" prepend-icon="mdi-briefcase">
+          <v-list-group v-if="!page.simple" :value="isProjectItemSelected" :key="page.number" active-class="highlighted" prepend-icon="mdi-briefcase">
             <template v-slot:activator>
               <v-list-item-title>{{page.value}}</v-list-item-title>
             </template>
@@ -163,6 +163,12 @@ class Header extends Vue {
   }
   get getProjectList(): ProjectModel[]{
     return projects;
+  }
+  get isProjectItemSelected(): boolean{
+    if(this.$route.name){
+      return this.$route.name?.includes('project');
+    }
+    return false;
   }
   mounted(){
     if(this.page === 'main'){
