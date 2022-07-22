@@ -32,7 +32,8 @@ class ProjectView extends Vue {
       title: this.$route.params.title,
       id: parseInt(this.$route.params.id),
       place: this.$route.params.place,
-      images: this.$route.params.images as unknown as Array<string>
+      mainFolder: this.$route.params.mainFolder,
+      imageNumber: parseInt(this.$route.params.imageNumber)
     }
   }
 }

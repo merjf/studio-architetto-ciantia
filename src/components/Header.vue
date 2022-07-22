@@ -104,11 +104,11 @@ class Header extends Vue {
   @Prop() public page!: string;
   @Prop() public project!: ProjectModel;
   imagesForMainPage = [{
-    src: require("@/assets/images/13.jpg")
+    src: require("@/assets/images/1.jpg")
   },{
-    src: require("@/assets/images/14.jpg")
+    src: require("@/assets/images/2.jpg")
   },{
-    src: require("@/assets/images/7.jpg")
+    src: require("@/assets/images/3.jpg")
   }];
   pages = {
     home: {

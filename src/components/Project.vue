@@ -10,11 +10,11 @@
                 </v-card-text>
                 <v-sheet elevation="0">
                     <v-slide-group v-model="model" class="pa-4" show-arrows>
-                        <v-slide-item v-for="image in getImages()" :key="image" class="ma-4">
+                        <v-slide-item v-for="index in getImageNumber()" :key="index" class="ma-4">
                             <v-hover>
                                 <template v-slot:default="{ hover }">
                                     <v-card :elevation="hover ? 6 : 1">
-                                        <v-img height="300" width="300" class="image" :src="getProjectImage(image)" :lazy-src="getProjectImage(image)" @click="openOverlay(image)">
+                                        <v-img height="300" width="300" class="image" :src="getProjectImage(project.mainFolder, index)" :lazy-src="getProjectImage(project.mainFolder, index)" @click="openOverlay(project.mainFolder, index)">
                                             <template v-slot:placeholder>
                                                 <v-row class="fill-height ma-0" align="center" justify="center" >
                                                     <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
@@ -65,8 +65,8 @@
                         <router-link :to="{ name: 'project', params: getParams() }">
                             <v-card-title>{{project.title}}</v-card-title>
                             <v-row>
-                                <v-col v-for="index in getImages().slice(0, 3)" :key="index" class="d-flex child-flex" cols="4">
-                                    <v-img height="200" :src="getProjectImage(index)" aspect-ratio="1" class="grey lighten-2">
+                                <v-col v-for="index in 3" :key="index" class="d-flex child-flex" cols="4">
+                                    <v-img height="200" :src="getProjectImage(project.mainFolder, index)" aspect-ratio="1" class="grey lighten-2">
                                         <template v-slot:placeholder>
                                             <v-row class="fill-height ma-0" align="center" justify="center">
                                                 <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
@@ -98,23 +98,23 @@ class Project extends Vue {
     imageOverlay = "";
 
     getImageOverlay() {
-        return this.imageOverlay ? require("@/assets/images/" + this.imageOverlay + ".jpg") : "";
+        return this.imageOverlay ? require("@/assets/images/projects/" + this.imageOverlay + ".jpg") : "";
     }
-    getProjectImage(image : string | number){
-        return require("../assets/images/" + image + ".jpg");
+    getProjectImage(mainFolder : string, imageNumber : number){
+        return require("@/assets/images/projects/" + mainFolder + "/" + imageNumber + ".jpg");
     }
-    getImages(){
-        return this.project.images;
+    getImageNumber(){
+        return this.project.imageNumber;
     }
     getParams(){
         return this.project;
     }
-    openOverlay(image: string){
+    openOverlay(mainFolder: string, imageNumber: number){
         this.overlay = true;
-        this.imageOverlay = image;
+        this.imageOverlay = mainFolder + "/" + imageNumber;
     }
     nextImage(){
-        const images = this.project.images ? this.project.images : [];
+        const images = this.project.imageNumber ? new Array(this.project.imageNumber) : [];
         let index = images.indexOf(this.imageOverlay) > - 1 ? images.indexOf(this.imageOverlay) + 1 : 0;
         index = index > images.length-1 ? 0 : index;
         this.imageOverlay = images[index];

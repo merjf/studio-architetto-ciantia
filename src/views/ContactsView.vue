@@ -4,7 +4,7 @@
     <v-container class="section">
         <v-row>
             <v-card class="mx-auto my-12" max-width="90vw" elevation="0">
-            <v-img src="@/assets/images/15.jpg" class="contact-img"/>
+            <v-img src="@/assets/images/1.jpg" class="contact-img"/>
             <v-card-text>
                 <div><a href="mailto:salvatore.ciantia@gmail.com">salvatore.ciantia@gmail.com</a></div>
                 <div>+39 340 12345678</div>

@@ -2,22 +2,32 @@ import ProjectClass from '@/models/models'
 
 const projects = [{
     id: 1001,
-    title: "Frette",
+    title: "Frette - Agira",
     description: "Collaborazione con Filippo",
-    place: "Via Noto 26 - Piazza Armerina (EN)",
-    images: ["7", "8", "9", "10", "11", "12"]
+    place: "Sicilia Outlet Village - Agira EN",
+    mainFolder: "frette-agira",
+    imageNumber: 13
 },{
     id: 1002,
-    title: "Villa Bifamiliare",
-    description: "Descrizione Progetto Villa Bifamiliare",
-    place: "Via Largo Rosolino Pilo 13 - Catania (CT)",
-    images: ["1", "2", "3", "4", "5", "6"]
+    title: "Noventa",
+    description: "Descrizione Progetto Noventa",
+    place: "Via xxx 1234, Noventa di Piave VE",
+    mainFolder: "noventa",
+    imageNumber: 10
+// },{
+//     id: 1003,
+//     title: "Negozio Abbigliamento Luxury",
+//     description: "Descrizione Progetto Negozio Abbigliamento Luxury",
+//     place: "Via Vittorio Emanuele II 266, Catania CT",
+//     mainFolder: "palco-teatro-antico-catania",
+//     imageNumber: 15
 },{
-    id: 1003,
-    title: "Negozio Abbigliamento Luxury",
-    description: "Descrizione Progetto Negozio Abbigliamento Luxury",
-    place: "Via Firenze 109 - AciCastello (CT)",
-    images: ["13", "14", "15", "16", "17", "18"]
+    id: 1004,
+    title: "Appartamento privato",
+    description: "Descrizione Progetto Appartamento privato",
+    place: "Via xxx 1234, Piazza Armerina EN",
+    mainFolder: "tony",
+    imageNumber: 25
 }];
 
 export default projects as unknown as ProjectClass[];

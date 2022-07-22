@@ -25,8 +25,7 @@ const routes: Array<RouteConfig> = [
   },{
     path: '/contacts',
     name: 'contacts',
-    component: ContactsView,
-    props: true
+    component: ContactsView
   }
 ]
 
