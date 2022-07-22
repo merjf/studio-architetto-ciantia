@@ -165,32 +165,32 @@ class Header extends Vue {
     return projects;
   }
   mounted(){
-    // if(this.page === 'main'){
-    //   const sticky:any = $('#app-bar'), $window:any = $(window),
-    //     mainCarouselHeight = $('#main-carousel').height(),
-    //     offset = 250;
-    //   var scrolled = false;
+    if(this.page === 'main'){
+      const sticky:any = $('#app-bar'), $window:any = $(window),
+        mainCarouselHeight = $('#main-carousel').height(),
+        offset = 250;
+      var scrolled = false;
 
-    //   $window.on('scroll', function(e:any) {
-    //       scrolled = true;
-    //   });
+      $window.on('scroll', function(e:any) {
+          scrolled = true;
+      });
 
-    //   let timeout = setInterval(() => {
-    //     if (scrolled && mainCarouselHeight) {
-    //       scrolled = false;
-    //       if ($window && $window.scrollTop() > mainCarouselHeight - offset) {
-    //         sticky.removeClass("app-bar-dark");
-    //         sticky.addClass("app-bar-light");
-    //       } else {
-    //         sticky.removeClass("app-bar-light");
-    //         sticky.addClass("app-bar-dark");
-    //       }
-    //     }
-    //   }, 1);
-    // }
-    // window.addEventListener('resize', () => {
-    //   this.windowWidth = window.innerWidth
-    // })
+      let timeout = setInterval(() => {
+        if (scrolled && mainCarouselHeight) {
+          scrolled = false;
+          if ($window && $window.scrollTop() > mainCarouselHeight - offset) {
+            sticky.removeClass("app-bar-dark");
+            sticky.addClass("app-bar-light");
+          } else {
+            sticky.removeClass("app-bar-light");
+            sticky.addClass("app-bar-dark");
+          }
+        }
+      }, 1);
+    }
+    window.addEventListener('resize', () => {
+      this.windowWidth = window.innerWidth
+    })
   }
 }
 
