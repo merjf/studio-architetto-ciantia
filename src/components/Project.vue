@@ -1,7 +1,7 @@
  <template>
     <div :id="project.id">
         <div v-if="detailed" class="project-detailed"> <!-- PROJECT DETAILED PAGE -->
-            <v-card class="mx-auto" elevation="0" max-width="75vw">
+            <v-card class="mx-auto" elevation="0" :max-width="isMobileVersion ? '95vw' : '75vw'">
                 <v-card-text class="project-card">
                     <div class="text-subtitle-1" >
                         {{project.place}}
@@ -9,7 +9,7 @@
                     <p class="description">{{project.description}}</p>
                 </v-card-text>
                 <v-sheet elevation="0">
-                    <v-slide-group v-model="model" class="pa-4" show-arrows>
+                    <v-slide-group v-model="model" :show-arrows="isMobileVersion ? false : true">
                         <v-slide-item v-for="index in getImageNumber()" :key="index" class="ma-4">
                             <v-hover>
                                 <template v-slot:default="{ hover }">
@@ -61,11 +61,11 @@
         <div v-else class="project-item"> <!-- PROJECT LIST PAGE -->
             <v-hover>
                 <template v-slot:default="{ hover }">
-                    <v-card class="mx-auto project-card" max-width="55vw" :elevation="hover ? 6 : 0">
+                    <v-card class="mx-auto project-card" :max-width="isMobileVersion? '85vw' : '55vw'" :elevation="hover ? 6 : 0">
                         <router-link :to="{ name: 'project', params: getParams() }">
                             <v-card-title>{{project.title}}</v-card-title>
                             <v-row>
-                                <v-col v-for="index in 3" :key="index" class="d-flex child-flex" cols="4">
+                                <v-col v-for="index in isMobileVersion ? 1 : 3" :key="index" class="d-flex child-flex" :cols="isMobileVersion ? 12 : 4">
                                     <v-img height="200" :src="getProjectImage(project.mainFolder, index)" aspect-ratio="1" class="grey lighten-2">
                                         <template v-slot:placeholder>
                                             <v-row class="fill-height ma-0" align="center" justify="center">
@@ -93,9 +93,20 @@ class Project extends Vue {
     @Prop() public detailed!: boolean;
     @Prop() public project!: ProjectModel;
 
+    windowWidth = window.innerWidth;
     model = null;
     overlay = false;
     imageOverlay = "";
+
+    get isMobileVersion(): boolean{
+        return this.windowWidth <= 800
+    }
+
+    mounted(){
+        window.addEventListener('resize', () => {
+            this.windowWidth = window.innerWidth
+        })
+    }
 
     getImageOverlay() {
         return this.imageOverlay ? require("@/assets/images/projects/" + this.imageOverlay + ".jpg") : "";
@@ -145,6 +156,9 @@ export default Project;
     //     //     color: $secondary-color !important;
     //     // }
     // }
+    .v-card__title{
+        word-break: break-word;
+    }
 }
 .project-detailed{
     margin-top: 75px;

@@ -133,14 +133,8 @@ class Header extends Vue {
       simple: true
     }
   };
-  admins= [
-        ['Management', 'mdi-account-multiple-outline'],
-        ['Settings', 'mdi-cog-outline'],
-      ]
   drawer = false;
-  group = null;
   windowWidth = window.innerWidth;
-  model = 1;
   data() {
     return {
       
@@ -285,7 +279,7 @@ export default Header;
   color: $primary-color !important;
   // border: 1px solid $primary-color;
   position: fixed;
-  top: 5px;
+  top: 12px;
   left: 5px;
   z-index: 2;
 }

@@ -1,7 +1,7 @@
 <template>
-  <div class="contacts">
+  <div>
     <Header :page="'contacts'" />
-    <v-container class="section">
+    <v-container class="section contacts">
         <v-row>
             <v-card class="mx-auto my-12" max-width="90vw" elevation="0">
             <v-img src="@/assets/images/1.jpg" class="contact-img"/>
@@ -58,6 +58,9 @@ export default Contacts;
 </script>
 
 <style scoped lang="scss">
+.contacts{
+    margin-top: 50px;
+}
 .v-card__actions{
     justify-content: center;
 }
