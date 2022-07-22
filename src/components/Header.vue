@@ -2,15 +2,41 @@
   <div class="header">
     <v-app-bar v-if="!isMobileVersion" id="app-bar" elevation="0" :class="['text-center', page == 'main' ? 'app-bar-dark' : 'app-bar-light']" :style="{position: 'fixed'}">
       <v-container fluid>
-          <v-row justify="center">
-              <v-toolbar-items>
-                <router-link v-for="page in pages" :key="page.number" :to="{ name: page.name }">
-                  <v-col>
-                    <span>{{page.value}}</span>
-                  </v-col>
-                </router-link>
-              </v-toolbar-items>
-          </v-row>
+        <v-row justify="center">
+          <v-toolbar-items>
+            <template v-for="page in pages">
+              <router-link v-if="page.simple" :key="page.number" :to="{ name: page.name }">
+                <v-col>
+                  <span>{{page.value}}</span>
+                </v-col>
+              </router-link>
+              <template v-else>
+                <v-menu open-on-hover :close-on-content-click="true" offset-y :key="page.number">
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-col v-bind="attrs" v-on="on">
+                      <span>{{page.value}}</span>
+                    </v-col>
+                  </template>
+                  <v-card elevation="1" class="project-list-menu">
+                    <v-list>
+                      <router-link :to="{ name: 'projects'}">
+                        <v-list-item link :class="{'highlighted' : getCurrentPath?.includes('projects') }">
+                          <v-list-item-title>Project List</v-list-item-title>
+                        </v-list-item>
+                      </router-link>
+                      <v-divider></v-divider>
+                      <router-link v-for="project in getProjectList" :key="project.id" :to="{ name: 'project', params: project }">
+                        <v-list-item link :class="{'highlighted' : getCurrentPath?.includes(project.id)}">
+                          <v-list-item-title v-text="project.title" class='sub-item'></v-list-item-title>
+                        </v-list-item>
+                      </router-link>
+                    </v-list>
+                  </v-card>
+                </v-menu>
+              </template>
+            </template>
+          </v-toolbar-items>
+        </v-row>
       </v-container>
     </v-app-bar>
     <v-app-bar-nav-icon v-if="isMobileVersion" @click="drawer = true"></v-app-bar-nav-icon>
@@ -30,24 +56,20 @@
               <v-list-item-title>{{page.value}}</v-list-item-title>
             </template>
             <v-list-item-group active-class="highlighted" style="margin-left:20px;">
+              <router-link :to="{ name: 'projects'}">
+                <v-list-item link :class="{'highlighted' : getCurrentPath?.includes('projects') }">
+                  <v-list-item-title class='sub-item'>Project List</v-list-item-title>
+                </v-list-item>
+              </router-link>
+              <v-divider></v-divider>
               <router-link v-for="project in getProjectList" :key="project.id" :to="{ name: 'project', params: project }">
                 <v-list-item link :class="{'highlighted' : getCurrentPath?.includes(project.id) }">
-                  <v-list-item-title v-text="project.title"></v-list-item-title>
+                  <v-list-item-title v-text="project.title" class='sub-item'></v-list-item-title>
                 </v-list-item>
               </router-link>
             </v-list-item-group>
           </v-list-group>
         </template>
-        <!-- <v-list-item-group v-model="group" active-class="text--accent-4">
-          <router-link v-for="page in pages" :key="page.number" :to="{ name: page.name }">
-            <v-list-item :class="{'highlighted' : getCurrentPath === page.name }">
-              <v-list-item-icon>
-                <v-icon>{{page.icon}}</v-icon>
-              </v-list-item-icon>
-              <v-list-item-title>{{page.value}}</v-list-item-title>
-            </v-list-item>
-          </router-link>
-        </v-list-item-group> -->
       </v-list>
     </v-navigation-drawer>
     <v-container v-if="isMobileVersion && getCurrentPage != 'Home'">
@@ -98,6 +120,7 @@ class Header extends Vue {
     },
     works: {
       value: "Works",
+      name: "",
       number: 2,
       icon: 'mdi-briefcase',
       simple: false
@@ -131,6 +154,8 @@ class Header extends Vue {
   }
   get getCurrentPage(): string | undefined | null{
     var currentPageName = "";
+    console.log(this.$route.name);
+    console.log(this.$route);
     if(this.$route.params && this.$route.params.title){
       currentPageName = this.$route.params.title;
     } else if(this.$route.name){
@@ -215,6 +240,9 @@ export default Header;
     transform: translate(-50%, -80%);
   }
 }
+.sub-item{
+  font-size: 0.875rem;
+}
 .v-toolbar__title{
   margin-right: 40px;
 }
@@ -248,6 +276,9 @@ export default Header;
       text-decoration-color: $primary-color;
     }
   }
+  .project-list-menu{
+    position: absolute;
+  }
 }
 .v-app-bar__nav-icon{
   background-color: $secondary-color;
@@ -257,11 +288,6 @@ export default Header;
   top: 5px;
   left: 5px;
   z-index: 2;
-}
-.v-navigation-drawer__content{
-  .v-list-item__title{
-    font-size: 1rem !important;
-  }
 }
 .highlighted{
   background-color: $primary-color !important;
