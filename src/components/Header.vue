@@ -154,8 +154,6 @@ class Header extends Vue {
   }
   get getCurrentPage(): string | undefined | null{
     var currentPageName = "";
-    console.log(this.$route.name);
-    console.log(this.$route);
     if(this.$route.params && this.$route.params.title){
       currentPageName = this.$route.params.title;
     } else if(this.$route.name){
@@ -167,36 +165,32 @@ class Header extends Vue {
     return projects;
   }
   mounted(){
-    if(this.page === 'main'){
-      const sticky:any = $('#app-bar'), $window:any = $(window),
-        mainCarouselHeight = $('#main-carousel').height(),
-        offset = 250;
-      var scrolled = false;
-      
-      /* Bind the scroll Event */
-      $window.on('scroll', function(e:any) {
-          scrolled = true;
-      });
+    // if(this.page === 'main'){
+    //   const sticky:any = $('#app-bar'), $window:any = $(window),
+    //     mainCarouselHeight = $('#main-carousel').height(),
+    //     offset = 250;
+    //   var scrolled = false;
 
-      let timeout = setInterval(() => {
-        /* If the page was scrolled, handle the scroll */
-        if (scrolled && mainCarouselHeight) {
-          scrolled = false;
-          if ($window && $window.scrollTop() > mainCarouselHeight - offset) {
-            sticky.removeClass("app-bar-dark");
-            sticky.addClass("app-bar-light");
-            // this.opacity = sticky.offset().top/(mainCarouselHeight-200) <= 1 ? sticky.offset().top/(mainCarouselHeight-200) :
-                                // sticky.offset().top/(mainCarouselHeight-200) <= 0.09 ? 0.001 : sticky.offset().top/(mainCarouselHeight-200);
-          } else {
-            sticky.removeClass("app-bar-light");
-            sticky.addClass("app-bar-dark");
-          }
-        }
-      }, 1);
-    }
-    window.addEventListener('resize', () => {
-      this.windowWidth = window.innerWidth
-    })
+    //   $window.on('scroll', function(e:any) {
+    //       scrolled = true;
+    //   });
+
+    //   let timeout = setInterval(() => {
+    //     if (scrolled && mainCarouselHeight) {
+    //       scrolled = false;
+    //       if ($window && $window.scrollTop() > mainCarouselHeight - offset) {
+    //         sticky.removeClass("app-bar-dark");
+    //         sticky.addClass("app-bar-light");
+    //       } else {
+    //         sticky.removeClass("app-bar-light");
+    //         sticky.addClass("app-bar-dark");
+    //       }
+    //     }
+    //   }, 1);
+    // }
+    // window.addEventListener('resize', () => {
+    //   this.windowWidth = window.innerWidth
+    // })
   }
 }
 

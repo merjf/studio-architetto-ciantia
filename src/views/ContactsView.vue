@@ -20,9 +20,6 @@
         </v-card>
         </v-row>
     </v-container>
-    <!-- <div class="section">
-        
-    </div> -->
     <Footer />
   </div>
 </template>
