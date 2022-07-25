@@ -35,6 +35,13 @@ const projects = [{
         place: "Via xxx 1234, Piazza Armerina EN",
         mainFolder: "tony",
         imageNumber: 25
+    },{
+        id: 1015,
+        title: "Casa DF",
+        description: "Descrizione Progetto Appartamento privato",
+        place: "Via xxx 1234, Piazza Armerina EN",
+        mainFolder: "casa-df",
+        imageNumber: 19
     }],
     subgroup: {
         name: "Product Design",

@@ -161,7 +161,7 @@ export default Project;
     }
 }
 .project-detailed{
-    margin-top: 75px;
+    margin-top: 50px;
     .project-card{
         margin-top: 20px;
         margin-bottom: 25px;

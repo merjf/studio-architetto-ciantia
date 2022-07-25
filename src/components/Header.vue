@@ -20,14 +20,14 @@
                   <v-card elevation="1" class="project-list-menu">
                     <v-list>
                       <router-link :to="{ name: 'projects'}">
-                        <v-list-item link :class="{'highlighted' : getCurrentPath.includes('projects') }">
+                        <v-list-item link :class="{'highlighted' : getCurrentPath.includes('projects') }" class="sub-item">
                           <v-list-item-title>Project List</v-list-item-title>
                         </v-list-item>
                       </router-link>
                       <v-divider></v-divider>
                       <router-link v-for="project in getProjectList" :key="project.id" :to="{ name: 'project', params: project }">
                         <v-list-item link :class="{'highlighted' : getCurrentPath.includes(project.id)}">
-                          <v-list-item-title v-text="project.title" class='sub-item'></v-list-item-title>
+                          <v-list-item-title v-text="project.title" class='project-item'></v-list-item-title>
                         </v-list-item>
                       </router-link>
                     </v-list>
@@ -57,17 +57,41 @@
             </template>
             <v-list-item-group active-class="highlighted" style="margin-left:20px;">
               <router-link :to="{ name: 'projects'}">
-                <v-list-item link :class="{'highlighted' : getCurrentPath.includes('projects') }">
-                  <v-list-item-title class='sub-item'>Project List</v-list-item-title>
+                <v-list-item link :class="{'highlighted' : getCurrentPath.includes('projects') }" class="sub-item">
+                  <v-list-item-title>Project List</v-list-item-title>
                 </v-list-item>
               </router-link>
               <v-divider></v-divider>
-              INSERIRE LIST GROUP NOME GRUPPO POI ROUTER LINK
-              <router-link v-for="group in getProjectList" :key="group.name" :to="{ name: 'project', params: project }">
-                <v-list-item link :class="{'highlighted' : getCurrentPath.includes(project.id) }">
-                  <v-list-item-title v-text="project.title" class='sub-item'></v-list-item-title>
-                </v-list-item>
-              </router-link>
+              <template v-for="group in getProjectList">
+                <v-list-group :value="isProjectItemSelected" no-action sub-group :key="group.name" v-if="group.type==='group'" class="sub-group">
+                  <template v-slot:activator>
+                    <v-list-item-content>
+                      <v-list-item-title>{{group.name}}</v-list-item-title>
+                    </v-list-item-content>
+                  </template>
+                  <template v-if="group.projects">
+                    <router-link v-for="project in group.projects" :key="project.id" :to="{ name: 'project', params: project }">
+                      <v-list-item link>
+                        <v-list-item-title v-text="project.title"></v-list-item-title>
+                      </v-list-item>
+                    </router-link>
+                  </template>
+                  <template v-if="group.subgroup">
+                    <router-link :key="group.subgroup.name" :to="{ name: 'projects', hash:'#'+group.subgroup.name}">
+                      <v-list-item link :class="{'highlighted' : getCurrentPath.includes(group.subgroup.name) }" class="sub-item">
+                        <v-list-item-title v-text="group.subgroup.name"></v-list-item-title>
+                      </v-list-item>
+                    </router-link>
+                  </template>
+                </v-list-group>
+                <template v-if="group.type==='grid'">
+                  <router-link :key="group.name" :to="{ name: 'projects', hash:'#'+group.name}">
+                    <v-list-item link :class="{'highlighted' : getCurrentPath.includes('projects') }" class="sub-item">
+                      <v-list-item-title v-text="group.name"></v-list-item-title>
+                    </v-list-item>
+                  </router-link>
+                </template>
+              </template>
             </v-list-item-group>
           </v-list-group>
         </template>
@@ -230,7 +254,14 @@ export default Header;
     transform: translate(-50%, -80%);
   }
 }
+.sub-group{
+  margin-left: -20px;
+}
 .sub-item{
+  font-size: 1rem;
+  padding-left: 20px;
+}
+.project-item{
   font-size: 0.875rem;
 }
 .v-toolbar__title{
