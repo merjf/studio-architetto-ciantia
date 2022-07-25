@@ -1,4 +1,4 @@
-class Project {
+export class ProjectModel {
     id: number | undefined;
     title: string | undefined
     description: string | undefined;
@@ -6,9 +6,16 @@ class Project {
     mainFolder: string | undefined;
     imageNumber: number | undefined;
 }
-export default class ProjectModel {
+export class SubProjectModel {
+    id: number | undefined;
+    mainFolder: string | undefined;
+    windowImage: string | undefined;
+    zoomedImage: string | undefined;
+}
+export class GroupModel {
     name: string | undefined;
     type: string | undefined;
-    values: Project[] | undefined;
-    subgroup: ProjectModel | undefined;
+    projects: ProjectModel[] | SubProjectModel[] | undefined;
+    subprojects: SubProjectModel[] | undefined;
+    subgroup: GroupModel | undefined;
 }

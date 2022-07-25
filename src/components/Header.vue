@@ -62,7 +62,8 @@
                 </v-list-item>
               </router-link>
               <v-divider></v-divider>
-              <router-link v-for="project in getProjectList" :key="project.id" :to="{ name: 'project', params: project }">
+              INSERIRE LIST GROUP NOME GRUPPO POI ROUTER LINK
+              <router-link v-for="group in getProjectList" :key="group.name" :to="{ name: 'project', params: project }">
                 <v-list-item link :class="{'highlighted' : getCurrentPath.includes(project.id) }">
                   <v-list-item-title v-text="project.title" class='sub-item'></v-list-item-title>
                 </v-list-item>
@@ -92,7 +93,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import ProjectModel from '@/models/models'
+import { GroupModel, ProjectModel } from '@/models/models'
 import projects from '@/assets/data/project';
 import $ from 'jquery'
 
@@ -150,7 +151,7 @@ class Header extends Vue {
     }
     return currentPageName;
   }
-  get getProjectList(): ProjectModel[]{
+  get getProjectList(): GroupModel[]{
     return projects;
   }
   get isProjectItemSelected(): boolean{

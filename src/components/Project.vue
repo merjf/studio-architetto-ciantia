@@ -86,7 +86,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import ProjectModel from '@/models/models'
+import { ProjectModel } from '@/models/models'
 
 @Component
 class Project extends Vue {
@@ -109,10 +109,10 @@ class Project extends Vue {
     }
 
     getImageOverlay() {
-        return this.imageOverlay ? require("@/assets/images/projects/" + this.imageOverlay + ".jpg") : "";
+        return this.imageOverlay ? require("@/assets/images/work/" + this.imageOverlay + ".jpg") : "";
     }
     getProjectImage(mainFolder : string, imageNumber : number){
-        return require("@/assets/images/projects/" + mainFolder + "/" + imageNumber + ".jpg");
+        return require("@/assets/images/work/" + mainFolder + "/" + imageNumber + ".jpg");
     }
     getImageNumber(){
         return this.project.imageNumber;
