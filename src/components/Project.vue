@@ -14,7 +14,7 @@
                             <v-hover>
                                 <template v-slot:default="{ hover }">
                                     <v-card :elevation="hover ? 6 : 1">
-                                        <v-img height="300" width="300" class="image" :src="getProjectImage(project.mainFolder, index)" :lazy-src="getProjectImage(project.mainFolder, index)" @click="openOverlay(project.mainFolder, index)">
+                                        <v-img height="300" width="300" class="image" :src="getProjectImage(project.mainFolder, index)" :lazy-src="getProjectImage(project.mainFolder, index)" @click="openOverlay(index)">
                                             <template v-slot:placeholder>
                                                 <v-row class="fill-height ma-0" align="center" justify="center" >
                                                     <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
@@ -32,13 +32,13 @@
                 </v-sheet>
             </v-card>
             <v-overlay :value="overlay" :z-index="100" opacity="0.9">
-                <div >
-                    <v-btn class="overlay-btn" fixed right style="top:50%" @click="nextImage()">
+                <div>
+                    <v-btn class="overlay-btn" fixed right :style="isMobileVersion ? 'bottom:10%' : 'top:50%'" @click="nextImage()">
                         <v-icon large>
                             mdi-chevron-right
                         </v-icon>
                     </v-btn>
-                    <v-btn class="overlay-btn" fixed left style="top:50%" @click="previousImage()">
+                    <v-btn class="overlay-btn" fixed left :style="isMobileVersion ? 'bottom:10%' : 'top:50%'" @click="previousImage()">
                         <v-icon large>
                             mdi-chevron-left
                         </v-icon>
@@ -96,7 +96,7 @@ class Project extends Vue {
     windowWidth = window.innerWidth;
     model = null;
     overlay = false;
-    imageOverlay = "";
+    imageOverlay = 0;
 
     get isMobileVersion(): boolean{
         return this.windowWidth <= 800
@@ -109,7 +109,7 @@ class Project extends Vue {
     }
 
     getImageOverlay() {
-        return this.imageOverlay ? require("@/assets/images/work/" + this.imageOverlay + ".jpg") : "";
+        return this.imageOverlay ? require("@/assets/images/work/" + this.project.mainFolder + "/" + this.imageOverlay + ".jpg") : "";
     }
     getProjectImage(mainFolder : string, imageNumber : number){
         return require("@/assets/images/work/" + mainFolder + "/" + imageNumber + ".jpg");
@@ -120,14 +120,20 @@ class Project extends Vue {
     getParams(){
         return this.project;
     }
-    openOverlay(mainFolder: string, imageNumber: number){
+    openOverlay(imageNumber: number){
         this.overlay = true;
-        this.imageOverlay = mainFolder + "/" + imageNumber;
+        this.imageOverlay = imageNumber;
     }
     nextImage(){
-        const images = this.project.imageNumber ? new Array(this.project.imageNumber) : [];
+        const images = this.project.imageNumber ? Array.from({length:this.project.imageNumber},(v,k)=>k+1) : [];
         let index = images.indexOf(this.imageOverlay) > - 1 ? images.indexOf(this.imageOverlay) + 1 : 0;
         index = index > images.length-1 ? 0 : index;
+        this.imageOverlay = images[index];
+    }
+    previousImage(){
+        const images = this.project.imageNumber ? Array.from({length:this.project.imageNumber},(v,k)=>k+1) : [];
+        let index = images.indexOf(this.imageOverlay) > - 1 ? images.indexOf(this.imageOverlay) - 1 : 0;
+        index = index < 0 ? images.length-1 : index;
         this.imageOverlay = images[index];
     }
 }

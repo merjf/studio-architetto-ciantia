@@ -64,7 +64,7 @@ const projects = [{
         }]
     }
 },{
-    name: "Projects",
+    name: "Progetti",
     type: "grid",
     projects: [{
         id: 1008,

@@ -71,14 +71,15 @@
                   </template>
                   <template v-if="group.projects">
                     <router-link v-for="project in group.projects" :key="project.id" :to="{ name: 'project', params: project }">
-                      <v-list-item link>
+                      <v-list-item link :class="{'highlighted' : getCurrentPath.includes(project.id)}">
                         <v-list-item-title v-text="project.title"></v-list-item-title>
                       </v-list-item>
                     </router-link>
                   </template>
                   <template v-if="group.subgroup">
+                    <v-divider class="divider-sub-group"></v-divider>
                     <router-link :key="group.subgroup.name" :to="{ name: 'projects', hash:'#'+group.subgroup.name}">
-                      <v-list-item link :class="{'highlighted' : getCurrentPath.includes(group.subgroup.name) }" class="sub-item">
+                      <v-list-item link :class="{'highlighted' : getCurrentPath.includes(group.subgroup.name)}" class="sub-item-in-group">
                         <v-list-item-title v-text="group.subgroup.name"></v-list-item-title>
                       </v-list-item>
                     </router-link>
@@ -86,7 +87,7 @@
                 </v-list-group>
                 <template v-if="group.type==='grid'">
                   <router-link :key="group.name" :to="{ name: 'projects', hash:'#'+group.name}">
-                    <v-list-item link :class="{'highlighted' : getCurrentPath.includes('projects') }" class="sub-item">
+                    <v-list-item link :class="{'highlighted' : getCurrentPath.includes(group.name) }" class="sub-item">
                       <v-list-item-title v-text="group.name"></v-list-item-title>
                     </v-list-item>
                   </router-link>
@@ -260,6 +261,16 @@ export default Header;
 .sub-item{
   font-size: 1rem;
   padding-left: 20px;
+}
+.sub-item-in-group{
+  margin-left: 20px !important;
+  padding-left: 20px !important;
+  > .v-list-item__title{
+    font-size: 0.875rem !important;
+  }
+}
+.divider-sub-group{
+  margin-left: 40px;
 }
 .project-item{
   font-size: 0.875rem;
