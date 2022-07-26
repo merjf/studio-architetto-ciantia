@@ -78,16 +78,16 @@
                   </template>
                   <template v-if="group.subgroup">
                     <v-divider class="divider-sub-group"></v-divider>
-                    <router-link :key="group.subgroup.name" :to="{ name: 'projects', hash:'#'+group.subgroup.name}">
-                      <v-list-item link :class="{'highlighted' : getCurrentPath.includes(group.subgroup.name)}" class="sub-item-in-group">
+                    <router-link :key="group.subgroup.name" :to="{ name: 'projects', hash:'#'+group.subgroup.id}">
+                      <v-list-item link :class="{'highlighted' : getCurrentPath.includes(group.subgroup.id)}" class="sub-item-in-group">
                         <v-list-item-title v-text="group.subgroup.name"></v-list-item-title>
                       </v-list-item>
                     </router-link>
                   </template>
                 </v-list-group>
                 <template v-if="group.type==='grid'">
-                  <router-link :key="group.name" :to="{ name: 'projects', hash:'#'+group.name}">
-                    <v-list-item link :class="{'highlighted' : getCurrentPath.includes(group.name) }" class="sub-item">
+                  <router-link :key="group.name" :to="{ name: 'projects', hash:'#'+group.id}">
+                    <v-list-item link :class="{'highlighted' : getCurrentPath.includes(group.id) }" class="sub-item">
                       <v-list-item-title v-text="group.name"></v-list-item-title>
                     </v-list-item>
                   </router-link>

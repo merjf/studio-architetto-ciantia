@@ -14,6 +14,7 @@ export class SubProjectModel {
 }
 export class GroupModel {
     name: string | undefined;
+    id: string | undefined;
     type: string | undefined;
     projects: ProjectModel[] | SubProjectModel[] | undefined;
     subprojects: SubProjectModel[] | undefined;

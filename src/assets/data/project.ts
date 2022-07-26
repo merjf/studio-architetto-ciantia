@@ -1,6 +1,7 @@
 import { GroupModel } from '@/models/models'
 
 const projects = [{
+    id: "restoration",
     name: "Restauro",
     type: "group",
     projects: [{
@@ -12,6 +13,7 @@ const projects = [{
             imageNumber: 15
         }]
 },{
+    id: "interiors",
     name: "Interiors",
     type: "group",
     projects: [{
@@ -44,6 +46,7 @@ const projects = [{
         imageNumber: 19
     }],
     subgroup: {
+        id: "product-design",
         name: "Product Design",
         type: "grid",
         subprojects: [{
@@ -64,6 +67,7 @@ const projects = [{
         }]
     }
 },{
+    id: "various-projects",
     name: "Progetti",
     type: "grid",
     projects: [{

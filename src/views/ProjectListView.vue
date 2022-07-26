@@ -14,7 +14,7 @@
               class="project"
             />
           </div>
-          <div v-if="group.projects && group.type==='grid'" :id="group.name">
+          <div v-if="group.projects && group.type==='grid'" :id="group.id">
             <v-row justify="center">
               <v-col v-for="project in group.projects" :key="project.id" class="d-flex child-flex" cols="4">
                 <v-img :src="require('@/assets/images/work/'+project.mainFolder+'/'+project.windowImage+'.jpg')" :lazy-src="require('@/assets/images/work/'+project.mainFolder+'/'+project.windowImage+'.jpg')" aspect-ratio="1" class="grey lighten-2">
@@ -27,7 +27,7 @@
               </v-col>
             </v-row>
           </div>
-          <v-container v-if="group.subgroup" :style="'margin-bottom: 50px;' + isMobileVersion ? 'max-width:85vw;' : 'max-width:55vw;'" :id="group.subgroup.name">
+          <v-container v-if="group.subgroup" :style="'margin-bottom: 50px;' + isMobileVersion ? 'max-width:85vw;' : 'max-width:55vw;'" :id="group.subgroup.id">
             <v-card-subtitle class="group-title" :style="isMobileVersion ? 'max-width:85vw' : 'max-width:55vw'">
               {{group.subgroup.name}}
             </v-card-subtitle>
