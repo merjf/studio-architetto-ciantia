@@ -3,31 +3,18 @@
     <Header :page="'projectList'"/>
     <div class="section project-groups">
       <template v-for="(group, index) in getProjects()" >
-        <v-container :key="group.name" :style="isMobileVersion ? 'max-width:85vw' : 'max-width:55vw'">
+        <v-container :key="group.name" v-if="group.type==='group'" :style="isMobileVersion ? 'max-width:85vw' : 'max-width:55vw'">
           <v-card-title class="group-title" :style="isMobileVersion ? 'max-width:85vw' : 'max-width:55vw'">
             {{group.name}}
           </v-card-title>
-          <div v-if="group.projects && group.type==='group'">
+          <div v-if="group.projects">
             <Project v-for="project in group.projects" :key="project.id"
               :detailed="false"
               :project="project"
               class="project"
             />
           </div>
-          <div v-if="group.projects && group.type==='grid'" :id="group.id">
-            <v-row justify="center">
-              <v-col v-for="project in group.projects" :key="project.id" class="d-flex child-flex" cols="4">
-                <v-img :src="require('@/assets/images/work/'+project.mainFolder+'/'+project.windowImage+'.jpg')" :lazy-src="require('@/assets/images/work/'+project.mainFolder+'/'+project.windowImage+'.jpg')" aspect-ratio="1" class="grey lighten-2">
-                  <template v-slot:placeholder>
-                    <v-row class="fill-height ma-0" align="center" justify="center">
-                      <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                    </v-row>
-                  </template>
-                </v-img>
-              </v-col>
-            </v-row>
-          </div>
-          <v-container v-if="group.subgroup" :style="'margin-bottom: 50px;' + isMobileVersion ? 'max-width:85vw;' : 'max-width:55vw;'" :id="group.subgroup.id">
+          <v-container v-if="group.subgroup" :style="{maxWidth: isMobileVersion ? '85vw' : '55vw'}" :id="group.subgroup.id">
             <v-card-subtitle class="group-title" :style="isMobileVersion ? 'max-width:85vw' : 'max-width:55vw'">
               {{group.subgroup.name}}
             </v-card-subtitle>
@@ -43,6 +30,25 @@
               </v-col>
             </v-row>
           </v-container>
+          <v-divider v-if="index !== getProjects().length-1" :style="isMobileVersion ? 'max-width:85vw' : 'max-width:55vw'"></v-divider>
+        </v-container>
+        <v-container :key="group.name" v-if="group.type==='grid'" :style="isMobileVersion ? 'max-width:85vw' : 'max-width:55vw'" :id="group.id">
+          <v-card-title class="group-title" :style="isMobileVersion ? 'max-width:85vw' : 'max-width:55vw'">
+            {{group.name}}
+          </v-card-title>
+          <div v-if="group.projects">
+            <v-row justify="center">
+              <v-col v-for="project in group.projects" :key="project.id" class="d-flex child-flex" cols="4">
+                <v-img :src="require('@/assets/images/work/'+project.mainFolder+'/'+project.windowImage+'.jpg')" :lazy-src="require('@/assets/images/work/'+project.mainFolder+'/'+project.windowImage+'.jpg')" aspect-ratio="1" class="grey lighten-2">
+                  <template v-slot:placeholder>
+                    <v-row class="fill-height ma-0" align="center" justify="center">
+                      <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                    </v-row>
+                  </template>
+                </v-img>
+              </v-col>
+            </v-row>
+          </div>
           <v-divider v-if="index !== getProjects().length-1" :style="isMobileVersion ? 'max-width:85vw' : 'max-width:55vw'"></v-divider>
         </v-container>
       </template>
@@ -97,5 +103,6 @@ export default ProjectListView;
 }
 .v-divider{
   margin: auto;
+  margin-top: 50px !important;
 }
 </style>

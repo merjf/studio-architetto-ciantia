@@ -2,6 +2,9 @@
     <div :id="project.id">
         <div v-if="detailed" class="project-detailed"> <!-- PROJECT DETAILED PAGE -->
             <v-card class="mx-auto" elevation="0" :max-width="isMobileVersion ? '95vw' : '75vw'">
+                <v-card-title v-if="!isMobileVersion">
+                    {{project.title}}
+                </v-card-title>
                 <v-card-text class="project-card">
                     <div class="text-subtitle-1" >
                         {{project.place}}
@@ -9,7 +12,7 @@
                     <p class="description">{{project.description}}</p>
                 </v-card-text>
                 <v-sheet elevation="0">
-                    <v-slide-group v-model="model" :show-arrows="isMobileVersion ? false : true">
+                    <v-slide-group :show-arrows="isMobileVersion ? false : true" ref="projectSlideImages">
                         <v-slide-item v-for="index in getImageNumber()" :key="index" class="ma-4">
                             <v-hover>
                                 <template v-slot:default="{ hover }">
@@ -85,7 +88,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { ProjectModel } from '@/models/models'
 
 @Component
@@ -102,6 +105,12 @@ class Project extends Vue {
         return this.windowWidth <= 800
     }
 
+    @Watch('project')
+    public (newProject: ProjectModel, oldProject: ProjectModel) {
+        if(this.$refs.projectSlideImages){
+            (this.$refs.projectSlideImages as any).scrollOffset = 0;
+        }
+    }
     mounted(){
         window.addEventListener('resize', () => {
             this.windowWidth = window.innerWidth

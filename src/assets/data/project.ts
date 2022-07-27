@@ -6,8 +6,8 @@ const projects = [{
     type: "group",
     projects: [{
             id: 1001,
-            title: "Palco Teatro Antico di Catania",
-            description: "Descrizione Progetto Teatro Antico di Catania",
+            title: "Palco per il Teatro Antico di Catania",
+            description: "Per Amenanos Festival, Associazione Di.DE - Michele Di Dio. Collaborazione: Arch. Luca Renato Fauzia.",
             place: "Via Vittorio Emanuele II 266, Catania CT",
             mainFolder: "palco-teatro-antico-catania",
             imageNumber: 15
@@ -18,32 +18,39 @@ const projects = [{
     type: "group",
     projects: [{
         id: 1002,
-        title: "Frette - Agira",
-        description: "Collaborazione con Filippo",
+        title: "Frette Outlet Agira",
+        description: "Collaborazione con Studio Intro",
         place: "Sicilia Outlet Village - Agira EN",
         mainFolder: "frette-agira",
         imageNumber: 13
     },{
         id: 1003,
-        title: "Noventa",
-        description: "Descrizione Progetto Noventa",
-        place: "Via xxx 1234, Noventa di Piave VE",
+        title: "Frette Outlet Noventa di Piave",
+        description: "Collaborazione con Studio Intro",
+        place: "Mc Arthur Glen Designer Outlet - Noventa di Piave VE",
         mainFolder: "noventa",
         imageNumber: 10,
     },{
         id: 1004,
-        title: "Appartamento privato",
-        description: "Descrizione Progetto Appartamento privato",
-        place: "Via xxx 1234, Piazza Armerina EN",
+        title: "Casa TB",
+        description: "Centro storico",
+        place: "Piazza Armerina EN",
         mainFolder: "tony",
         imageNumber: 25
     },{
         id: 1015,
         title: "Casa DF",
-        description: "Descrizione Progetto Appartamento privato",
-        place: "Via xxx 1234, Piazza Armerina EN",
+        description: "",
+        place: "Piazza Armerina EN",
         mainFolder: "casa-df",
         imageNumber: 19
+    },{
+        id: 1017,
+        title: "Casa SC",
+        description: "Appartamento privato",
+        place: "Piazza Armerina EN",
+        mainFolder: "casa-sc",
+        imageNumber: 11
     }],
     subgroup: {
         id: "product-design",
@@ -67,8 +74,20 @@ const projects = [{
         }]
     }
 },{
-    id: "various-projects",
-    name: "Progetti",
+    id: "gardens",
+    name: "Gardens",
+    type: "group",
+    projects: [{
+        id: 1016,
+        title: "Giardino Privato",
+        description: "",
+        place: "Piazza Armerina EN",
+        mainFolder: "private-garden",
+        imageNumber: 6
+    }]
+},{
+    id: "miscellaneous",
+    name: "Progetti Vari",
     type: "grid",
     projects: [{
         id: 1008,

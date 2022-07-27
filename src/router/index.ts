@@ -13,8 +13,8 @@ const routes: Array<RouteConfig> = [
     name: 'home',
     component: HomeView
   },{
-    path: '/projects',
-    name: 'projects',
+    path: '/works',
+    name: 'works',
     component: ProjectListView,
     props: true
   },{
@@ -33,7 +33,7 @@ const router = new VueRouter({
   mode: 'history',
   scrollBehavior: function(to) {
     if (to.hash) {
-      return {selector: to.hash}
+      return {selector: to.hash, offset: {x: 0, y: 50}}
     } else {
       return { x: 0, y: 0 }
     }
