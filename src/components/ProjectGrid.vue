@@ -1,11 +1,14 @@
 <template>
     <v-container :key="group.name" :style="isMobileVersion ? 'max-width:85vw' : 'max-width:55vw'" :id="group.id" class="project-grid">
-        <v-card-title class="group-title" :style="isMobileVersion ? 'max-width:85vw' : 'max-width:55vw'">
+        <v-card-title v-if="!isSubgroup" class="group-title" :style="isMobileVersion ? 'max-width:85vw' : 'max-width:55vw'">
             {{group.name}}
         </v-card-title>
-        <div v-if="group.projects">
+        <v-card-subtitle v-else class="group-title" :style="isMobileVersion ? 'max-width:85vw' : 'max-width:55vw'">
+            {{group.name}}
+        </v-card-subtitle>
+        <div>
             <v-row justify="center">
-                <v-col v-for="project in group.projects" :key="project.id" class="d-flex child-flex" cols="4">
+                <v-col v-for="project in getProject" :key="project.id" class="d-flex child-flex" cols="4">
                 <v-img :src="require('@/assets/images/work/'+project.mainFolder+'/'+project.windowImage+'.jpg')" :lazy-src="require('@/assets/images/work/'+project.mainFolder+'/'+project.windowImage+'.jpg')" aspect-ratio="1" class="grey lighten-2">
                     <template v-slot:placeholder>
                     <v-row class="fill-height ma-0" align="center" justify="center">
@@ -21,11 +24,12 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import { GroupModel } from '@/models/models'
+import { GroupModel, SubProjectModel } from '@/models/models'
 
 @Component
 class ProjectGrid extends Vue {
     @Prop() public group!: GroupModel;
+    @Prop() public isSubgroup!: boolean;
 
     windowWidth = window.innerWidth;
 
@@ -36,6 +40,9 @@ class ProjectGrid extends Vue {
         window.addEventListener('resize', () => {
             this.windowWidth = window.innerWidth
         })   
+    }
+    get getProject(): SubProjectModel[] | undefined {
+        return this.group.projects ? this.group.projects as SubProjectModel[] : this.group.subprojects;
     }
 }
 

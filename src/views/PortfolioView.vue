@@ -4,7 +4,7 @@
     <div class="section project-groups">
       <template v-for="(group, index) in getProjects()">
         <ProjectList v-if="group.type==='group'" :key="group.name" :group="group"/>
-        <ProjectGrid v-if="group.type==='grid'" :key="group.name" :group="group"/>
+        <ProjectGrid v-if="group.type==='grid'" :key="group.name" :group="group" :isSubgroup="false"/>
         <v-divider :key="index" v-if="index !== getProjects().length-1" :style="isMobileVersion ? 'max-width:85vw' : 'max-width:55vw'"></v-divider>
       </template>
     </div>

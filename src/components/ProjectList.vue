@@ -27,7 +27,8 @@
                 </v-hover>
             </div>
         </div>
-        <v-container v-if="group.subgroup" :style="{maxWidth: isMobileVersion ? '85vw' : '55vw'}" :id="group.subgroup.id" class="subgroup">
+        <ProjectGrid v-if="group.subgroup" :group="group.subgroup" :isSubgroup="true" />
+        <!-- <v-container v-if="group.subgroup" :style="{maxWidth: isMobileVersion ? '85vw' : '55vw'}" :id="group.subgroup.id" class="subgroup">
             <v-card-subtitle class="group-title" :style="isMobileVersion ? 'max-width:85vw' : 'max-width:55vw'">
                 {{group.subgroup.name}}
             </v-card-subtitle>
@@ -42,15 +43,20 @@
                     </v-img>
                 </v-col>
             </v-row>
-        </v-container>
+        </v-container> -->
     </v-container>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
+import ProjectGrid from '@/components/ProjectGrid.vue';
 import { GroupModel } from '@/models/models'
 
-@Component
+@Component({
+    components:{
+        ProjectGrid
+    }
+})
 class ProjectList extends Vue {
     @Prop() public group!: GroupModel;
 

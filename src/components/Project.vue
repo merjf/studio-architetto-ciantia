@@ -1,6 +1,6 @@
  <template>
     <div :id="project.id">
-        <div v-if="detailed" class="project-detailed"> <!-- PROJECT DETAILED PAGE -->
+        <div v-if="detailed" class="project-detailed">
             <v-card class="mx-auto" elevation="0" :max-width="isMobileVersion ? '95vw' : '75vw'">
                 <v-card-title v-if="!isMobileVersion">
                     {{project.title}}
