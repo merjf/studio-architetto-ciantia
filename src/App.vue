@@ -26,8 +26,7 @@ export default Vue.extend({
   }
 }
 .section{
-  
-  margin-bottom: 150px;
+  margin-bottom: 100px;
 }
 a{
   color: unset !important;

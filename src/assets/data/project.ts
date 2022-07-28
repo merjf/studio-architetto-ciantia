@@ -5,13 +5,21 @@ const projects = [{
     name: "Restauro",
     type: "group",
     projects: [{
-            id: 1001,
-            title: "Palco per il Teatro Antico di Catania",
-            description: "Per Amenanos Festival, Associazione Di.DE - Michele Di Dio. Collaborazione: Arch. Luca Renato Fauzia.",
-            place: "Via Vittorio Emanuele II 266, Catania CT",
-            mainFolder: "palco-teatro-antico-catania",
-            imageNumber: 15
-        }]
+        id: 1001,
+        title: "Palco per il Teatro Antico di Catania",
+        description: "Per Amenanos Festival, Associazione Di.DE - Michele Di Dio. Collaborazione: Arch. Luca Renato Fauzia.",
+        place: "Via Vittorio Emanuele II 266, Catania CT",
+        mainFolder: "palco-teatro-antico-catania",
+        imageNumber: 15
+    },{
+        id: 1018,
+        title: "Restauro Basilica Cattedrale Maria SS delle Vittorie",
+        description: "",
+        place: "Piazza Armerina EN",
+        mainFolder: "cattedrale",
+        imageNumber: 12
+    }]
+    
 },{
     id: "interiors",
     name: "Interiors",
@@ -124,6 +132,11 @@ const projects = [{
         mainFolder: "projects",
         windowImage: "13",
         zoomedImage: "14"
+    },{
+        id: 1019,
+        mainFolder: "projects",
+        windowImage: "15",
+        zoomedImage: "16"
     }],
     subgroup: undefined
 }];

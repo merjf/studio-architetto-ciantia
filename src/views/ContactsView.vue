@@ -4,20 +4,20 @@
     <v-container class="section contacts">
         <v-row>
             <v-card class="mx-auto my-12" max-width="90vw" elevation="0">
-            <v-img src="@/assets/images/contatti.jpg" class="contact-img"/>
-            <v-card-text>
-                <div><a href="mailto:salvatore.ciantia@gmail.com">salvatore.ciantia@gmail.com</a></div>
-                <div>+39 340 12345678</div>
-            </v-card-text>
-            <v-divider class="mx-4"></v-divider>
-            <v-card-actions center="true">
-                <v-btn v-for="icon in icons" :key="icon.name" class="mx-4" icon @click="goToPage(icon.link)">
-                    <v-icon large>
-                        {{ icon.name }}
-                    </v-icon>
-                </v-btn>
-            </v-card-actions>
-        </v-card>
+                <v-img src="@/assets/images/contatti.jpg" class="contact-img"/>
+                <v-card-text>
+                    <div><a :href="'mailto:'+ email" class="mail">{{email}}</a></div>
+                    <div>+39 340 12345678</div>
+                </v-card-text>
+                <v-divider class="mx-4"></v-divider>
+                <v-card-actions center="true">
+                    <v-btn v-for="icon in icons" :key="icon.name" class="mx-4" icon @click="goToPage(icon.link)">
+                        <v-icon large>
+                            {{ icon.name }}
+                        </v-icon>
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
         </v-row>
     </v-container>
     <Footer />
@@ -49,6 +49,7 @@ class Contacts extends Vue {
         name: 'mdi-instagram',
         link: 'https://www.instagram.com/salvatore_ciantia_architetto/'
     }]
+    email = 'studioarchitettociantia@gmail.com'
     goToPage(link : string){
         window.open(link);
     }
@@ -73,6 +74,10 @@ export default Contacts;
 }
 hr{
     margin: 15px 0px;
+}
+.mail:hover{
+    background-color: $secondary-color !important;
+    color: $tertiary-color !important;
 }
 .contact-img{
     width: 40vw;

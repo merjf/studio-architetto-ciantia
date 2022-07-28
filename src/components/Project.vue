@@ -34,64 +34,21 @@
                     </v-slide-group>
                 </v-sheet>
             </v-card>
-            <v-overlay :value="overlay" :z-index="100" opacity="0.9">
-                <div>
-                    <v-btn class="overlay-btn" fixed right :style="isMobileVersion ? 'bottom:10%' : 'top:50%'" @click="nextImage()">
-                        <v-icon large>
-                            mdi-chevron-right
-                        </v-icon>
-                    </v-btn>
-                    <v-btn class="overlay-btn" fixed left :style="isMobileVersion ? 'bottom:10%' : 'top:50%'" @click="previousImage()">
-                        <v-icon large>
-                            mdi-chevron-left
-                        </v-icon>
-                    </v-btn>
-                    <v-btn class="overlay-btn" fixed top right @click="overlay = false">
-                        <v-icon large>
-                            mdi-close
-                        </v-icon>
-                    </v-btn>
-                    <v-img :src="getImageOverlay()" max-height="90vh" max-width="90vw">
-                        <template v-slot:placeholder>
-                            <v-row class="fill-height ma-0" align="center" justify="center" >
-                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                            </v-row>
-                        </template>
-                    </v-img>
-                </div>
-            </v-overlay>
-        </div>
-        <div v-else class="project-item"> <!-- PROJECT LIST PAGE -->
-            <v-hover>
-                <template v-slot:default="{ hover }">
-                    <v-card class="mx-auto project-card" :max-width="isMobileVersion? '85vw' : '55vw'" :elevation="hover ? 6 : 0">
-                        <router-link :to="{ name: 'project', params: getParams() }">
-                            <v-card-title>{{project.title}}</v-card-title>
-                            <v-row>
-                                <v-col v-for="index in isMobileVersion ? 1 : 3" :key="index" class="d-flex child-flex" :cols="isMobileVersion ? 12 : 4">
-                                    <v-img height="200" :src="getProjectImage(project.mainFolder, index)" aspect-ratio="1" class="grey lighten-2">
-                                        <template v-slot:placeholder>
-                                            <v-row class="fill-height ma-0" align="center" justify="center">
-                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                                            </v-row>
-                                        </template>
-                                    </v-img>
-                                </v-col>
-                            </v-row>
-                        </router-link>
-                    </v-card>
-                </template>
-            </v-hover>
-            
+            <OverlayImage :project="project" :overlay="overlay" :imageOverlay="imageOverlay" @set-overlay="setOverlay" @set-current-image="setCurrentImage" />
         </div>
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import OverlayImage from '@/components/OverlayImage.vue';
 import { ProjectModel } from '@/models/models'
 
-@Component
+@Component({
+    components:{
+        OverlayImage
+    }
+})
 class Project extends Vue {
     @Prop() public detailed!: boolean;
     @Prop() public project!: ProjectModel;
@@ -104,6 +61,12 @@ class Project extends Vue {
     get isMobileVersion(): boolean{
         return this.windowWidth <= 800
     }
+    setOverlay(value:boolean){
+        this.overlay = value;
+    }
+    setCurrentImage(imageNumber:number){
+        this.imageOverlay = imageNumber;
+    }
 
     @Watch('project')
     public (newProject: ProjectModel, oldProject: ProjectModel) {
@@ -115,10 +78,6 @@ class Project extends Vue {
         window.addEventListener('resize', () => {
             this.windowWidth = window.innerWidth
         })
-    }
-
-    getImageOverlay() {
-        return this.imageOverlay ? require("@/assets/images/work/" + this.project.mainFolder + "/" + this.imageOverlay + ".jpg") : "";
     }
     getProjectImage(mainFolder : string, imageNumber : number){
         return require("@/assets/images/work/" + mainFolder + "/" + imageNumber + ".jpg");
@@ -133,48 +92,11 @@ class Project extends Vue {
         this.overlay = true;
         this.imageOverlay = imageNumber;
     }
-    nextImage(){
-        const images = this.project.imageNumber ? Array.from({length:this.project.imageNumber},(v,k)=>k+1) : [];
-        let index = images.indexOf(this.imageOverlay) > - 1 ? images.indexOf(this.imageOverlay) + 1 : 0;
-        index = index > images.length-1 ? 0 : index;
-        this.imageOverlay = images[index];
-    }
-    previousImage(){
-        const images = this.project.imageNumber ? Array.from({length:this.project.imageNumber},(v,k)=>k+1) : [];
-        let index = images.indexOf(this.imageOverlay) > - 1 ? images.indexOf(this.imageOverlay) - 1 : 0;
-        index = index < 0 ? images.length-1 : index;
-        this.imageOverlay = images[index];
-    }
 }
 export default Project;
 </script>
 
 <style scoped lang="scss">
-.project-item{
-    .v-card__actions{
-        position: absolute;
-        right: 10px;
-        bottom: 15px;
-    }
-    .project-card{
-        padding: 10px;
-        .v-image{
-            cursor: pointer;
-        }
-    }
-    // .project-card:hover{
-    //     // background-color: rgba($tertiary-color, 0.5) !important;
-    //     border: 1px solid rgba($tertiary-color, 0.5);
-    //     border-radius: 10px;
-        
-    //     // .v-card__title{
-    //     //     color: $secondary-color !important;
-    //     // }
-    // }
-    .v-card__title{
-        word-break: break-word;
-    }
-}
 .project-detailed{
     margin-top: 50px;
     .project-card{
@@ -190,18 +112,6 @@ export default Project;
     }
     .image:hover{
         cursor: pointer;
-    }
-    .overlay-btn{
-        min-width: auto !important;
-        border-radius: 50%;
-        height: 40px !important;
-        width: 40px !important;
-        background-color: $secondary-color !important;
-        color: $primary-color !important;
-    }
-    .overlay-btn:hover{
-        background-color: $tertiary-color !important;
-        color: $secondary-color !important;
     }
 }
 </style>

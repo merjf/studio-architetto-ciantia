@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
-import ProjectListView from '@/views/ProjectListView.vue'
+import PortfolioView from '@/views/PortfolioView.vue'
 import ProjectView from '@/views/ProjectView.vue'
 import ContactsView from '@/views/ContactsView.vue'
 
@@ -15,7 +15,7 @@ const routes: Array<RouteConfig> = [
   },{
     path: '/works',
     name: 'works',
-    component: ProjectListView,
+    component: PortfolioView,
     props: true
   },{
     path: '/project/:id',

@@ -17,7 +17,7 @@
                       <span>{{page.value}}</span>
                     </v-col>
                   </template>
-                  <v-card elevation="1" class="project-list-menu">
+                  <v-card elevation="1" class="project-list-menu overflow-y-auto" max-height="90vh">
                     <v-list>
                       <router-link :to="{ name: 'works'}">
                         <v-list-item link :class="{'highlighted' : getCurrentPath.includes('works') }" class="sub-item">
@@ -130,9 +130,9 @@
     <v-img v-if="page === 'main'" src="@/assets/images/logo.png" class="logo"></v-img>
     <v-carousel v-if="page === 'main'" id="main-carousel" hide-delimiters cycle :show-arrows="!isMobileVersion" :show-arrows-on-hover="true" height="90vh">
       <v-carousel-item
-        v-for="(image, i) in imagesForMainPage"
+        v-for="i in imagesForMainPage"
         :key="i"
-        :src="image.src"
+        :src="require('@/assets/images/home/'+i+'.jpg')"
       ></v-carousel-item>
     </v-carousel>
   </div>
@@ -151,13 +151,7 @@ import $ from 'jquery'
 class Header extends Vue {
   @Prop() public page!: string;
   @Prop() public project!: ProjectModel;
-  imagesForMainPage = [{
-    src: require("@/assets/images/1.jpg")
-  },{
-    src: require("@/assets/images/2.jpg")
-  },{
-    src: require("@/assets/images/3.jpg")
-  }];
+  imagesForMainPage = Array.from({length:5},(v,k)=>k+1);
   pages = {
     home: {
       value: "Home",
@@ -248,9 +242,9 @@ export default Header;
 }
 .logo{
   position: absolute;
-  left: 35vw;
-  top: 20vh;
-  width: 25vw;
+  left: 40vw;
+  top: 25vh;
+  width: 20vw;
   z-index: 2;
 }
 .v-list-item__title{
@@ -259,7 +253,7 @@ export default Header;
 @media screen and (max-width: 1180px) {
   .logo{
     width: 30vw;
-    top: 25%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -75%);
   }
@@ -281,7 +275,7 @@ export default Header;
 @media screen and (max-width: 600px) {
   .logo{
     width: 70vw;
-    top: 20%;
+    top: 25%;
     left: 50%;
     transform: translate(-50%, -80%);
   }
