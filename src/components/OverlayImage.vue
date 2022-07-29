@@ -19,7 +19,7 @@
             <span class="indexing">
                 {{getIndexing}}
             </span>
-            <v-img :src="getCurrentImage()" max-height="90vh" max-width="90vw">
+            <v-img :src="getCurrentImage()" max-height="90vh" max-width="85vw" contain>
                 <template v-slot:placeholder>
                     <v-row class="fill-height ma-0" align="center" justify="center" >
                         <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
@@ -32,18 +32,25 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import { ProjectModel } from '@/models/models'
+import { ProjectModel, SubProjectModel } from '@/models/models'
 
 @Component
 class OverlayImage extends Vue {
     @Prop() public overlay!: boolean;
     @Prop() public project!: ProjectModel;
+    @Prop() public projects!: SubProjectModel[];
     @Prop() public imageOverlay!: number;
 
     windowWidth = window.innerWidth;
 
     get getIndexing(): string{
-        return this.imageOverlay + "/" + this.project.imageNumber;
+        if(this.project){
+            return this.imageOverlay + "/" + this.project.imageNumber;
+        }
+        if(this.projects){
+            return (this.imageOverlay/2) + "/" + this.projects.length;
+        }
+        return "";
     }
     get isMobileVersion(): boolean{
         return this.windowWidth <= 800
@@ -57,19 +64,44 @@ class OverlayImage extends Vue {
         this.$emit('set-overlay', false);
     }
     getCurrentImage() {
-        return this.imageOverlay ? require("@/assets/images/work/" + this.project.mainFolder + "/" + this.imageOverlay + ".jpg") : "";
+        if(this.project){
+            return this.imageOverlay ? require("@/assets/images/work/" + this.project.mainFolder + "/" + this.imageOverlay + ".jpg") : "";
+        }
+        if(this.projects){
+            let value = this.projects.find(item => item.zoomedImage === ""+this.imageOverlay);
+            return value ? require("@/assets/images/work/" + value.mainFolder + "/" + this.imageOverlay + ".jpg") : "";
+        }
     }
     nextImage(){
-        const images = this.project.imageNumber ? Array.from({length:this.project.imageNumber},(v,k)=>k+1) : [];
-        let index = images.indexOf(this.imageOverlay) > - 1 ? images.indexOf(this.imageOverlay) + 1 : 0;
-        index = index > images.length-1 ? 0 : index;
-        this.$emit('set-current-image', images[index]);
+        if(this.project){
+            const images = this.project.imageNumber ? Array.from({length:this.project.imageNumber},(v,k)=>k+1) : [];
+            let index = images.indexOf(this.imageOverlay) > - 1 ? images.indexOf(this.imageOverlay) + 1 : 0;
+            index = index > images.length-1 ? 0 : index;
+            this.$emit('set-current-image', images[index]);
+        }
+        if(this.projects){
+            const images = this.projects ? Array.from({length:this.projects.length},(v,k)=>(k+1)*2) : [];
+            let index = images.indexOf(this.imageOverlay) > - 1 ? images.indexOf(this.imageOverlay) + 1 : 0;
+            index = index > images.length-1 ? 0 : index;
+            this.$emit('set-current-image', images[index]);
+        }
     }
     previousImage(){
-        const images = this.project.imageNumber ? Array.from({length:this.project.imageNumber},(v,k)=>k+1) : [];
-        let index = images.indexOf(this.imageOverlay) > - 1 ? images.indexOf(this.imageOverlay) - 1 : 0;
-        index = index < 0 ? images.length-1 : index;
-        this.$emit('set-current-image', images[index]);
+        if(this.project){
+            const images = this.project.imageNumber ? Array.from({length:this.project.imageNumber},(v,k)=>k+1) : [];
+            let index = images.indexOf(this.imageOverlay) > - 1 ? images.indexOf(this.imageOverlay) - 1 : 0;
+            index = index < 0 ? images.length-1 : index;
+            this.$emit('set-current-image', images[index]);
+            console.log("dsdsa")
+        }
+        if(this.projects){
+            const images = this.projects ? Array.from({length:this.projects.length},(v,k)=>(k+1)*2) : [];
+            console.log(images + " length " + images.length + " overlay " +this.imageOverlay);
+            let index = images.indexOf(this.imageOverlay) > - 1 ? images.indexOf(this.imageOverlay) - 1 : 0;
+            index = index < 0 ? images.length-1 : index;
+            console.log("indexOf " + images.indexOf(this.imageOverlay) + " index " + index);
+            this.$emit('set-current-image', images[index]);
+        }
     }
 }
 

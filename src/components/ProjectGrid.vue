@@ -8,8 +8,8 @@
         </v-card-subtitle>
         <div>
             <v-row justify="center">
-                <v-col v-for="project in getProject" :key="project.id" class="d-flex child-flex" cols="4">
-                <v-img :src="require('@/assets/images/work/'+project.mainFolder+'/'+project.windowImage+'.jpg')" :lazy-src="require('@/assets/images/work/'+project.mainFolder+'/'+project.windowImage+'.jpg')" aspect-ratio="1" class="grey lighten-2">
+                <v-col v-for="project in getProjects" :key="project.id" class="d-flex child-flex" cols="4">
+                <v-img :src="require('@/assets/images/work/'+project.mainFolder+'/'+project.windowImage+'.jpg')" :lazy-src="require('@/assets/images/work/'+project.mainFolder+'/'+project.windowImage+'.jpg')" aspect-ratio="1" class="grey lighten-2 image" @click="openOverlay(project.zoomedImage)">
                     <template v-slot:placeholder>
                     <v-row class="fill-height ma-0" align="center" justify="center">
                         <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
@@ -19,30 +19,50 @@
                 </v-col>
             </v-row>
         </div>
+        <OverlayImage :projects="getProjects" :overlay="overlay" :imageOverlay="imageOverlay" @set-overlay="setOverlay" @set-current-image="setCurrentImage" />
     </v-container>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import { GroupModel, SubProjectModel } from '@/models/models'
+import OverlayImage from '@/components/OverlayImage.vue';
+import { GroupModel, SubProjectModel } from '@/models/models';
 
-@Component
+@Component({
+    components:{
+        OverlayImage
+    }
+})
 class ProjectGrid extends Vue {
     @Prop() public group!: GroupModel;
     @Prop() public isSubgroup!: boolean;
 
     windowWidth = window.innerWidth;
+    overlay = false;
+    imageOverlay = 0;
 
     get isMobileVersion(): boolean{
         return this.windowWidth <= 800
     }
+    get getProjects(): SubProjectModel[] | undefined {
+        return this.group.projects ? this.group.projects as SubProjectModel[] : this.group.subprojects;
+    }
+
     mounted(){
         window.addEventListener('resize', () => {
             this.windowWidth = window.innerWidth
         })   
     }
-    get getProject(): SubProjectModel[] | undefined {
-        return this.group.projects ? this.group.projects as SubProjectModel[] : this.group.subprojects;
+
+    setOverlay(value:boolean){
+        this.overlay = value;
+    }
+    setCurrentImage(imageNumber:number){
+        this.imageOverlay = imageNumber;
+    }
+    openOverlay(imageNumber: string){
+        this.overlay = true;
+        this.imageOverlay = parseInt(imageNumber);
     }
 }
 
@@ -52,5 +72,11 @@ export default ProjectGrid;
 <style scoped lang="scss">
 .project-grid{
     margin-bottom: 40px;
+}
+.image{
+    cursor: pointer;
+}
+.image:hover{
+    cursor: pointer;
 }
 </style>

@@ -54,7 +54,6 @@ class Project extends Vue {
     @Prop() public project!: ProjectModel;
 
     windowWidth = window.innerWidth;
-    model = null;
     overlay = false;
     imageOverlay = 0;
 
