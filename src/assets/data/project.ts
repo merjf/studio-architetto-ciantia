@@ -10,7 +10,7 @@ const projects = [{
         description: "Per Amenanos Festival, Associazione Di.DE - Michele Di Dio. Collaborazione: Arch. Luca Renato Fauzia.",
         place: "Via Vittorio Emanuele II 266, Catania CT",
         mainFolder: "palco-teatro-antico-catania",
-        imageNumber: 15
+        imageNumber: 14
     },{
         id: 1018,
         title: "Restauro Basilica Cattedrale Maria SS delle Vittorie",

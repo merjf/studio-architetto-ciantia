@@ -9,13 +9,19 @@
         <div>
             <v-row justify="center">
                 <v-col v-for="project in getProjects" :key="project.id" class="d-flex child-flex" cols="4">
-                <v-img :src="require('@/assets/images/work/'+project.mainFolder+'/'+project.windowImage+'.jpg')" :lazy-src="require('@/assets/images/work/'+project.mainFolder+'/'+project.windowImage+'.jpg')" aspect-ratio="1" class="grey lighten-2 image" @click="openOverlay(project.zoomedImage)">
-                    <template v-slot:placeholder>
-                    <v-row class="fill-height ma-0" align="center" justify="center">
-                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                    </v-row>
-                    </template>
-                </v-img>
+                    <v-hover>
+                        <template v-slot:default="{ hover }">
+                            <v-card class="mx-auto" :elevation="hover ? 8 : 0">
+                                <v-img :src="require('@/assets/images/work/'+project.mainFolder+'/'+project.windowImage+'.jpg')" :lazy-src="require('@/assets/images/work/'+project.mainFolder+'/'+project.windowImage+'.jpg')" aspect-ratio="1" class="grey lighten-2 image" @click="openOverlay(project.zoomedImage)">
+                                    <template v-slot:placeholder>
+                                        <v-row class="fill-height ma-0" align="center" justify="center">
+                                            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                        </v-row>
+                                    </template>
+                                </v-img>
+                            </v-card>
+                        </template>
+                    </v-hover>
                 </v-col>
             </v-row>
         </div>
