@@ -10,9 +10,9 @@
                         <v-card class="mx-auto project-card" :max-width="isMobileVersion? '85vw' : '55vw'" :elevation="hover ? 6 : 0">
                             <router-link :to="{ name: 'project', params: project }">
                                 <v-card-title>{{project.title}}</v-card-title>
-                                <v-row>
-                                    <v-col v-for="index in isMobileVersion ? 1 : 3" :key="index" class="d-flex child-flex" :cols="isMobileVersion ? 12 : 4">
-                                        <v-img height="200" :src="getProjectImage(project.mainFolder, index)" aspect-ratio="1" class="grey lighten-2">
+                                <v-row width="100%">
+                                    <v-col v-for="index in isMobileVersion ? 1 : 1" :key="index" class="d-flex child-flex" :cols="isMobileVersion ? 12 : 12">
+                                        <v-img height="400" :src="getProjectImage(project.mainFolder, index)" aspect-ratio="1" class="grey lighten-2">
                                             <template v-slot:placeholder>
                                                 <v-row class="fill-height ma-0" align="center" justify="center">
                                                     <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>

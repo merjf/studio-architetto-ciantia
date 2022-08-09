@@ -2,9 +2,9 @@
   <div>
     <Header :page="'contacts'" />
     <v-container class="section contacts">
+        <v-img src="@/assets/images/contatti1.jpg" class="contact-img"/>
         <v-row>
-            <v-card class="mx-auto my-12" max-width="90vw" elevation="0">
-                <v-img src="@/assets/images/contatti.jpg" class="contact-img"/>
+            <v-card class="mx-auto my-12" elevation="0">
                 <v-card-text>
                     <div><a :href="'mailto:'+ email" class="mail">{{email}}</a></div>
                     <div>+39 340 12345678</div>
@@ -65,12 +65,16 @@ export default Contacts;
 .v-card__actions{
     justify-content: center;
 }
+.v-card{
+    width: 45vw;
+}
 .v-card__text{
     text-align: center;
     margin-top: 25px;
     font-size: 1.1rem;
     line-height: 2rem;
     letter-spacing: .0071428571em;
+    white-space: nowrap;
 }
 hr{
     margin: 15px 0px;
@@ -79,26 +83,54 @@ hr{
     background-color: $secondary-color !important;
     color: $tertiary-color !important;
 }
+.row{
+    margin-top: 55vh;
+}
 .contact-img{
-    width: 40vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90vh;
 }
 .v-btn:hover{
     background-color: $secondary-color !important;
     color: $tertiary-color !important;
 }
 @media screen and (max-width: 1180px) {
-  .contact-img{
-    width: 60vw;
-  }
+    .contact-img{
+        height: auto;
+        top: 100px;
+    }
+    .row{
+        margin-top: 45vh;
+    }
+    .v-card{
+        width: 55vw;
+    }
 }
 @media screen and (max-width: 820px) {
-  .contact-img{
-    width: 90vw;
-  }
+    .contact-img{
+        height: auto;
+        top: 100px;
+    }
+    .row{
+        margin-top: 45vh;
+    }
+    .v-card{
+        width: 90vw;
+    }
 }
 @media screen and (max-width: 600px) {
   .contact-img{
-    width: 90vw;
-  }
+        height: auto;
+        top: 100px;
+    }
+    .row{
+        margin-top: 25vh;
+    }
+    .v-card{
+        width: 90vw;
+    }
 }
 </style>
