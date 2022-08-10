@@ -123,7 +123,7 @@ export default OverlayImage;
 }
 .indexing{
     position: fixed;
-    bottom: 10px;
+    bottom: 0px;
     left: 48%;
 }
 </style>

@@ -1,13 +1,11 @@
 <template>
   <div>
     <Header :page="'project'"/>
-    <div class="section">
-      <Project
-        :detailed="true"
-        :project="getCurrentProject()"
-        class="project"
-      />
-    </div>
+    <Project
+      :detailed="true"
+      :project="getCurrentProject()"
+      class="project"
+    />
     <Footer />
   </div>
 </template>

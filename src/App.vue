@@ -20,13 +20,11 @@ export default Vue.extend({
 
 <style lang="scss">
 .v-main{
-  min-height: 100vh;
+  // min-height: 100vh;
   > * {
     color: $primary-color !important;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
   }
-}
-.section{
-  margin-bottom: 100px;
 }
 a{
   color: unset !important;

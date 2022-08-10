@@ -8,7 +8,7 @@
         </v-card-subtitle>
         <div>
             <v-row justify="center">
-                <v-col v-for="project in getProjects" :key="project.id" class="d-flex child-flex" cols="4">
+                <v-col v-for="project in getProjects" :key="project.id" class="d-flex child-flex" :cols="isMobileVersion ? '6' : '4'">
                     <v-hover>
                         <template v-slot:default="{ hover }">
                             <v-card class="mx-auto" :elevation="hover ? 8 : 0">
@@ -84,5 +84,8 @@ export default ProjectGrid;
 }
 .image:hover{
     cursor: pointer;
+}
+.group-title{
+    font-size: 1.5rem !important;
 }
 </style>

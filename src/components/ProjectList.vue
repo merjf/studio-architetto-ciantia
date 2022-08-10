@@ -12,7 +12,7 @@
                                 <v-card-title>{{project.title}}</v-card-title>
                                 <v-row width="100%">
                                     <v-col v-for="index in isMobileVersion ? 1 : 1" :key="index" class="d-flex child-flex" :cols="isMobileVersion ? 12 : 12">
-                                        <v-img height="400" :src="getProjectImage(project.mainFolder, index)" aspect-ratio="1" class="grey lighten-2">
+                                        <v-img height="70vh" :src="getProjectImage(project.mainFolder, index)" aspect-ratio="1" class="grey lighten-2">
                                             <template v-slot:placeholder>
                                                 <v-row class="fill-height ma-0" align="center" justify="center">
                                                     <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
@@ -86,6 +86,7 @@ export default ProjectList;
         right: 10px;
         bottom: 15px;
     }
+    
     .project-card{
         padding: 10px;
         .v-image{
@@ -98,5 +99,8 @@ export default ProjectList;
 }
 .subgroup{
     margin-bottom: 40px !important;
+}
+.group-title{
+    font-size: 2rem !important;
 }
 </style>

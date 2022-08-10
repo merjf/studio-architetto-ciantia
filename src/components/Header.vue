@@ -21,14 +21,14 @@
                     <v-list>
                       <router-link :to="{ name: 'works'}">
                         <v-list-item link :class="{'highlighted' : getCurrentPath.includes('works') }" class="sub-item">
-                          <v-list-item-title>Tutti i progetti</v-list-item-title>
+                          <v-list-item-title style="font-size: 1.2rem !important;">Tutti i progetti</v-list-item-title>
                         </v-list-item>
                       </router-link>
                       <v-divider></v-divider>
                       <v-list subheader>
                         <template v-for="group in getProjectList">
                           <template v-if="group.projects && group.type==='group'">
-                            <v-subheader :key="group.name">{{group.name}}</v-subheader>
+                            <v-subheader :key="group.name" style="font-size: 0.775rem !important;">{{group.name}}</v-subheader>
                             <router-link v-for="project in group.projects" :key="project.id" :to="{ name: 'project', params: project }">
                               <v-list-item link :class="{'highlighted' : getCurrentPath.includes(project.id)}">
                                 <v-list-item-title v-text="project.title" class='project-item'></v-list-item-title>

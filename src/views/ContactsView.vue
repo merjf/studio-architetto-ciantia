@@ -84,14 +84,14 @@ hr{
     color: $tertiary-color !important;
 }
 .row{
-    margin-top: 55vh;
+    margin-top: 50vh;
 }
 .contact-img{
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 90vh;
+    left: 10%;
+    width: 80%;
+    height: 60vh;
 }
 .v-btn:hover{
     background-color: $secondary-color !important;
@@ -103,7 +103,7 @@ hr{
         top: 100px;
     }
     .row{
-        margin-top: 45vh;
+        margin-top: 55vh;
     }
     .v-card{
         width: 55vw;

@@ -1,44 +1,22 @@
  <template>
-    <div :id="project.id">
-        <div v-if="detailed" class="project-detailed">
-            <v-card class="mx-auto" elevation="0" :max-width="isMobileVersion ? '95vw' : '75vw'">
-                <v-card-title v-if="!isMobileVersion">
-                    {{project.title}}
-                </v-card-title>
-                <v-card-text class="project-card">
-                    <div class="text-subtitle-1" >
-                        {{project.place}}
-                    </div>
-                    <p class="description">{{project.description}}</p>
-                </v-card-text>
-                <!-- <v-sheet elevation="0"> -->
-                    <!-- <v-slide-group :show-arrows="isMobileVersion ? false : true" ref="projectSlideImages">
-                        <v-slide-item v-for="index in getImageNumber()" :key="index" class="ma-4">
-                            <v-hover>
-                                <template v-slot:default="{ hover }">
-                                    <v-card :elevation="hover ? 6 : 1">
-                                        <v-img height="300" width="300" class="image" :src="getProjectImage(project.mainFolder, index)" :lazy-src="getProjectImage(project.mainFolder, index)" @click="openOverlay(index)">
-                                            <template v-slot:placeholder>
-                                                <v-row class="fill-height ma-0" align="center" justify="center" >
-                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                                                </v-row>
-                                            </template>
-                                            <v-fade-transition>
-                                                <v-overlay v-if="hover" absolute color="#cedee2de"/>
-                                            </v-fade-transition>
-                                        </v-img>
-                                    </v-card>
-                                </template>
-                            </v-hover>
-                        </v-slide-item>
-                    </v-slide-group> -->
-                <!-- </v-sheet> -->
-                <div class="gallery">
-                    <div class="gallery-panel" v-for="index in getImageNumber()" :key="index">
+    <div :id="project.id" class="project">
+        <v-card class="mx-auto" elevation="0" :max-width="isMobileVersion ? '95vw' : '75vw'">
+            <v-card-title v-if="!isMobileVersion">
+                {{project.title}}
+            </v-card-title>
+            <v-card-text class="project-card">
+                <div class="text-subtitle-1" >
+                    {{project.place}}
+                </div>
+                <p class="description">{{project.description}}</p>
+            </v-card-text>
+            <!-- <v-sheet elevation="0"> -->
+                <!-- <v-slide-group :show-arrows="isMobileVersion ? false : true" ref="projectSlideImages">
+                    <v-slide-item v-for="index in getImageNumber()" :key="index" class="ma-4">
                         <v-hover>
                             <template v-slot:default="{ hover }">
                                 <v-card :elevation="hover ? 6 : 1">
-                                    <v-img class="image" :src="getProjectImage(project.mainFolder, index)" :lazy-src="getProjectImage(project.mainFolder, index)" @click="openOverlay(index)">
+                                    <v-img height="300" width="300" class="image" :src="getProjectImage(project.mainFolder, index)" :lazy-src="getProjectImage(project.mainFolder, index)" @click="openOverlay(index)">
                                         <template v-slot:placeholder>
                                             <v-row class="fill-height ma-0" align="center" justify="center" >
                                                 <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
@@ -51,11 +29,31 @@
                                 </v-card>
                             </template>
                         </v-hover>
-                    </div>
+                    </v-slide-item>
+                </v-slide-group> -->
+            <!-- </v-sheet> -->
+            <div class="gallery">
+                <div class="gallery-panel" v-for="index in getImageNumber()" :key="index">
+                    <v-hover>
+                        <template v-slot:default="{ hover }">
+                            <v-card :elevation="hover ? 6 : 1">
+                                <v-img class="image" :src="getProjectImage(project.mainFolder, index)" :lazy-src="getProjectImage(project.mainFolder, index)" @click="openOverlay(index)">
+                                    <template v-slot:placeholder>
+                                        <v-row class="fill-height ma-0" align="center" justify="center" >
+                                            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                        </v-row>
+                                    </template>
+                                    <v-fade-transition>
+                                        <v-overlay v-if="hover" absolute color="#cedee2de"/>
+                                    </v-fade-transition>
+                                </v-img>
+                            </v-card>
+                        </template>
+                    </v-hover>
                 </div>
-            </v-card>
-            <OverlayImage :project="project" :overlay="overlay" :imageOverlay="imageOverlay" @set-overlay="setOverlay" @set-current-image="setCurrentImage" />
-        </div>
+            </div>
+        </v-card>
+        <OverlayImage :project="project" :overlay="overlay" :imageOverlay="imageOverlay" @set-overlay="setOverlay" @set-current-image="setCurrentImage" />
     </div>
 </template>
 
@@ -116,8 +114,9 @@ export default Project;
 </script>
 
 <style scoped lang="scss">
-.project-detailed{
+.project{
     margin-top: 50px;
+    margin-bottom: 100px;
     .project-card{
         margin-top: 20px;
         margin-bottom: 25px;
@@ -132,6 +131,7 @@ export default Project;
         grid-gap: 1rem;
         max-width: 95vw;
         margin: 5rem auto;
+        margin-top: 0px;
         padding: 0 5rem;
     }
     .gallery-panel{
@@ -145,19 +145,19 @@ export default Project;
     }
 }
 @media screen and (max-width: 1180px) {
-    .project-detailed  .gallery {
+    .project .gallery {
         grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
         padding: 0 2rem;
     }
 }
 @media screen and (max-width: 820px) {
-    .project-detailed  .gallery {
+    .project .gallery {
         grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
         padding: 0 2rem;
     }
 }
 @media screen and (max-width: 600px) {
-    .project-detailed .gallery {
+    .project .gallery {
         grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
         padding: 0 1rem;
     }
