@@ -5,8 +5,18 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 
 Vue.use(Vuetify)
-const opts = {}
-const vuetify = new Vuetify(opts)
+const vuetify = new Vuetify({
+  theme: {
+    dark: true,
+    themes: {
+      dark: {
+        primary: '#455A64',
+        secondary: '#455A64',
+        accent: '#455A64',
+      }
+    }
+  }
+})
 
 Vue.config.productionTip = false
 

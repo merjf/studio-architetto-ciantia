@@ -84,7 +84,7 @@ hr{
     color: $tertiary-color !important;
 }
 .row{
-    margin-top: 50vh;
+    margin-top: 45vh;
 }
 .contact-img{
     position: absolute;
@@ -99,14 +99,14 @@ hr{
 }
 @media screen and (max-width: 1180px) {
     .contact-img{
-        height: auto;
+        height: 45vh;
         top: 100px;
     }
     .row{
-        margin-top: 55vh;
+        margin-top: 45vh;
     }
     .v-card{
-        width: 55vw;
+        width: 50vw;
     }
 }
 @media screen and (max-width: 820px) {

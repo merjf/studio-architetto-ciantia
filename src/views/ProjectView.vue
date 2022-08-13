@@ -2,7 +2,6 @@
   <div>
     <Header :page="'project'"/>
     <Project
-      :detailed="true"
       :project="getCurrentProject()"
       class="project"
     />

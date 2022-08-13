@@ -1,9 +1,9 @@
 <template>
-    <v-container :key="group.name" :style="isMobileVersion ? 'max-width:85vw' : 'max-width:55vw'" :id="group.id" class="project-grid">
-        <v-card-title v-if="!isSubgroup" class="group-title" :style="isMobileVersion ? 'max-width:85vw' : 'max-width:55vw'">
+    <v-container :key="group.name" :id="group.id" class="project-grid">
+        <v-card-title v-if="!isSubgroup" class="group-title">
             {{group.name}}
         </v-card-title>
-        <v-card-subtitle v-else class="group-title" :style="isMobileVersion ? 'max-width:85vw' : 'max-width:55vw'">
+        <v-card-subtitle v-else class="group-title">
             {{group.name}}
         </v-card-subtitle>
         <div>
@@ -14,10 +14,13 @@
                             <v-card class="mx-auto" :elevation="hover ? 8 : 0">
                                 <v-img :src="require('@/assets/images/work/'+project.mainFolder+'/'+project.windowImage+'.jpg')" :lazy-src="require('@/assets/images/work/'+project.mainFolder+'/'+project.windowImage+'.jpg')" aspect-ratio="1" class="grey lighten-2 image" @click="openOverlay(project.zoomedImage)">
                                     <template v-slot:placeholder>
-                                        <v-row class="fill-height ma-0" align="center" justify="center">
+                                        <v-row class="fill-height ma-0" align="center" justify="center" >
                                             <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
                                         </v-row>
                                     </template>
+                                    <v-fade-transition>
+                                        <v-overlay v-if="hover" absolute color="#cedee2de"/>
+                                    </v-fade-transition>
                                 </v-img>
                             </v-card>
                         </template>
@@ -78,6 +81,7 @@ export default ProjectGrid;
 <style scoped lang="scss">
 .project-grid{
     margin-bottom: 40px;
+    max-width: 55vw;
 }
 .image{
     cursor: pointer;
@@ -87,5 +91,20 @@ export default ProjectGrid;
 }
 .group-title{
     font-size: 1.5rem !important;
+}
+@media screen and (max-width: 1180px) {
+    .project-grid{
+        max-width: 75vw;
+    }
+}
+@media screen and (max-width: 820px) {
+    .project-grid{
+        max-width: 75vw;
+    }
+}
+@media screen and (max-width: 600px) {
+    .project-grid{
+        max-width: 90vw;
+    }
 }
 </style>

@@ -21,8 +21,9 @@ export default Vue.extend({
 <style lang="scss">
 .v-main{
   // min-height: 100vh;
+  background-color: #1e1e1e;
   > * {
-    color: $primary-color !important;
+    // color: $primary-color !important;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
   }
 }

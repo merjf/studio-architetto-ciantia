@@ -21,9 +21,11 @@
                     <v-list>
                       <router-link :to="{ name: 'works'}">
                         <v-list-item link :class="{'highlighted' : getCurrentPath.includes('works') }" class="sub-item">
-                          <v-list-item-title style="font-size: 1.2rem !important;">Tutti i progetti</v-list-item-title>
+                          <v-list-item-title style="font-size: 0.9rem !important; font-weight: bold;">Lista Progetti</v-list-item-title>
                         </v-list-item>
                       </router-link>
+                      <v-divider></v-divider>
+                      <v-divider></v-divider>
                       <v-divider></v-divider>
                       <v-list subheader>
                         <template v-for="group in getProjectList">
@@ -80,7 +82,7 @@
             <v-list-item-group active-class="highlighted" style="margin-left:20px;">
               <router-link :to="{ name: 'works'}">
                 <v-list-item link :class="{'highlighted' : getCurrentPath.includes('projects') }" class="sub-item">
-                  <v-list-item-title>Tutti i progetti</v-list-item-title>
+                  <v-list-item-title>Lista Progetti</v-list-item-title>
                 </v-list-item>
               </router-link>
               <v-divider></v-divider>
@@ -253,7 +255,7 @@ export default Header;
 @media screen and (max-width: 1180px) {
   .logo{
     width: 30vw;
-    top: 30%;
+    top: 25%;
     left: 50%;
     transform: translate(-50%, -75%);
   }
@@ -304,7 +306,7 @@ export default Header;
   margin-right: 40px;
 }
 .app-bar-light{
-  background-color: white !important;
+  background-color: #1e1e1e !important;
   span{
     color: $primary-color;
   }

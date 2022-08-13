@@ -1,37 +1,15 @@
  <template>
-    <div :id="project.id" class="project">
+    <div :id="project?.id" class="project">
         <v-card class="mx-auto" elevation="0" :max-width="isMobileVersion ? '95vw' : '75vw'">
             <v-card-title v-if="!isMobileVersion">
-                {{project.title}}
+                {{project?.title}}
             </v-card-title>
             <v-card-text class="project-card">
                 <div class="text-subtitle-1" >
-                    {{project.place}}
+                    <v-icon>mdi-map-marker</v-icon>{{project?.place}}
                 </div>
-                <p class="description">{{project.description}}</p>
+                <p class="description" style="font-size: 0.875rem">{{project?.description}}</p>
             </v-card-text>
-            <!-- <v-sheet elevation="0"> -->
-                <!-- <v-slide-group :show-arrows="isMobileVersion ? false : true" ref="projectSlideImages">
-                    <v-slide-item v-for="index in getImageNumber()" :key="index" class="ma-4">
-                        <v-hover>
-                            <template v-slot:default="{ hover }">
-                                <v-card :elevation="hover ? 6 : 1">
-                                    <v-img height="300" width="300" class="image" :src="getProjectImage(project.mainFolder, index)" :lazy-src="getProjectImage(project.mainFolder, index)" @click="openOverlay(index)">
-                                        <template v-slot:placeholder>
-                                            <v-row class="fill-height ma-0" align="center" justify="center" >
-                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                                            </v-row>
-                                        </template>
-                                        <v-fade-transition>
-                                            <v-overlay v-if="hover" absolute color="#cedee2de"/>
-                                        </v-fade-transition>
-                                    </v-img>
-                                </v-card>
-                            </template>
-                        </v-hover>
-                    </v-slide-item>
-                </v-slide-group> -->
-            <!-- </v-sheet> -->
             <div class="gallery">
                 <div class="gallery-panel" v-for="index in getImageNumber()" :key="index">
                     <v-hover>
@@ -60,7 +38,8 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import OverlayImage from '@/components/OverlayImage.vue';
-import { ProjectModel } from '@/models/models'
+import { GroupModel, ProjectModel } from '@/models/models'
+import projects from '@/assets/data/project';
 
 @Component({
     components:{
@@ -68,7 +47,6 @@ import { ProjectModel } from '@/models/models'
     }
 })
 class Project extends Vue {
-    @Prop() public detailed!: boolean;
     @Prop() public project!: ProjectModel;
 
     windowWidth = window.innerWidth;
@@ -95,12 +73,26 @@ class Project extends Vue {
         window.addEventListener('resize', () => {
             this.windowWidth = window.innerWidth
         })
+        var result = /[0-9]+/.exec(this.$route.path);
+        if(result && result.length > 0){
+            var currentProjectId = parseInt(result[0]);
+            projects.forEach((group: GroupModel) => {
+                group.projects?.forEach(project => {
+                    if(project.id === currentProjectId){
+                        this.project = project as ProjectModel;
+                    }
+                })
+            })
+        }
     }
     getProjectImage(mainFolder : string, imageNumber : number){
-        return require("@/assets/images/work/" + mainFolder + "/" + imageNumber + ".jpg");
+        if(mainFolder && imageNumber){
+            return require("@/assets/images/work/" + mainFolder + "/" + imageNumber + ".jpg");
+        }
+        return "";
     }
     getImageNumber(){
-        return this.project.imageNumber;
+        return this.project?.imageNumber ? this.project?.imageNumber : 0;
     }
     getParams(){
         return this.project;

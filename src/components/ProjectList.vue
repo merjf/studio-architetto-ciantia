@@ -1,23 +1,26 @@
 <template>
-    <v-container :key="group.name" v-if="group.type==='group'" :style="isMobileVersion ? 'max-width:85vw' : 'max-width:55vw'">
-        <v-card-title class="group-title" :style="isMobileVersion ? 'max-width:85vw' : 'max-width:55vw'">
+    <v-container :key="group.name" v-if="group.type==='group'" class="project-list">
+        <v-card-title class="group-title">
             {{group.name}}
         </v-card-title>
         <div v-if="group.projects">
             <div class="project-group-list" v-for="project in group.projects" :key="project.id">
                 <v-hover>
                     <template v-slot:default="{ hover }">
-                        <v-card class="mx-auto project-card" :max-width="isMobileVersion? '85vw' : '55vw'" :elevation="hover ? 6 : 0">
+                        <v-card class="mx-auto project-card" :elevation="hover ? 6 : 0">
                             <router-link :to="{ name: 'project', params: project }">
                                 <v-card-title>{{project.title}}</v-card-title>
                                 <v-row width="100%">
                                     <v-col v-for="index in isMobileVersion ? 1 : 1" :key="index" class="d-flex child-flex" :cols="isMobileVersion ? 12 : 12">
-                                        <v-img height="70vh" :src="getProjectImage(project.mainFolder, index)" aspect-ratio="1" class="grey lighten-2">
+                                        <v-img :src="getProjectImage(project.mainFolder, index)" aspect-ratio="1" class="grey lighten-2">
                                             <template v-slot:placeholder>
-                                                <v-row class="fill-height ma-0" align="center" justify="center">
+                                                <v-row class="fill-height ma-0" align="center" justify="center" >
                                                     <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
                                                 </v-row>
                                             </template>
+                                            <v-fade-transition>
+                                                <v-overlay v-if="hover" absolute color="#cedee2de"/>
+                                            </v-fade-transition>
                                         </v-img>
                                     </v-col>
                                 </v-row>
@@ -79,7 +82,12 @@ export default ProjectList;
 </script>
 
 <style scoped lang="scss">
+.project-list{
+    max-width: 55vw;
+}
 .project-group-list{
+    max-width: 50vw;
+    margin: auto;
     margin-bottom: 40px;
     .v-card__actions{
         position: absolute;
@@ -91,6 +99,7 @@ export default ProjectList;
         padding: 10px;
         .v-image{
             cursor: pointer;
+            height: 70vh;
         }
     }
     .v-card__title{
@@ -102,5 +111,32 @@ export default ProjectList;
 }
 .group-title{
     font-size: 2rem !important;
+}
+@media screen and (max-width: 1180px) {
+    .project-list{
+        max-width: 85vw;
+        .project-group-list{
+            max-width: 75vw;
+        }
+    }
+}
+@media screen and (max-width: 820px) {
+    .project-list{
+        max-width: 85vw;
+        .project-group-list{
+            max-width: 75vw;
+        }
+    }
+}
+@media screen and (max-width: 600px) {
+    .project-list{
+        max-width: 95vw;
+        .project-group-list{
+            max-width: 90vw;
+            .project-card .v-image{
+                height: 50vh !important;
+            }
+        }
+    }
 }
 </style>
