@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <v-app-bar v-if="!isMobileVersion" id="app-bar" elevation="0" :class="['text-center', page == 'main' ? 'app-bar-dark' : 'app-bar-light']" :style="{position: 'fixed'}">
+    <v-app-bar v-if="!isMobileVersion" id="app-bar" elevation="0" :class="['text-center', page == 'main' ? 'app-bar-dark' : 'app-bar-light']" style="position: fixed" height="45">
       <v-container fluid>
         <v-row justify="center">
           <v-toolbar-items>
@@ -21,7 +21,7 @@
                     <v-list>
                       <router-link :to="{ name: 'works'}">
                         <v-list-item link :class="{'highlighted' : getCurrentPath.includes('works') }" class="sub-item">
-                          <v-list-item-title style="font-size: 0.9rem !important; font-weight: bold;">Lista Progetti</v-list-item-title>
+                          <v-list-item-title style="font-size: 0.9rem !important; font-weight: bold;">Lavori</v-list-item-title>
                         </v-list-item>
                       </router-link>
                       <v-divider></v-divider>
@@ -51,7 +51,8 @@
                               </v-list-item>
                             </router-link>
                           </template>
-                          <v-divider :key="group.id"></v-divider>
+                          <v-divider :key="group.id + 1"></v-divider>
+                          <v-divider :key="group.id + 2"></v-divider>
                         </template>
                       </v-list>
                     </v-list>
@@ -60,11 +61,12 @@
               </template>
             </template>
           </v-toolbar-items>
+          <v-divider></v-divider>
         </v-row>
       </v-container>
     </v-app-bar>
     <v-app-bar-nav-icon v-if="isMobileVersion" @click="drawer = true"></v-app-bar-nav-icon>
-    <v-navigation-drawer v-model="drawer" fixed temporary>
+    <v-navigation-drawer v-model="drawer" fixed temporary right>
       <v-list>
         <template v-for="page in pages">
           <router-link v-if="page.simple" :key="page.number" :to="{ name: page.name }">
@@ -75,19 +77,19 @@
               <v-list-item-title>{{page.value}}</v-list-item-title>
             </v-list-item>
           </router-link>
-          <v-list-group v-if="!page.simple" :value="isProjectItemSelected" :key="page.number" active-class="highlighted" prepend-icon="mdi-briefcase">
+          <v-list-group v-if="!page.simple" :value="isPageItemSelected" :key="page.number" active-class="highlighted" prepend-icon="mdi-briefcase">
             <template v-slot:activator>
               <v-list-item-title>{{page.value}}</v-list-item-title>
             </template>
             <v-list-item-group active-class="highlighted" style="margin-left:20px;">
               <router-link :to="{ name: 'works'}">
-                <v-list-item link :class="{'highlighted' : getCurrentPath.includes('projects') }" class="sub-item">
-                  <v-list-item-title>Lista Progetti</v-list-item-title>
+                <v-list-item link :class="{'highlighted' : getCurrentPath.includes('works') }" class="sub-item">
+                  <v-list-item-title>Lavori</v-list-item-title>
                 </v-list-item>
               </router-link>
               <v-divider></v-divider>
               <template v-for="group in getProjectList">
-                <v-list-group :value="isProjectItemSelected" no-action sub-group :key="group.name" v-if="group.type==='group'" class="sub-group">
+                <v-list-group :value="isProjectItemSelected(group)" no-action sub-group :key="group.name" v-if="group.type==='group'" class="sub-group">
                   <template v-slot:activator>
                     <v-list-item-content>
                       <v-list-item-title>{{group.name}}</v-list-item-title>
@@ -122,13 +124,6 @@
         </template>
       </v-list>
     </v-navigation-drawer>
-    <v-container v-if="isMobileVersion && getCurrentPage != 'Home'">
-      <v-row justify="center" class="page-title">
-        <h2>
-          {{getCurrentPage}}
-        </h2>
-      </v-row>
-    </v-container>
     <v-img v-if="page === 'main'" src="@/assets/images/logo.png" class="logo"></v-img>
     <v-carousel v-if="page === 'main'" id="main-carousel" hide-delimiters cycle :show-arrows="!isMobileVersion" :show-arrows-on-hover="true" height="90vh">
       <v-carousel-item
@@ -141,7 +136,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { GroupModel, ProjectModel } from '@/models/models'
 import projects from '@/assets/data/project';
 import $ from 'jquery'
@@ -189,7 +184,7 @@ class Header extends Vue {
     var currentPageName = "";
     if(this.$route.params && this.$route.params.title){
       currentPageName = this.$route.params.title;
-    } else if(this.$route.name){
+    } else if(this.$route.name && this.$route.name !== 'project'){
       currentPageName = this.$route.name.charAt(0).toUpperCase() + this.$route.name.slice(1);
     }
     return currentPageName;
@@ -197,11 +192,23 @@ class Header extends Vue {
   get getProjectList(): GroupModel[]{
     return projects;
   }
-  get isProjectItemSelected(): boolean{
+  get isPageItemSelected(): boolean{
     if(this.$route.name){
       return this.$route.name?.includes('work') || this.$route.name?.includes('project');
     }
     return false;
+  }
+  isProjectItemSelected(group : GroupModel): boolean {
+    var currentProjectId = (/[0-9+]+/).exec(this.$route.fullPath);
+    var result = false;
+    if(currentProjectId && currentProjectId[0] && currentProjectId !== null){
+      group.projects?.forEach((project) => {
+        if(project.id === parseInt(currentProjectId[0])){
+          result = true;
+        }
+      })
+    }
+    return result;
   }
   mounted(){
     if(this.page === 'main'){
@@ -255,7 +262,7 @@ export default Header;
 @media screen and (max-width: 1180px) {
   .logo{
     width: 30vw;
-    top: 25%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -75%);
   }
@@ -305,6 +312,13 @@ export default Header;
 .v-toolbar__title{
   margin-right: 40px;
 }
+#app-bar{
+  .v-divider{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+}
 .app-bar-light{
   background-color: #1e1e1e !important;
   span{
@@ -340,12 +354,12 @@ export default Header;
   }
 }
 .v-app-bar__nav-icon{
-  background-color: $secondary-color;
+  // background-color: $secondary-color;
   color: $primary-color !important;
-  // border: 1px solid $primary-color;
+  border: 1px solid $primary-color;
   position: fixed;
   top: 12px;
-  left: 5px;
+  right: 5px;
   z-index: 2;
 }
 .highlighted{

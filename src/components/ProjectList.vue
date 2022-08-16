@@ -5,48 +5,36 @@
         </v-card-title>
         <div v-if="group.projects">
             <div class="project-group-list" v-for="project in group.projects" :key="project.id">
-                <v-hover>
-                    <template v-slot:default="{ hover }">
-                        <v-card class="mx-auto project-card" :elevation="hover ? 6 : 0">
-                            <router-link :to="{ name: 'project', params: project }">
-                                <v-card-title>{{project.title}}</v-card-title>
-                                <v-row width="100%">
-                                    <v-col v-for="index in isMobileVersion ? 1 : 1" :key="index" class="d-flex child-flex" :cols="isMobileVersion ? 12 : 12">
-                                        <v-img :src="getProjectImage(project.mainFolder, index)" aspect-ratio="1" class="grey lighten-2">
-                                            <template v-slot:placeholder>
-                                                <v-row class="fill-height ma-0" align="center" justify="center" >
-                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                                                </v-row>
-                                            </template>
-                                            <v-fade-transition>
-                                                <v-overlay v-if="hover" absolute color="#cedee2de"/>
-                                            </v-fade-transition>
-                                        </v-img>
-                                    </v-col>
-                                </v-row>
-                            </router-link>
-                        </v-card>
-                    </template>
-                </v-hover>
+                <v-card class="mx-auto project-card" :elevation="0">
+                    <router-link :to="{ name: 'project', params: project }">
+                        <v-card-title>{{project.title}}</v-card-title>
+                    </router-link>
+                    <v-row width="100%">
+                        <v-col :key="project.cover" class="d-flex child-flex" :cols="isMobileVersion ? 12 : 12">
+                            <!-- <v-lazy :options="{threshold: .5}" min-height="200" transition="fade-transition"> -->
+                                <router-link :to="{ name: 'project', params: project }">
+                                    <v-hover>
+                                        <template v-slot:default="{ hover }">
+                                            <v-img :src="getProjectImage(project.mainFolder, project.cover)" aspect-ratio="1">
+                                                <template v-slot:placeholder>
+                                                    <v-row class="fill-height ma-0" align="center" justify="center" >
+                                                        <v-progress-circular indeterminate color="grey lighten-9"></v-progress-circular>
+                                                    </v-row>
+                                                </template>
+                                                <v-fade-transition>
+                                                    <v-overlay v-if="hover" absolute color="#1e1e1e8a"/>
+                                                </v-fade-transition>
+                                            </v-img>
+                                        </template>
+                                    </v-hover>
+                                </router-link>
+                            <!-- </v-lazy> -->
+                        </v-col>
+                    </v-row>
+                </v-card>
             </div>
         </div>
         <ProjectGrid v-if="group.subgroup" :group="group.subgroup" :isSubgroup="true" />
-        <!-- <v-container v-if="group.subgroup" :style="{maxWidth: isMobileVersion ? '85vw' : '55vw'}" :id="group.subgroup.id" class="subgroup">
-            <v-card-subtitle class="group-title" :style="isMobileVersion ? 'max-width:85vw' : 'max-width:55vw'">
-                {{group.subgroup.name}}
-            </v-card-subtitle>
-            <v-row justify="center">
-                <v-col v-for="subproject in group.subgroup.subprojects" :key="subproject.id" class="d-flex child-flex" cols="4">
-                    <v-img :src="require('@/assets/images/work/'+subproject.mainFolder+'/'+subproject.windowImage+'.jpg')" :lazy-src="require('@/assets/images/work/'+subproject.mainFolder+'/'+subproject.windowImage+'.jpg')" aspect-ratio="1" class="grey lighten-2">
-                        <template v-slot:placeholder>
-                            <v-row class="fill-height ma-0" align="center" justify="center">
-                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                            </v-row>
-                        </template>
-                    </v-img>
-                </v-col>
-            </v-row>
-        </v-container> -->
     </v-container>
 </template>
 

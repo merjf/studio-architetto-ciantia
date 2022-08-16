@@ -19,7 +19,7 @@
                                         </v-row>
                                     </template>
                                     <v-fade-transition>
-                                        <v-overlay v-if="hover" absolute color="#cedee2de"/>
+                                        <v-overlay v-if="hover" absolute color="#1e1e1e8a"/>
                                     </v-fade-transition>
                                 </v-img>
                             </v-card>
@@ -28,7 +28,7 @@
                 </v-col>
             </v-row>
         </div>
-        <OverlayImage :projects="getProjects" :overlay="overlay" :imageOverlay="imageOverlay" @set-overlay="setOverlay" @set-current-image="setCurrentImage" />
+        <OverlayImage :projects="getProjects" :overlay="overlay" :imageOverlay="imageOverlay" @set-overlay="setOverlay"/>
     </v-container>
 </template>
 

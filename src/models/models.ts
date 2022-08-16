@@ -4,6 +4,7 @@ export class ProjectModel {
     description: string | undefined;
     place: string | undefined;
     mainFolder: string | undefined;
+    cover: number | undefined;
     imageNumber: number | undefined;
 }
 export class SubProjectModel {

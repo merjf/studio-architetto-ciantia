@@ -1,12 +1,14 @@
  <template>
     <div :id="project?.id" class="project">
         <v-card class="mx-auto" elevation="0" :max-width="isMobileVersion ? '95vw' : '75vw'">
-            <v-card-title v-if="!isMobileVersion">
+            <v-card-title>
                 {{project?.title}}
             </v-card-title>
             <v-card-text class="project-card">
                 <div class="text-subtitle-1" >
-                    <v-icon>mdi-map-marker</v-icon>{{project?.place}}
+                    <a :href="'https://www.google.com/maps/search/?api=1&query='+project?.place">
+                        <v-icon>mdi-map-marker</v-icon>{{project?.place}}
+                    </a>
                 </div>
                 <p class="description" style="font-size: 0.875rem">{{project?.description}}</p>
             </v-card-text>
@@ -15,23 +17,25 @@
                     <v-hover>
                         <template v-slot:default="{ hover }">
                             <v-card :elevation="hover ? 6 : 1">
-                                <v-img class="image" :src="getProjectImage(project.mainFolder, index)" :lazy-src="getProjectImage(project.mainFolder, index)" @click="openOverlay(index)">
-                                    <template v-slot:placeholder>
-                                        <v-row class="fill-height ma-0" align="center" justify="center" >
-                                            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                                        </v-row>
-                                    </template>
-                                    <v-fade-transition>
-                                        <v-overlay v-if="hover" absolute color="#cedee2de"/>
-                                    </v-fade-transition>
-                                </v-img>
+                                <!-- <v-lazy :options="{threshold: .5}" transition="fade-transition"> -->
+                                    <v-img class="image" :src="getProjectImage(project.mainFolder, index)" :lazy-src="getProjectImage(project.mainFolder, index)" @click="openOverlay(index)">
+                                        <template v-slot:placeholder>
+                                            <v-row class="fill-height ma-0" align="center" justify="center" >
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                        <v-fade-transition>
+                                            <v-overlay v-if="hover" absolute color="#1e1e1e8a"/>
+                                        </v-fade-transition>
+                                    </v-img>
+                                <!-- </v-lazy> -->
                             </v-card>
                         </template>
                     </v-hover>
                 </div>
             </div>
         </v-card>
-        <OverlayImage :project="project" :overlay="overlay" :imageOverlay="imageOverlay" @set-overlay="setOverlay" @set-current-image="setCurrentImage" />
+        <OverlayImage :project="project" :overlay="overlay" :imageOverlay="imageOverlay" @set-overlay="setOverlay"/>
     </div>
 </template>
 
@@ -65,6 +69,17 @@ class Project extends Vue {
 
     @Watch('project')
     public (newProject: ProjectModel, oldProject: ProjectModel) {
+        var result = /[0-9]+/.exec(this.$route.path);
+        if(result && result.length > 0){
+            var currentProjectId = parseInt(result[0]);
+            projects.forEach((group: GroupModel) => {
+                group.projects?.forEach(project => {
+                    if(project.id === currentProjectId){
+                        this.project = project as ProjectModel;
+                    }
+                })
+            })
+        }
         if(this.$refs.projectSlideImages){
             (this.$refs.projectSlideImages as any).scrollOffset = 0;
         }
@@ -107,11 +122,15 @@ export default Project;
 
 <style scoped lang="scss">
 .project{
-    margin-top: 50px;
+    margin-top: 70px;
     margin-bottom: 100px;
     .project-card{
         margin-top: 20px;
         margin-bottom: 25px;
+    }
+    .v-card__title{
+        font-size: 1.9rem;
+        font-weight: 600;
     }
     .description{
         margin: 20px 0px;
@@ -143,15 +162,24 @@ export default Project;
     }
 }
 @media screen and (max-width: 820px) {
+    .project{
+        margin-top: 25px;
+    }
     .project .gallery {
         grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
         padding: 0 2rem;
     }
 }
 @media screen and (max-width: 600px) {
+    .project{
+        margin-top: 50px;
+    }
     .project .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(10rem, 2fr));
         padding: 0 1rem;
+        .gallery-panel .image{
+            height: 40vw;
+        }
     }
 }
 </style>

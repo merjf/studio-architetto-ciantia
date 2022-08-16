@@ -10,6 +10,7 @@ const projects = [{
         description: "Per Amenanos Festival, Associazione Di.DE - Michele Di Dio. Collaborazione: Arch. Luca Renato Fauzia.",
         place: "Via Vittorio Emanuele II 266, Catania CT",
         mainFolder: "palco-teatro-antico-catania",
+        cover: 14,
         imageNumber: 14
     },{
         id: 1018,
@@ -17,6 +18,7 @@ const projects = [{
         description: "",
         place: "Piazza Armerina EN",
         mainFolder: "cattedrale",
+        cover: 2,
         imageNumber: 12
     }]
     
@@ -27,16 +29,18 @@ const projects = [{
     projects: [{
         id: 1002,
         title: "Frette Outlet Agira",
-        description: "Collaborazione con Studio Intro",
+        description: "Collaborazione con Studio INTRO Architettura & Design",
         place: "Sicilia Outlet Village - Agira EN",
         mainFolder: "frette-agira",
+        cover: 1,
         imageNumber: 13
     },{
         id: 1003,
         title: "Frette Outlet Noventa di Piave",
-        description: "Collaborazione con Studio Intro",
+        description: "Collaborazione con Studio INTRO Architettura & Design",
         place: "Mc Arthur Glen Designer Outlet - Noventa di Piave VE",
         mainFolder: "noventa",
+        cover: 1,
         imageNumber: 10,
     },{
         id: 1004,
@@ -44,6 +48,7 @@ const projects = [{
         description: "Centro storico",
         place: "Piazza Armerina EN",
         mainFolder: "tony",
+        cover: 6,
         imageNumber: 25
     },{
         id: 1015,
@@ -51,6 +56,7 @@ const projects = [{
         description: "",
         place: "Piazza Armerina EN",
         mainFolder: "casa-df",
+        cover: 3,
         imageNumber: 19
     },{
         id: 1017,
@@ -58,6 +64,7 @@ const projects = [{
         description: "Appartamento privato",
         place: "Piazza Armerina EN",
         mainFolder: "casa-sc",
+        cover: 10,
         imageNumber: 11
     }],
     subgroup: {
@@ -91,11 +98,12 @@ const projects = [{
         description: "",
         place: "Piazza Armerina EN",
         mainFolder: "private-garden",
+        cover: 6,
         imageNumber: 6
     }]
 },{
     id: "miscellaneous",
-    name: "Progetti Vari",
+    name: "Progetti",
     type: "grid",
     projects: [{
         id: 1008,

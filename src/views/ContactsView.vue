@@ -6,8 +6,8 @@
         <v-row>
             <v-card class="mx-auto my-12" elevation="0">
                 <v-card-text>
-                    <div><a :href="'mailto:'+ email" class="mail">{{email}}</a></div>
-                    <div>+39 340 12345678</div>
+                    <div><a :href="'mailto:'+ email" class="contact-info">{{email}}</a></div>
+                    <div><a href="tel:+393701212833" class="contact-info">+39 370 1212833</a></div>
                 </v-card-text>
                 <v-divider class="mx-4"></v-divider>
                 <v-card-actions center="true">
@@ -67,6 +67,7 @@ export default Contacts;
 }
 .v-card{
     width: 45vw;
+    min-height: 40vh;
 }
 .v-card__text{
     text-align: center;
@@ -79,16 +80,15 @@ export default Contacts;
 hr{
     margin: 15px 0px;
 }
-.mail:hover{
-    background-color: $secondary-color !important;
-    color: $tertiary-color !important;
+.contact-info:hover{
+    color: white !important;
 }
 .row{
-    margin-top: 45vh;
+    margin-top: 55vh;
 }
 .contact-img{
     position: absolute;
-    top: 0;
+    top: 50px;
     left: 10%;
     width: 80%;
     height: 60vh;
@@ -103,7 +103,7 @@ hr{
         top: 100px;
     }
     .row{
-        margin-top: 45vh;
+        margin-top: 50vh;
     }
     .v-card{
         width: 50vw;
@@ -125,9 +125,11 @@ hr{
   .contact-img{
         height: auto;
         top: 100px;
+        left: 2%;
+        width: 96%;
     }
     .row{
-        margin-top: 25vh;
+        margin-top: 35vh;
     }
     .v-card{
         width: 90vw;
