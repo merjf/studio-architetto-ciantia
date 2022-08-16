@@ -82,12 +82,11 @@ export default ProjectList;
         right: 10px;
         bottom: 15px;
     }
-    
     .project-card{
         padding: 10px;
         .v-image{
             cursor: pointer;
-            height: 70vh;
+            height: 50vh;
         }
     }
     .v-card__title{

@@ -92,6 +92,11 @@ export default ProjectGrid;
 .group-title{
     font-size: 1.5rem !important;
 }
+.v-card__title{
+    font-size: 2rem !important;
+    margin-left: -40px;
+    margin-bottom: 10px;
+}
 @media screen and (max-width: 1180px) {
     .project-grid{
         max-width: 75vw;

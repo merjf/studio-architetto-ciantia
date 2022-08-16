@@ -1,8 +1,10 @@
 <template>
     <v-overlay :value="overlay" :z-index="100" opacity="0.9">
         <div>
-            <v-carousel continuous show-arrows-on-hover v-click-outside="closeOverlay" hide-delimiter-background>
-                <v-carousel-item v-for="(item, i) in getImages()" :key="i" :src="require('@/assets/images/work/' + getMainFolder() + '/' + item + '.jpg')"></v-carousel-item>
+            <v-carousel continuous :show-arrows="!isMobileVersion" :show-arrows-on-hover="true" v-click-outside="closeOverlay" hide-delimiter-background v-model="getImageOverlay" height="90vh">
+                <v-carousel-item v-for="(item, i) in getImages()" :key="i">
+                    <v-img :src="require('@/assets/images/work/' + getMainFolder() + '/' + item + '.jpg')" contain></v-img>
+                </v-carousel-item>
             </v-carousel>
         </div>
     </v-overlay>
@@ -23,6 +25,15 @@ class OverlayImage extends Vue {
 
     get isMobileVersion(): boolean{
         return this.windowWidth <= 800
+    }
+    get getImageOverlay(): number{
+        if(this.project){
+            return this.imageOverlay-1;
+        }
+        if(this.projects){
+            return this.imageOverlay/2-1;
+        }
+        return 0;
     }
     created() {
         window.addEventListener('keydown', (e) => {
@@ -62,8 +73,12 @@ export default OverlayImage;
 
 <style scoped lang="scss">
 .v-carousel{
-    max-height: 90vh !important;
-    max-width: 90vw !important;
+    max-width: 100vw;
+    margin: auto;
+}
+.v-image{
+    max-width: 100%;
+    max-height: 90vh;
     margin: auto;
 }
 .overlay-btn{
@@ -78,9 +93,15 @@ export default OverlayImage;
     background-color: $tertiary-color !important;
     color: $secondary-color !important;
 }
-.indexing{
-    position: fixed;
-    bottom: 0px;
-    left: 48%;
+@media screen and (max-height: 460px) {
+    .v-carousel{
+        height: 350px !important;
+        max-width: 90%;
+    }
+}
+@media screen and (max-width: 600px){
+    .v-carousel{
+        height: 500px !important;
+    }
 }
 </style>
