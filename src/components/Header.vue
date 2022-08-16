@@ -289,6 +289,12 @@ export default Header;
     transform: translate(-50%, -80%);
   }
 }
+@media (max-height: 450px) and (max-width: 1000px){
+  .logo{
+    top: 0;
+    transform: translate(-50%, 34%);
+  }
+}
 .sub-group{
   margin-left: -20px;
 }
