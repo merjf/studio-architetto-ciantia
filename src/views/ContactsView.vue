@@ -2,7 +2,7 @@
   <div>
     <Header :page="'contacts'" />
     <v-container class="section contacts">
-        <v-img src="@/assets/images/contatti1.jpg" class="contact-img"/>
+        <v-img src="@/assets/images/contatti.jpg" class="contact-img"/>
         <v-row>
             <v-card class="mx-auto my-12" elevation="0">
                 <v-card-text>
@@ -20,7 +20,7 @@
             </v-card>
         </v-row>
     </v-container>
-    <Footer />
+    <Footer style="bottom:2%;"/>
   </div>
 </template>
 
@@ -64,6 +64,7 @@ export default Contacts;
 }
 .v-card__actions{
     justify-content: center;
+    margin-bottom: 30px;
 }
 .v-card{
     width: 45vw;
