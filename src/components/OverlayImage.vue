@@ -35,10 +35,20 @@ class OverlayImage extends Vue {
         }
         return 0;
     }
+    set getImageOverlay(value: number){
+        if(value < 0)
+            this.getImageOverlay = value;
+    }
     created() {
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 this.closeOverlay();
+            }
+            if (e.key === 'ArrowRight') {
+                this.nextImage();
+            }
+            if (e.key === 'ArrowLeft') {
+                this.previousImage();
             }
         });
     }
@@ -64,6 +74,18 @@ class OverlayImage extends Vue {
         }
         if(this.projects && this.projects.length > 0){
             return this.projects[0].mainFolder
+        }
+    }
+    nextImage(){
+        const nextButton = document.querySelector('.v-window__next button') as HTMLElement | null;
+        if(nextButton){
+            nextButton.click();
+        }
+    }
+    previousImage(){
+        const prevButton = document.querySelector('.v-window__prev button') as HTMLElement | null;
+        if(prevButton){
+            prevButton.click();
         }
     }
 }

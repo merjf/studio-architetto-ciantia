@@ -20,7 +20,7 @@
             </v-card>
         </v-row>
     </v-container>
-    <Footer style="bottom:2%;"/>
+    <Footer />
   </div>
 </template>
 
