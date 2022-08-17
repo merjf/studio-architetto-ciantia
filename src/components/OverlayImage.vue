@@ -51,6 +51,13 @@ class OverlayImage extends Vue {
                 this.previousImage();
             }
         });
+        // document.addEventListener("backbutton", (e) => {
+        //     this.closeOverlay
+        //     history.pushState(null, "", location.href);
+        //     window.onpopstate = function () {
+        //         history.go(1);
+        //     };
+        // }, false);
     }
     mounted(){
         window.addEventListener('resize', () => {
@@ -124,6 +131,9 @@ export default OverlayImage;
 @media screen and (max-width: 600px){
     .v-carousel{
         height: 650px !important;
+        .v-image{
+            height: 500px;
+        }
     }
 }
 </style>
