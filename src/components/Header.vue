@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <v-app-bar v-if="!isMobileVersion" id="app-bar" elevation="0" :class="['text-center', page == 'main' ? 'app-bar-dark' : 'app-bar-light']" style="position: fixed" height="45">
+    <v-app-bar v-if="true" id="app-bar" elevation="0" :class="['text-center', page == 'main' ? 'app-bar-dark' : 'app-bar-light']" style="position: fixed" :height="isMobileVersion ? 60 : 45">
       <v-container fluid>
         <v-row justify="center">
           <v-toolbar-items>
@@ -58,7 +58,7 @@
         </v-row>
       </v-container>
     </v-app-bar>
-    <v-app-bar-nav-icon v-if="isMobileVersion" @click="drawer = true"></v-app-bar-nav-icon>
+    <v-app-bar-nav-icon v-if="false" @click="drawer = true"></v-app-bar-nav-icon>
     <v-navigation-drawer v-model="drawer" fixed temporary right>
       <v-list>
         <template v-for="page in pages">

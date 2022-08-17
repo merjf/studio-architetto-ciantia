@@ -51,7 +51,7 @@ export default ProjectListView;
   margin-bottom: 150px;
 }
 .project-groups{
-  margin-top: 50px;
+  margin-top: 75px;
 }
 .v-divider{
   margin: auto;

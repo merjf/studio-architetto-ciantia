@@ -178,7 +178,7 @@ export default Project;
 }
 @media screen and (max-width: 600px) {
     .project{
-        margin-top: 50px;
+        margin-top: 75px;
     }
     .project .gallery {
         grid-template-columns: repeat(auto-fill, minmax(10rem, 2fr));
