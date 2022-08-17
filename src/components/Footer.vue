@@ -1,7 +1,7 @@
 <template>
   <v-footer absolute :padless="true" class="text-center">
     <v-card flat tile width="100%" class="text-center white--text">
-      <v-divider></v-divider>
+      <!-- <v-divider></v-divider> -->
       <v-row justify="center" no-gutters>
         <router-link :to="{ name: 'home'}">
           <v-img src="@/assets/images/logo_simple.png" class="logo"/>

@@ -7,7 +7,7 @@ export class ProjectModel {
     cover: number | undefined;
     imageNumber: number | undefined;
 }
-export class SubProjectModel {
+export class ProjectGridModel {
     id: number | undefined;
     mainFolder: string | undefined;
     windowImage: string | undefined;
@@ -17,7 +17,5 @@ export class GroupModel {
     name: string | undefined;
     id: string | undefined;
     type: string | undefined;
-    projects: ProjectModel[] | SubProjectModel[] | undefined;
-    subprojects: SubProjectModel[] | undefined;
-    subgroup: GroupModel | undefined;
+    projects: ProjectModel[] | ProjectGridModel[] | undefined;
 }

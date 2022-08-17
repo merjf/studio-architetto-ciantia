@@ -102,7 +102,7 @@ class Project extends Vue {
     }
     getProjectImage(mainFolder : string, imageNumber : number){
         if(mainFolder && imageNumber){
-            return require("@/assets/images/work/" + mainFolder + "/" + imageNumber + ".jpg");
+            return require("@/assets/images/work/" + mainFolder + "/" + imageNumber + ".webp");
         }
         return "";
     }

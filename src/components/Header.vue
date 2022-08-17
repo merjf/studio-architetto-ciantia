@@ -28,31 +28,24 @@
                       <v-divider></v-divider>
                       <v-divider></v-divider>
                       <v-list subheader>
-                        <template v-for="group in getProjectList">
+                        <template v-for="(group, index) in getProjectList">
                           <template v-if="group.projects && group.type==='group'">
                             <v-subheader :key="group.name" style="font-size: 0.775rem !important;">{{group.name}}</v-subheader>
-                            <router-link v-for="project in group.projects" :key="project.id" :to="{ name: 'project', params: project }">
-                              <v-list-item link :class="{'highlighted' : getCurrentPath.includes(project.id)}">
-                                <v-list-item-title v-text="project.title" class='project-item'></v-list-item-title>
-                              </v-list-item>
-                            </router-link>
-                            <template v-if="group.subgroup">
-                              <router-link :key="group.subgroup.name" :to="{ name: 'works', hash:'#'+group.subgroup.id}">
-                                <v-list-item link :class="{'highlighted' : getCurrentPath.includes(group.subgroup.id)}">
-                                  <v-list-item-title v-text="group.subgroup.name"></v-list-item-title>
+                            <template v-for="project in group.projects">
+                              <router-link v-if="project.type === 'grid'" :key="project.id" :to="{ name: 'works', hash:'#'+project.id}">
+                                <v-list-item link :class="{'highlighted' : getCurrentPath.includes(project.id)}">
+                                  <v-list-item-title v-text="project.name"></v-list-item-title>
+                                </v-list-item>
+                              </router-link>
+                              <router-link v-else :key="project.id" :to="{ name: 'project', params: project }">
+                                <v-list-item  link :class="{'highlighted' : getCurrentPath.includes(project.id)}">
+                                  <v-list-item-title v-text="project.title"></v-list-item-title>
                                 </v-list-item>
                               </router-link>
                             </template>
                           </template>
-                          <template v-if="group.type==='grid'">
-                            <router-link :key="group.name" :to="{ name: 'works', hash:'#'+group.id}">
-                              <v-list-item link :class="{'highlighted' : getCurrentPath.includes(group.id) }" class="sub-item">
-                                <v-list-item-title v-text="group.name"></v-list-item-title>
-                              </v-list-item>
-                            </router-link>
-                          </template>
-                          <v-divider :key="group.id + 1"></v-divider>
-                          <v-divider :key="group.id + 2"></v-divider>
+                          <v-divider v-if="index !== group.length-1" :key="group.id + 1"></v-divider>
+                          <v-divider v-if="index !== group.length-1" :key="group.id + 2"></v-divider>
                         </template>
                       </v-list>
                     </v-list>
@@ -96,28 +89,20 @@
                     </v-list-item-content>
                   </template>
                   <template v-if="group.projects">
-                    <router-link v-for="project in group.projects" :key="project.id" :to="{ name: 'project', params: project }">
-                      <v-list-item link :class="{'highlighted' : getCurrentPath.includes(project.id)}">
-                        <v-list-item-title v-text="project.title"></v-list-item-title>
-                      </v-list-item>
-                    </router-link>
-                  </template>
-                  <template v-if="group.subgroup">
-                    <v-divider class="divider-sub-group"></v-divider>
-                    <router-link :key="group.subgroup.name" :to="{ name: 'works', hash:'#'+group.subgroup.id}">
-                      <v-list-item link :class="{'highlighted' : getCurrentPath.includes(group.subgroup.id)}" class="sub-item-in-group">
-                        <v-list-item-title v-text="group.subgroup.name" class="subgroup-item"></v-list-item-title>
-                      </v-list-item>
-                    </router-link>
+                    <template v-for="project in group.projects">
+                      <router-link v-if="project.type === 'grid'" :key="project.id" :to="{ name: 'works', hash:'#'+project.id}">
+                        <v-list-item link :class="{'highlighted' : getCurrentPath.includes(project.id)}">
+                          <v-list-item-title v-text="project.name"></v-list-item-title>
+                        </v-list-item>
+                      </router-link>
+                      <router-link v-else :key="project.id" :to="{ name: 'project', params: project }">
+                        <v-list-item  link :class="{'highlighted' : getCurrentPath.includes(project.id)}">
+                          <v-list-item-title v-text="project.title"></v-list-item-title>
+                        </v-list-item>
+                      </router-link>
+                    </template>
                   </template>
                 </v-list-group>
-                <template v-if="group.type==='grid'">
-                  <router-link :key="group.name" :to="{ name: 'works', hash:'#'+group.id}">
-                    <v-list-item link :class="{'highlighted' : getCurrentPath.includes(group.id) }" class="sub-item">
-                      <v-list-item-title v-text="group.name"></v-list-item-title>
-                    </v-list-item>
-                  </router-link>
-                </template>
               </template>
             </v-list-item-group>
           </v-list-group>
@@ -129,7 +114,7 @@
       <v-carousel-item
         v-for="i in imagesForMainPage"
         :key="i"
-        :src="require('@/assets/images/home/'+i+'.jpg')"
+        :src="require('@/assets/images/home/'+i+'.webp')"
       ></v-carousel-item>
     </v-carousel>
   </div>
@@ -200,8 +185,16 @@ class Header extends Vue {
   }
   isProjectItemSelected(group : GroupModel): boolean {
     var currentProjectId = (/[0-9+]+/).exec(this.$route.fullPath);
+    var currentTag = (/#.+/).exec(this.$route.fullPath);
     var result = false;
-    if(currentProjectId && currentProjectId[0] && currentProjectId !== null){
+    if(currentTag && currentTag[0]){
+      group.projects?.forEach((project) => {
+        if(String(project.id) === currentTag[0].replace("#", "")){
+          result = true;
+        }
+      })
+    }
+    else if(currentProjectId && currentProjectId[0] && currentProjectId !== null){
       group.projects?.forEach((project) => {
         if(project.id === parseInt(currentProjectId[0])){
           result = true;
@@ -262,9 +255,9 @@ export default Header;
 @media screen and (max-width: 1180px) {
   .logo{
     width: 30vw;
-    top: 30%;
+    top: 0;
     left: 50%;
-    transform: translate(-50%, -75%);
+    transform: translate(-50%, 75%);
   }
   .v-list-item__title{
     font-size: 0.875rem !important;
@@ -273,9 +266,9 @@ export default Header;
 @media screen and (max-width: 820px) {
   .logo{
     width: 50vw;
-    top: 30%;
+    top: 0;
     left: 50%;
-    transform: translate(-50%, -70%);
+    transform: translate(-50%, 70%);
   }
   .v-list-item__title{
     font-size: 0.875rem !important;
@@ -284,9 +277,9 @@ export default Header;
 @media screen and (max-width: 600px) {
   .logo{
     width: 70vw;
-    top: 25%;
+    top: 0;
     left: 50%;
-    transform: translate(-50%, -80%);
+    transform: translate(-50%, 80%);
   }
 }
 @media (max-height: 450px) and (max-width: 1000px){

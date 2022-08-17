@@ -1,9 +1,9 @@
 <template>
     <v-overlay :value="overlay" :z-index="100" opacity="0.9">
         <div>
-            <v-carousel continuous :show-arrows="!isMobileVersion" :show-arrows-on-hover="true" v-click-outside="closeOverlay" hide-delimiter-background v-model="getImageOverlay" height="90vh">
+            <v-carousel continuous :show-arrows="!isMobileVersion" :show-arrows-on-hover="true" v-click-outside="closeOverlay" hide-delimiter-background v-model="getImageOverlay" height="100vh">
                 <v-carousel-item v-for="(item, i) in getImages()" :key="i">
-                    <v-img :src="require('@/assets/images/work/' + getMainFolder() + '/' + item + '.jpg')" contain></v-img>
+                    <v-img :src="require('@/assets/images/work/' + getMainFolder() + '/' + item + '.webp')" contain></v-img>
                 </v-carousel-item>
             </v-carousel>
         </div>
@@ -100,7 +100,7 @@ export default OverlayImage;
 }
 .v-image{
     max-width: 100%;
-    max-height: 90vh;
+    max-height: 95vh;
     margin: auto;
 }
 .overlay-btn{
@@ -117,13 +117,13 @@ export default OverlayImage;
 }
 @media screen and (max-height: 460px) {
     .v-carousel{
-        height: 350px !important;
+        height: 400px !important;
         max-width: 90%;
     }
 }
 @media screen and (max-width: 600px){
     .v-carousel{
-        height: 500px !important;
+        height: 650px !important;
     }
 }
 </style>

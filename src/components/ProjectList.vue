@@ -5,7 +5,7 @@
         </v-card-title>
         <div v-if="group.projects">
             <div class="project-group-list" v-for="project in group.projects" :key="project.id">
-                <v-card class="mx-auto project-card" :elevation="0">
+                <v-card v-if="isProjectModel(project)" class="mx-auto project-card" :elevation="0">
                     <router-link :to="{ name: 'project', params: project }">
                         <v-card-title>{{project.title}}</v-card-title>
                     </router-link>
@@ -32,16 +32,16 @@
                         </v-col>
                     </v-row>
                 </v-card>
+                <ProjectGrid v-if="isProjectGridModel(project)" :key="group.name" :group="project" :isSubgroup="true"/>
             </div>
         </div>
-        <ProjectGrid v-if="group.subgroup" :group="group.subgroup" :isSubgroup="true" />
     </v-container>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import ProjectGrid from '@/components/ProjectGrid.vue';
-import { GroupModel } from '@/models/models'
+import { GroupModel, ProjectGridModel, ProjectModel } from '@/models/models'
+import ProjectGrid from './ProjectGrid.vue'
 
 @Component({
     components:{
@@ -62,7 +62,13 @@ class ProjectList extends Vue {
         })   
     }
     getProjectImage(mainFolder : string, imageNumber : number){
-        return require("@/assets/images/work/" + mainFolder + "/" + imageNumber + ".jpg");
+        return require("@/assets/images/work/" + mainFolder + "/" + imageNumber + ".webp");
+    }
+    isProjectModel(project:any){
+        return project.cover && project.place;
+    }
+    isProjectGridModel(project:any){
+        return project.type && project.type === 'grid';
     }
 }
 
@@ -93,7 +99,7 @@ export default ProjectList;
         word-break: break-word;
     }
 }
-.subgroup{
+subgroups{
     margin-bottom: 40px !important;
 }
 .group-title{

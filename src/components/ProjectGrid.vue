@@ -12,7 +12,7 @@
                     <v-hover>
                         <template v-slot:default="{ hover }">
                             <v-card class="mx-auto" :elevation="hover ? 8 : 0">
-                                <v-img :src="require('@/assets/images/work/'+project.mainFolder+'/'+project.windowImage+'.jpg')" aspect-ratio="1" class="grey lighten-2 image" @click="openOverlay(project.zoomedImage)">
+                                <v-img :src="require('@/assets/images/work/'+project.mainFolder+'/'+project.windowImage+'.webp')" aspect-ratio="1" class="grey lighten-2 image" @click="openOverlay(project.zoomedImage)">
                                     <template v-slot:placeholder>
                                         <v-row class="fill-height ma-0" align="center" justify="center" >
                                             <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>

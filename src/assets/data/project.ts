@@ -67,27 +67,7 @@ const projects = [{
         cover: 10,
         imageNumber: 11
     }],
-    subgroup: {
-        id: "product-design",
-        name: "Product Design",
-        type: "grid",
-        subprojects: [{
-            id: 1005,
-            mainFolder: "product-design",
-            windowImage: "1",
-            zoomedImage: "2"
-        },{
-            id: 1006,
-            mainFolder: "product-design",
-            windowImage: "3",
-            zoomedImage: "4"
-        },{
-            id: 1007,
-            mainFolder: "product-design",
-            windowImage: "5",
-            zoomedImage: "6"
-        }]
-    }
+    subgroups: undefined
 },{
     id: "gardens",
     name: "Gardens",
@@ -103,50 +83,74 @@ const projects = [{
     }]
 },{
     id: "miscellaneous",
-    name: "Progetti",
-    type: "grid",
+    name: "Miscellaneous",
+    type: "group",
     projects: [{
-        id: 1008,
-        mainFolder: "projects",
-        windowImage: "1",
-        zoomedImage: "2"
+        id: "product-design",
+        name: "Product Design",
+        type: "grid",
+        projects: [{
+            id: 1005,
+            mainFolder: "product-design",
+            windowImage: "1",
+            zoomedImage: "2"
+        },{
+            id: 1006,
+            mainFolder: "product-design",
+            windowImage: "3",
+            zoomedImage: "4"
+        },{
+            id: 1007,
+            mainFolder: "product-design",
+            windowImage: "5",
+            zoomedImage: "6"
+        }]
     },{
-        id: 1009,
-        mainFolder: "projects",
-        windowImage: "3",
-        zoomedImage: "4"
-    },{
-        id: 1010,
-        mainFolder: "projects",
-        windowImage: "5",
-        zoomedImage: "6"
-    },{
-        id: 1011,
-        mainFolder: "projects",
-        windowImage: "7",
-        zoomedImage: "8"
-    },{
-        id: 1012,
-        mainFolder: "projects",
-        windowImage: "9",
-        zoomedImage: "10"
-    },{
-        id: 1013,
-        mainFolder: "projects",
-        windowImage: "11",
-        zoomedImage: "12"
-    },{
-        id: 1014,
-        mainFolder: "projects",
-        windowImage: "13",
-        zoomedImage: "14"
-    },{
-        id: 1019,
-        mainFolder: "projects",
-        windowImage: "15",
-        zoomedImage: "16"
-    }],
-    subgroup: undefined
+        id: "various",
+        name: "Progetti",
+        type: "grid",
+        subprojects: [{
+            id: 1008,
+            mainFolder: "projects",
+            windowImage: "1",
+            zoomedImage: "2"
+        },{
+            id: 1009,
+            mainFolder: "projects",
+            windowImage: "3",
+            zoomedImage: "4"
+        },{
+            id: 1010,
+            mainFolder: "projects",
+            windowImage: "5",
+            zoomedImage: "6"
+        },{
+            id: 1011,
+            mainFolder: "projects",
+            windowImage: "7",
+            zoomedImage: "8"
+        },{
+            id: 1012,
+            mainFolder: "projects",
+            windowImage: "9",
+            zoomedImage: "10"
+        },{
+            id: 1013,
+            mainFolder: "projects",
+            windowImage: "11",
+            zoomedImage: "12"
+        },{
+            id: 1014,
+            mainFolder: "projects",
+            windowImage: "13",
+            zoomedImage: "14"
+        },{
+            id: 1019,
+            mainFolder: "projects",
+            windowImage: "15",
+            zoomedImage: "16"
+        }]
+    }]
 }];
 
 export default projects as unknown as GroupModel[];
