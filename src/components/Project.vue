@@ -6,8 +6,8 @@
             </v-card-title>
             <v-card-text class="project-card">
                 <div class="text-subtitle-1" >
-                    <a :href="'https://www.google.com/maps/search/?api=1&query='+project?.place">
-                        <v-icon>mdi-map-marker</v-icon>{{project?.place}}
+                    <a class="location" :href="'https://www.google.com/maps/search/?api=1&query='+project?.place" target="_blank">
+                        <v-icon color="#FFFFFFB3">mdi-map-marker</v-icon>{{project?.place}}
                     </a>
                 </div>
                 <p class="description" style="font-size: 0.875rem">{{project?.description}}</p>
@@ -124,6 +124,12 @@ export default Project;
 .project{
     margin-top: 70px;
     margin-bottom: 100px;
+    .location:hover{
+        color: white !important;
+        i{
+            color: white !important;
+        }
+    }
     .project-card{
         margin-top: 20px;
         margin-bottom: 25px;
