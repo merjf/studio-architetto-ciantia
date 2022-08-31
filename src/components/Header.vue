@@ -11,7 +11,7 @@
                 </v-col>
               </router-link>
               <template v-else>
-                <v-menu open-on-hover :close-on-content-click="true" offset-y :key="page.number">
+                <v-menu open-on-hover :close-on-content-click="true" nudge-bottom="40" :key="page.number">
                   <template v-slot:activator="{ on, attrs }">
                     <v-col v-bind="attrs" v-on="on">
                       <span>{{page.value}}</span>
