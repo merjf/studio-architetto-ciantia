@@ -17,7 +17,7 @@
                     <v-hover>
                         <template v-slot:default="{ hover }">
                             <v-card :elevation="hover ? 6 : 1">
-                                <v-lazy :options="{threshold: .5}">
+                                <div v-lazy-container="{ selector: 'img' }">
                                     <v-img class="image" :src="getProjectImage(project.mainFolder, index)" @click="openOverlay(index)">
                                         <template v-slot:placeholder>
                                             <v-row class="fill-height ma-0" align="center" justify="center" >
@@ -28,7 +28,7 @@
                                             <v-overlay v-if="hover" absolute color="#1e1e1e8a"/>
                                         </v-fade-transition>
                                     </v-img>
-                                </v-lazy>
+                                </div>
                             </v-card>
                         </template>
                     </v-hover>
