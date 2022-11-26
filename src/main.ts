@@ -3,7 +3,6 @@ import App from './App.vue'
 import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
-import VueLazyload from 'vue-lazyload'
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -41,7 +40,6 @@ const vuetify = new Vuetify({
   }
 })
 Vue.config.productionTip = false
-Vue.use(VueLazyload)
 
 new Vue({
   router,
