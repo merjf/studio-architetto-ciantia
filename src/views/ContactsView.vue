@@ -4,7 +4,7 @@
     <v-container class="section contacts">
         <v-img eager src="@/assets/images/contatti.jpg" class="contact-img"/>
         <v-row>
-            <v-card class="mx-auto my-12" elevation="0">
+            <v-card class="mx-auto" elevation="0">
                 <v-card-text>
                     <div><a :href="'mailto:'+ email" class="contact-info">{{email}}</a></div>
                     <div><a href="tel:+393701212833" class="contact-info">+39 370 1212833</a></div>
@@ -84,15 +84,11 @@ hr{
 .contact-info:hover{
     color: white !important;
 }
-.row{
-    margin-top: 55vh;
-}
 .contact-img{
-    position: absolute;
-    top: 50px;
-    left: 10%;
-    width: 80%;
-    height: 60vh;
+    margin: auto;
+    margin-top: -10px;
+    width: 85%;
+    height: 55vh;
 }
 .v-btn:hover{
     background-color: $secondary-color !important;
@@ -101,10 +97,6 @@ hr{
 @media screen and (max-width: 1180px) {
     .contact-img{
         height: 45vh;
-        top: 100px;
-    }
-    .row{
-        margin-top: 50vh;
     }
     .v-card{
         width: 50vw;
@@ -113,10 +105,7 @@ hr{
 @media screen and (max-width: 820px) {
     .contact-img{
         height: auto;
-        top: 100px;
-    }
-    .row{
-        margin-top: 45vh;
+        margin-top: 10px;
     }
     .v-card{
         width: 90vw;
@@ -125,12 +114,8 @@ hr{
 @media screen and (max-width: 600px) {
   .contact-img{
         height: auto;
-        top: 100px;
-        left: 2%;
         width: 96%;
-    }
-    .row{
-        margin-top: 35vh;
+        margin-top: 10px;
     }
     .v-card{
         width: 90vw;

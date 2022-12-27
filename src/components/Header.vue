@@ -17,11 +17,11 @@
                       <span>{{page.value}}</span>
                     </v-col>
                   </template>
-                  <v-card elevation="1" class="project-list-menu overflow-y-auto" max-height="90vh">
+                  <v-card class="project-list-menu overflow-y-auto" max-height="90vh">
                     <v-list>
                       <router-link :to="{ name: 'works'}">
                         <v-list-item link :class="{'highlighted' : getCurrentPath.includes('works') }" class="sub-item">
-                          <v-list-item-title style="font-size: 0.9rem !important; font-weight: bold;">Lavori</v-list-item-title>
+                          <v-list-item-title style="font-size: 1.5rem !important; font-weight: bold;">Lavori</v-list-item-title>
                         </v-list-item>
                       </router-link>
                       <v-divider></v-divider>
@@ -317,6 +317,9 @@ export default Header;
     bottom: 0;
     width: 100%;
   }
+}
+.v-menu__content{
+  box-shadow: rgba(81, 76, 76, 0.1) 4px 4px 1px 1px !important
 }
 .app-bar-light{
   background-color: #1e1e1e !important;
