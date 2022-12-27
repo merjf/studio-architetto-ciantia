@@ -4,7 +4,7 @@
       <!-- <v-divider></v-divider> -->
       <v-row justify="center" no-gutters>
         <router-link :to="{ name: 'home'}">
-          <v-img src="../assets/images/logo_simple.png" class="logo"/>
+          <v-img eager src="@/assets/images/logo_simple.png" class="logo"/>
         </router-link>
         <!-- <span>{{ new Date().getFullYear() }} - Salvatore Ciantia Architetto</span> -->
       </v-row>

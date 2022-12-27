@@ -19,9 +19,16 @@ const projects = [{
         place: "Piazza Armerina EN",
         mainFolder: "cattedrale",
         cover: 2,
-        imageNumber: 12
+        imageNumber: 9
+    },{
+        id: 1020,
+        title: "Progetto di accessibilità, rampa per disabili",
+        description: "Basilica Cattedrale Maria SS delle Vittorie",
+        place: "Piazza Armerina EN",
+        mainFolder: "restauro-rampa-cattedrale",
+        cover: 6,
+        imageNumber: 7
     }]
-    
 },{
     id: "interiors",
     name: "Interiors",

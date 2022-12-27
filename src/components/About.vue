@@ -1,7 +1,7 @@
 <template>
   <div class="about section">
     <v-card flat tile width="100%" class="text-center">
-        <v-img class="me-img" src="@/assets/images/me.jpg"></v-img>
+        <v-img class="me-img" eager src="@/assets/images/me.jpg"></v-img>
         <v-card-text style="white-space: pre-line; margin-top: 50px">
           <span>
             Il mio percorso formativo si orienta verso gli studi tecnici e si completa con il conseguimento della laurea in Architettura presso l’Università degli Studi di Enna “Kore”, trattando in tesi di laurea il tema del recupero e restauro di un rudere dell’archeologia industriale denominato “ex Istituto tecnico Industriale” nel Comune di Piazza Armerina e della valorizzazione delle tradizioni storiche, folcloristiche e culinarie della città.<br/><br/>

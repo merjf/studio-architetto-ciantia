@@ -2,7 +2,7 @@
   <div>
     <Header :page="'contacts'" />
     <v-container class="section contacts">
-        <v-img src="@/assets/images/contatti.jpg" class="contact-img"/>
+        <v-img eager src="@/assets/images/contatti.jpg" class="contact-img"/>
         <v-row>
             <v-card class="mx-auto my-12" elevation="0">
                 <v-card-text>
