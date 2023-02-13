@@ -73,6 +73,14 @@ const projects = [{
         mainFolder: "casa-sc",
         cover: 10,
         imageNumber: 11
+    },{
+        id: 1021,
+        title: "Casa RA&F",
+        description: "Appartamento privato",
+        place: "Piazza Armerina EN",
+        mainFolder: "casa-ra-f",
+        cover: 6,
+        imageNumber: 11
     }],
     subgroups: undefined
 },{
