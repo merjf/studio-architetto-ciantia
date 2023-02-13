@@ -328,7 +328,6 @@ export default Header;
   }
 }
 .app-bar-dark{
-  display: none;
   background-color: unset !important;
   span{
     color: white;
