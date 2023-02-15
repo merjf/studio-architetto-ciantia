@@ -144,10 +144,10 @@ class Header extends Vue {
     },
     works: {
       value: "Portfolio",
-      name: "",
+      name: "works",
       number: 2,
       icon: 'mdi-briefcase',
-      simple: false
+      simple: true
     },
     contacts: {
       value: "Contatti",
@@ -330,7 +330,7 @@ export default Header;
 .app-bar-dark{
   background-color: unset !important;
   span{
-    color: white;
+    color: #fff;
   }
 }
 .v-app-bar{

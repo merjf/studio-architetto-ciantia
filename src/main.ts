@@ -32,7 +32,7 @@ const vuetify = new Vuetify({
     dark: true,
     themes: {
       dark: {
-        primary: 'white',
+        primary: '#fff',
         secondary: '#455A64',
         accent: '#455A64',
       }

@@ -11,7 +11,9 @@ const projects = [{
         place: "Via Vittorio Emanuele II 266, Catania CT",
         mainFolder: "palco-teatro-antico-catania",
         cover: 14,
-        imageNumber: 14
+        imageNumber: 14,
+        orientation: "square",
+        order: 1,
     },{
         id: 1018,
         title: "Restauro Basilica Cattedrale Maria SS delle Vittorie",
@@ -19,7 +21,9 @@ const projects = [{
         place: "Piazza Armerina EN",
         mainFolder: "cattedrale",
         cover: 2,
-        imageNumber: 9
+        imageNumber: 9,
+        orientation: "vertical",
+        order: 4,
     },{
         id: 1020,
         title: "Progetto di accessibilità, rampa per disabili",
@@ -27,7 +31,9 @@ const projects = [{
         place: "Piazza Armerina EN",
         mainFolder: "restauro-rampa-cattedrale",
         cover: 6,
-        imageNumber: 7
+        imageNumber: 7,
+        orientation: "square",
+        order: 5,
     }]
 },{
     id: "interiors",
@@ -40,7 +46,9 @@ const projects = [{
         place: "Sicilia Outlet Village - Agira EN",
         mainFolder: "frette-agira",
         cover: 1,
-        imageNumber: 13
+        imageNumber: 13,
+        orientation: "horizontal",
+        order: 2,
     },{
         id: 1003,
         title: "Frette Outlet Noventa di Piave",
@@ -49,6 +57,8 @@ const projects = [{
         mainFolder: "noventa",
         cover: 1,
         imageNumber: 10,
+        orientation: "square",
+        order: 10,
     },{
         id: 1004,
         title: "Casa TB",
@@ -56,7 +66,9 @@ const projects = [{
         place: "Piazza Armerina EN",
         mainFolder: "tony",
         cover: 6,
-        imageNumber: 25
+        imageNumber: 25,
+        orientation: "square",
+        order: 8,
     },{
         id: 1015,
         title: "Casa DF",
@@ -64,7 +76,9 @@ const projects = [{
         place: "Piazza Armerina EN",
         mainFolder: "casa-df",
         cover: 3,
-        imageNumber: 19
+        imageNumber: 19,
+        orientation: "horizontal",
+        order: 3
     },{
         id: 1017,
         title: "Casa SC",
@@ -72,7 +86,9 @@ const projects = [{
         place: "Piazza Armerina EN",
         mainFolder: "casa-sc",
         cover: 10,
-        imageNumber: 11
+        imageNumber: 11,
+        orientation: "horizontal",
+        order: 9,
     },{
         id: 1021,
         title: "Casa RA&F",
@@ -80,7 +96,9 @@ const projects = [{
         place: "Piazza Armerina EN",
         mainFolder: "casa-ra-f",
         cover: 6,
-        imageNumber: 11
+        imageNumber: 11,
+        orientation: "square",
+        order: 7,
     }],
     subgroups: undefined
 },{
@@ -94,7 +112,9 @@ const projects = [{
         place: "Piazza Armerina EN",
         mainFolder: "private-garden",
         cover: 6,
-        imageNumber: 6
+        imageNumber: 6,
+        orientation: "horizontal",
+        order: 12,
     }]
 },{
     id: "miscellaneous",
@@ -104,6 +124,9 @@ const projects = [{
         id: "product-design",
         name: "Product Design",
         type: "grid",
+        cover: "1",
+        orientation: "square",
+        order: 11,
         projects: [{
             id: 1005,
             mainFolder: "product-design",
@@ -124,7 +147,10 @@ const projects = [{
         id: "various",
         name: "Progetti",
         type: "grid",
-        subprojects: [{
+        cover: "5",
+        orientation: "vertical",
+        order: 6,
+        projects: [{
             id: 1008,
             mainFolder: "projects",
             windowImage: "1",

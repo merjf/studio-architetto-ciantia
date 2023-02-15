@@ -2,11 +2,11 @@
   <div class="portfolio-view">
     <Header :page="'projectList'"/>
     <div class="section project-groups">
-      <template v-for="(group, index) in getProjects()">
+      <ProjectRandomGrid :projects="getProjects()" /> 
+      <!-- <template v-for="(group, index) in getProjects()">
         <ProjectList v-if="group.type==='group'" :key="group.name" :group="group"/>
-        <!-- <ProjectGrid v-if="group.type==='grid'" :key="group.name" :group="group" :isSubgroup="false"/> -->
         <v-divider :key="index" v-if="index !== getProjects().length-1" :style="isMobileVersion ? 'max-width:85vw' : 'max-width:55vw'"></v-divider>
-      </template>
+      </template> -->
     </div>
     <Footer />
   </div>
@@ -18,14 +18,17 @@ import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import ProjectList from '@/components/ProjectList.vue';
 import ProjectGrid from '@/components/ProjectGrid.vue';
+import ProjectRandomGrid from '@/components/ProjectRandomGrid.vue'
 import projects from '@/assets/data/project';
+import { GroupModel, ProjectRandomGridModel } from '@/models/models';
 
 @Component({
   components: {
     Header,
     Footer,
     ProjectList,
-    ProjectGrid
+    ProjectGrid,
+    ProjectRandomGrid,
   }
 })
 class ProjectListView extends Vue {
@@ -40,7 +43,35 @@ class ProjectListView extends Vue {
     })
   }
   getProjects(){
-    return projects;
+    var groups:GroupModel[] = projects;
+    var randomProjects: ProjectRandomGridModel[] = [], i = 0;
+    for(let group of groups){
+      for(let project of group.projects){
+        if(project.projects){
+          randomProjects.push({
+            id: i++,
+            mainFolder: project.projects[0].mainFolder,
+            cover: project.cover,
+            title: group.name,
+            description: project.name,
+            orientation: project.orientation,
+            order: project.order,
+          })
+        } else {
+          randomProjects.push({
+            id: i++,
+            mainFolder: project.mainFolder,
+            cover: project.cover,
+            title: project.title,
+            description: project.description,
+            orientation: project.orientation,
+            order: project.order,
+          })
+        }
+      }
+    }
+    randomProjects = randomProjects.sort((a, b) => a.order - b.order)
+    return randomProjects;
   }
 }
 export default ProjectListView;

@@ -6,6 +6,8 @@ export class ProjectModel {
     mainFolder: string | undefined;
     cover: number | undefined;
     imageNumber: number | undefined;
+    orientation: string | undefined;
+    order: number | undefined;
 }
 export class ProjectGridModel {
     id: number | undefined;
@@ -18,4 +20,13 @@ export class GroupModel {
     id: string | undefined;
     type: string | undefined;
     projects: ProjectModel[] | ProjectGridModel[] | undefined;
+}
+export class ProjectRandomGridModel {
+    id: number | undefined;
+    mainFolder: string | undefined;
+    cover: number | undefined;
+    title: string | undefined;
+    description: string | undefined;
+    orientation: string | undefined;
+    order: number | undefined;
 }

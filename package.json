@@ -14,7 +14,7 @@
   "dependencies": {
     "@types/jquery": "^3.5.14",
     "core-js": "^3.8.3",
-    "firebase": "^9.9.2",
+    "firebase": "^9.17.1",
     "jquery": "^3.5.1",
     "terser": ">=5.14.2",
     "vue": "^2.6.14",
