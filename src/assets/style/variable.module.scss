@@ -1,0 +1,19 @@
+$black: #0C1E28;
+$white: #ffffff;
+$darkwhite: #fbfbfb;
+$light-grey: #f1f1f1;
+$mid-grey: #c0c0c0;
+$dark-grey: #395264;
+$light-blue: #3980a8;
+$dark-blue: #004E73;
+
+:export {
+    black: $black;
+    white: $white;
+    darkwhite: $darkwhite;
+    lightgrey: $light-grey;
+    midgrey: $mid-grey;
+    darkgrey: $dark-grey;
+    lightblue: $light-blue;
+    darkblue: $dark-blue;
+}

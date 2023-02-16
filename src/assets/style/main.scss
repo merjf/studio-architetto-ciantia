@@ -1,0 +1,28 @@
+@import "./variable.module.scss";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Gill Sans, Helvetica, Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 1px !important;
+  color: $black !important;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: unset;
+}
+
+.main {
+  margin-bottom: 60px;
+  padding: 0px !important;
+}
+
+.block {
+  text-align: center;
+  background-color: $light-grey;
+  padding: 30px 20px 20px 20px;
+  min-height: 350px;
+}
