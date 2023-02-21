@@ -12,11 +12,14 @@ const useStyles = makeStyles({
         flexDirection: "column",
         alignItems: "center",
         gap: 30,
-        "& > img":{
-            width: "100%",
-            maxHeight: 400,
-        }
     },
+    contactBackground: {
+        width: "100%",
+        minHeight: 400,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+    }
 });
 
 const Contacts = () => {
@@ -25,9 +28,11 @@ const Contacts = () => {
     return (
         <Container className={classNames("main")}>
             <Box className={classNames(classes.contactContainer)}>
-                <img src={require("../assets/images/contatti.jpg")} />
-                <a><span>studioarchitettociantia@gmail.com</span></a>
-                <a href=""><span>+39 370 1212833</span></a>
+                <Box className={classes.contactBackground}
+                    sx={{backgroundImage: `url(${require("../assets/images/contatti.jpg")})`}}>
+                </Box>
+                <a href="mailto:studioarchitettociantia@gmail.com"><span>studioarchitettociantia@gmail.com</span></a>
+                <a href="tel:+393701212833"><span>+39 370 1212833</span></a>
             </Box>
         </Container>
     )

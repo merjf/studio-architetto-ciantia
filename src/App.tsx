@@ -7,6 +7,7 @@ import ErrorPage from "./pages/ErrorPage";
 import Portfolio from "./pages/Portfolio";
 import Contacts from "./pages/Contacts"
 import { Container } from "@mui/material";
+import About from "./pages/About";
 
 const App = () => {
 
@@ -18,10 +19,13 @@ const App = () => {
             path: "/",
             element: <Home />,
         },{
-            path: "/portfolio",
+            path: "/about",
+            element: <About />,
+        },{
+            path: "/work",
             element: <Portfolio />,
         },{
-            path: "/contacts",
+            path: "/contact",
             element: <Contacts />,
         }],
     }]);

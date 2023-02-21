@@ -1,11 +1,11 @@
-$black: #0C1E28;
+$black: #262626;
 $white: #ffffff;
 $darkwhite: #fbfbfb;
 $light-grey: #f1f1f1;
-$mid-grey: #c0c0c0;
-$dark-grey: #395264;
-$light-blue: #3980a8;
-$dark-blue: #004E73;
+$mid-grey: #ccc;
+$dark-grey: #262626;
+$light-yellow: #F0BF46;
+$dark-yellow: #F0BF46;
 
 :export {
     black: $black;
@@ -14,6 +14,6 @@ $dark-blue: #004E73;
     lightgrey: $light-grey;
     midgrey: $mid-grey;
     darkgrey: $dark-grey;
-    lightblue: $light-blue;
-    darkblue: $dark-blue;
+    lightyellow: $light-yellow;
+    darkyellow: $dark-yellow;
 }

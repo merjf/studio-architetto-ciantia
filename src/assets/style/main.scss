@@ -7,17 +7,20 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: 1px !important;
-  color: $black !important;
+  color: $white !important;
+  background-color: $black;
 }
 
 a {
   cursor: pointer;
   text-decoration: unset;
+  color: inherit;
 }
 
 .main {
-  margin-bottom: 60px;
   padding: 0px !important;
+  max-width: unset !important;
+  position: relative;
 }
 
 .block {

@@ -8,16 +8,16 @@ import { theme } from '../utils/Utils';
 
 const useStyles = makeStyles({
     navbar: {
-        backgroundColor: variables.white + " !important",
-        borderBottom: "2px solid " + variables.lightgrey,
+        backgroundColor: "transparent !important",
         boxShadow: "unset !important"
     },
     toolbar: {
-        paddingLeft: "10px",
-        paddingRight: "10px",
-    },
-    leftContainer: {
-        flexGrow: 1,
+        width: "100%",
+        margin: "auto",
+        marginLeft: 100,
+        justifyContent: "center",
+        minHeight: "45px !important",
+        gap: 50,
     },
     toolbarItem: {
         borderRadius: "5px",
@@ -26,11 +26,11 @@ const useStyles = makeStyles({
         paddingBottom: "1rem",
         "&:hover": {
             backgroundColor: variables.lightgrey,
-            color: variables.lightblue,
+            color: variables.lightyellow,
         }
     },
     logoItem: {
-        fontSize: "1.2rem",
+        fontSize: "1rem",
         fontWeight: 700,
         paddingLeft: 5,
         letterSpacing: 1,
@@ -40,17 +40,30 @@ const useStyles = makeStyles({
 const Header = () => {
     const classes = useStyles(theme);
 
+    const menuItems = [{
+        link: "/about",
+        label: "About",
+    },{
+        link: "/work",
+        label: "Work"
+    },{
+        link: "/contact",
+        label: "Contact"
+    }]
+
     return (
         <Box>
-            <AppBar position="relative" component="nav" className={classes.navbar}>
+            <AppBar position="fixed" component="nav" className={classes.navbar}>
                 <Toolbar className={classes.toolbar} disableGutters>
-                    <Box component="div" className={classes.leftContainer} sx={{ display: { xs: 'block' } }}>
-                        <Link to="/">
-                            <span className={classnames(classes.toolbarItem, classes.logoItem)}>
-                                Template
-                            </span>
-                        </Link>
-                    </Box>
+                    {menuItems.map((item) => {
+                        return (
+                            <Link to={item.link} key={item.link}>
+                                <span className={classnames(classes.toolbarItem, classes.logoItem)}>
+                                    {item.label}
+                                </span>
+                            </Link>
+                        )
+                    })}
                 </Toolbar>
             </AppBar>
         </Box>
