@@ -1,6 +1,13 @@
 @import "./variable.module.scss";
 
-body {
+*, :after, :before {
+  box-sizing: border-box;
+}
+
+html, body {
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   margin: 0;
   padding: 0;
   font-family: Gill Sans, Helvetica, Arial, sans-serif !important;
@@ -9,6 +16,10 @@ body {
   letter-spacing: 1px !important;
   color: $white !important;
   background-color: $black;
+  position: relative;
+  min-height: 100vh;
+  font-size: 100%;
+  line-height: 1.5;
 }
 
 a {
@@ -28,4 +39,30 @@ a {
   background-color: $light-grey;
   padding: 30px 20px 20px 20px;
   min-height: 350px;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  box-sizing: border-box;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  position: relative;
+  font-family: system-ui, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  min-height: 100%;
+}
+
+input,
+textarea,
+button,
+p,
+span {
+  font-size: inherit;
+  font-family: inherit;
 }

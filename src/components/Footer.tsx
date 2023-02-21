@@ -17,12 +17,13 @@ const useStyles = makeStyles({
         backgroundColor: variables.black,
         gap: 20,
         textTransform: "uppercase",
-        fontSize: "0.675rem",
+        fontSize: "1vw",
     },
     block: {
         display: "flex",
         flexDirection: "column",
         gap: 10,
+        fontSize: ".9375em",
         "& > a > p":{
             lineHeight: "1.2rem",
         },
