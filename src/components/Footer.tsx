@@ -18,15 +18,23 @@ const useStyles = makeStyles({
         backgroundColor: variables.black,
         gap: 15,
         textTransform: "uppercase",
-        [theme?.breakpoints.up('sm')]: {
+        [theme?.breakpoints.only('lg')]: {
+            fontSize: "12px",
+        },
+        [theme?.breakpoints.only('xl')]: {
+            fontSize: "13px",
+        },
+        [theme?.breakpoints.down('lg')]: {
             fontSize: "11px",
         },
         [theme?.breakpoints.down('sm')]: {
+            fontSize: "9px",
+        },
+        [theme?.breakpoints.down('md')]: {
             flexDirection: "column",
             height: "auto",
             alignItems: "flex-start",
             padding: "20px 25px",
-            fontSize: "9px",
         },
     }),
     block: {
@@ -68,7 +76,7 @@ const Footer = () => {
                         width="233.934mm" height="190.924mm"
                         viewBox="0 0 2763 2255">
                     <path id="Selection"
-                            fill="white" stroke="white" stroke-width="1"
+                            fill="white" stroke="white" strokeWidth="1"
                             d="M 35.00,2219.00
                             C 35.00,2219.00 35.00,724.00 35.00,724.00
                                 35.00,722.28 34.86,718.91 35.57,717.41

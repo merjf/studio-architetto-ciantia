@@ -4,8 +4,8 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import ErrorPage from "./pages/ErrorPage";
-import Portfolio from "./pages/Portfolio";
-import Contacts from "./pages/Contacts"
+import Work from "./pages/Work";
+import Contact from "./pages/Contact"
 import { Container } from "@mui/material";
 import About from "./pages/About";
 
@@ -23,10 +23,10 @@ const App = () => {
             element: <About />,
         },{
             path: "/work",
-            element: <Portfolio />,
+            element: <Work />,
         },{
             path: "/contact",
-            element: <Contacts />,
+            element: <Contact />,
         }],
     }]);
 

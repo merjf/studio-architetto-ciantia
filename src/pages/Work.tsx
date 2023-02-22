@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     
 });
 
-const Portfolio = () => {
+const Work = () => {
     const classes = useStyles(theme);
 
     return (
@@ -24,4 +24,4 @@ const Portfolio = () => {
     )
 }
   
-export default Portfolio;
+export default Work;
