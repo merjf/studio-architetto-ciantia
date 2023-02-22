@@ -6,6 +6,11 @@ import { theme } from '../utils/Utils';
 import classNames from 'classnames';
 
 const useStyles = makeStyles({
+    block:{
+        minHeight: "100vh",
+        margin: "auto",
+        marginTop: 100,
+    },
     contactContainer: {
         margin: "auto",
         display: "flex",
@@ -26,7 +31,7 @@ const Contacts = () => {
     const classes = useStyles(theme);
 
     return (
-        <Container className={classNames("main")}>
+        <Container className={classNames("main", classes.block)}>
             <Box className={classNames(classes.contactContainer)}>
                 <Box className={classes.contactBackground}
                     sx={{backgroundImage: `url(${require("../assets/images/contatti.jpg")})`}}>

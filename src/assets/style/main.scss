@@ -13,13 +13,13 @@ html, body {
   font-family: Gill Sans, Helvetica, Arial, sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  letter-spacing: 1px !important;
+  letter-spacing: 2px !important;
   color: $white !important;
   background-color: $black;
   position: relative;
   min-height: 100vh;
   font-size: 100%;
-  line-height: 1.5;
+  line-height: 1.1;
 }
 
 a {
