@@ -4,12 +4,18 @@ $dark-white: #fbfbfb;
 $light-grey: #f1f1f1;
 $mid-grey: #ccc;
 $dark-grey: #262626;
-$light-yellow: #F0BF46;
+$light-yellow: #efd097;
 $dark-yellow: #F0BF46;
+$brown: #c8c2b2;
+$pink: #f7d9bb;
+$green: #5b8d39;
 
 :export {
     black: $black;
     white: $white;
+    green: $green;
+    brown: $brown;
+    pink: $pink;
     darkwhite: $dark-white;
     lightgrey: $light-grey;
     midgrey: $mid-grey;

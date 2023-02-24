@@ -27,7 +27,7 @@ const useStyles = makeStyles({
         paddingBottom: "1rem",
         marginRight: 50,
         "&:hover": {
-            color: variables.lightyellow,
+            color: variables.darkyellow,
         }
     },
     menubar: (theme:any) =>({
