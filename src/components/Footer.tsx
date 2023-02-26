@@ -2,7 +2,7 @@ import React from "react";
 import { Box } from "@mui/material";
 import { makeStyles } from '@mui/styles';
 import variables from '../assets/style/variable.module.scss';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { theme } from "../utils/Utils";
 
 const useStyles = makeStyles({
@@ -12,12 +12,12 @@ const useStyles = makeStyles({
         bottom: 0,
         alignItems: "center",
         justifyContent: "space-around",
-        paddingRight: 20,
         height: 150,
-        padding: "0px 5px",
+        padding: "60px 35px 80px 35px",
         backgroundColor: variables.black,
         gap: 15,
         textTransform: "uppercase",
+        color: variables.white,
         [theme?.breakpoints.only('lg')]: {
             fontSize: "12px",
         },
@@ -28,13 +28,21 @@ const useStyles = makeStyles({
             fontSize: "11px",
         },
         [theme?.breakpoints.down('sm')]: {
-            fontSize: "9px",
+            fontSize: "11px",
         },
         [theme?.breakpoints.down('md')]: {
             flexDirection: "column",
+            gap: 30,
             height: "auto",
             alignItems: "flex-start",
-            padding: "20px 25px",
+            padding: "30px 35px 50px 35px",
+        },
+        [theme?.breakpoints.only('xs')]: {
+            flexDirection: "column",
+            gap: 30,
+            height: "auto",
+            alignItems: "flex-start",
+            padding: "30px 15px 50px 15px",
         },
     }),
     block: {
@@ -42,6 +50,7 @@ const useStyles = makeStyles({
         flexDirection: "column",
         gap: 10,
         fontSize: ".9375em",
+        wordBreak: "break-all",
         "& > a > p":{
             lineHeight: "1.2rem",
         },
@@ -64,12 +73,16 @@ const useStyles = makeStyles({
 });
 
 const Footer = () => {
+    const navigate = useNavigate();
     const classes = useStyles(theme);
-
+    const changeLocation = (placeToGo) => {
+        navigate(placeToGo, { replace: true });
+        window.location.reload();
+    }
     return (
         <footer className={classes.footer}>
             <Box>
-                <Link to={"/"}>
+                <Link to={"/"} onClick={() => changeLocation('/')}>
                     <svg
                         className={classes.logo}
                         xmlns="http://www.w3.org/2000/svg"
@@ -212,7 +225,6 @@ const Footer = () => {
                                 2311.00,2219.00 1758.00,2219.00 1758.00,2219.00
                                 1758.00,2219.00 35.00,2219.00 35.00,2219.00 Z" />
                     </svg>
-
                 </Link>
             </Box>
             <Box className={classes.block}>

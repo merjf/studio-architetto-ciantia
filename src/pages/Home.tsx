@@ -48,11 +48,9 @@ const useStyles = makeStyles({
         bottom: 15,
         zIndex: 2,
         right: 15,
-        transition: "all 3s ease-out 3s",
-        [theme?.breakpoints.down('sm')]: {
-            top: 10,
-            right: 10,
-        },
+        transitionProperty: "bottom, top, right",
+        transitionTimingFunction: "linear",
+        transitionDuration: "2s, 2s, 2s",
     }),
     logo: (theme:any) =>({
         height: "auto",
@@ -65,7 +63,7 @@ const useStyles = makeStyles({
             width: "80%",
         },
         [theme?.breakpoints.down('md')]: {
-            height: 80,
+            height: 160,
             width: 100,
         },
         "& > path":{
@@ -147,7 +145,7 @@ const Home = () => {
                     </Box>
                 ))}
             </Carousel>
-            <Box className={classes.logoContainer} sx={{top: logoPosition.top, bottom: logoPosition.bottom, right: logoPosition.right}}>
+            <Box className={classes.logoContainer} sx={{logoPosition}}>
                 <svg
                     className={classes.logo}
                     xmlns="http://www.w3.org/2000/svg"

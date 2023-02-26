@@ -1,16 +1,41 @@
 import React from 'react';
-import { Container, Box, Grid, Link } from "@mui/material";
+import { Container, Box, Grid, Link, Divider } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import variables from '../assets/style/variable.module.scss';
 import { theme } from '../utils/Utils';
 import classNames from 'classnames';
 
 const useStyles = makeStyles({
-    block:{
+    container: {
         minHeight: "100vh",
         margin: "auto",
         marginTop: 100,
     },
+    block:{
+        margin: "auto",
+        marginBottom: 50,
+    },
+    titleBox: (theme:any) =>({
+        display: "flex",
+        alignItems: "center",
+        marginLeft: 20,
+        marginBottom: 80,
+        "& > hr":{
+            width: 150,
+            height: 1,
+            border: "2px solid " + variables.darkyellow,
+            marginRight: 15,
+            [theme?.breakpoints.up('sm')]: {
+                width: 150,
+            },
+            [theme?.breakpoints.down('md')]: {
+                width: 100,
+            },
+        },
+        "& > h1": {
+            color: variables.darkgrey,
+        }
+    }),
     contactContainer: {
         margin: "auto",
         display: "flex",
@@ -24,20 +49,22 @@ const useStyles = makeStyles({
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         backgroundSize: "cover",
-    }
+    },
 });
 
 const Contact = () => {
     const classes = useStyles(theme);
 
     return (
-        <Container className={classNames("main", classes.block)}>
+        <Container className={classNames("main", classes.container)}>
+            <Box className={classes.titleBox}>
+                <Divider />
+                <h1>Contatti</h1>
+            </Box>
             <Box className={classNames(classes.contactContainer)}>
                 <Box className={classes.contactBackground}
                     sx={{backgroundImage: `url(${require("../assets/images/contatti.jpg")})`}}>
                 </Box>
-                <a href="mailto:studioarchitettociantia@gmail.com"><span>studioarchitettociantia@gmail.com</span></a>
-                <a href="tel:+393701212833"><span>+39 370 1212833</span></a>
             </Box>
         </Container>
     )

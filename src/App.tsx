@@ -1,12 +1,10 @@
 import React from "react";
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import ErrorPage from "./pages/ErrorPage";
 import Work from "./pages/Work";
 import Contact from "./pages/Contact"
-import { Container } from "@mui/material";
 import About from "./pages/About";
 
 const App = () => {
@@ -31,7 +29,7 @@ const App = () => {
     }]);
 
     return (
-        <RouterProvider router={router} />
+        <RouterProvider router={router}/>
     )
 }
 
