@@ -10,7 +10,7 @@ html, body {
   text-size-adjust: 100%;
   margin: 0;
   padding: 0;
-  font-family: Gill Sans, Helvetica, Arial, sans-serif !important;
+  font-family: "Gotham SSm A", "Gotham SSm B", Helvetica, sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: 3px !important;
@@ -40,29 +40,14 @@ a {
   padding: 30px 20px 20px 20px;
   min-height: 350px;
 }
-*,
-*:before,
-*:after {
+
+*, *:before, *:after {
   box-sizing: inherit;
   margin: 0;
   padding: 0;
 }
 
-:root {
-  box-sizing: border-box;
-  -webkit-text-size-adjust: none;
-  text-size-adjust: none;
-  position: relative;
-  font-family: system-ui, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
-  min-height: 100%;
-}
-
-input,
-textarea,
-button,
-p,
-span {
-  font-size: inherit;
-  font-family: inherit;
+input, textarea, button, p, span {
+  font-size: inherit !important;
+  font-family: inherit !important;
 }

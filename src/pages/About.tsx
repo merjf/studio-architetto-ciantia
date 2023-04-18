@@ -5,7 +5,6 @@ import variables from '../assets/style/variable.module.scss';
 import { theme } from '../utils/Utils';
 import classNames from 'classnames';
 import classnames from 'classnames';
-import { display } from '@mui/system';
 
 const useStyles = makeStyles({
     container: {
@@ -16,9 +15,6 @@ const useStyles = makeStyles({
     block:{
         margin: "auto",
         marginBottom: 30,
-        [theme?.breakpoints.only('xs')]: {
-            gap: 30,
-        },
     },
     titleBox: {
         display: "flex",
@@ -28,7 +24,8 @@ const useStyles = makeStyles({
         "& > hr":{
             width: 150,
             height: 1,
-            border: "2px solid " + variables.darkyellow,
+            border: "3px solid " + variables.darkyellow,
+            borderRadius: 25,
             marginRight: 15,
             [theme?.breakpoints.up('sm')]: {
                 width: 150,
@@ -54,31 +51,49 @@ const useStyles = makeStyles({
     text: {
         alignItems: "center",
         display: "flex",
-        padding: "0px 40px",
         textAlign: "justify",
-        letterSpacing: 2,
+        letterSpacing: 1.5,
+        lineHeight: 1.5,
+        padding: "0px 20px",
+        "& > p::first-letter": {
+            fontWeight: "bold",
+            fontSize: "3.25rem",
+            lineHeight: 1
+        }
+    },
+    textNextPic: {
+        padding: "0px 50px",
         [theme?.breakpoints.up('xs')]: {
-            padding: "0px 20px",
+            padding: "0px 50px",
         },
         [theme?.breakpoints.only('xs')]: {
             padding: 0,
         },
-        "& > p::first-letter": {
-            fontWeight: "bold",
-            fontSize: "1.9rem",
-        }
     },
     aboutContainer: {
-        margin: "0px 40px"
+        margin: "0px 40px 50px 50px",
+        display: "flex !important",
+        gap: 60,
+        flexDirection: "column",
+        [theme?.breakpoints.only('xs')]: {
+            gap: 0,
+        },
     },
     dividerText: {
         height: "2px !important",
         alignSelf: "center !important",
         background: variables.darkyellow,
-        borderWidth: "2px !important",
-        borderRadius: 5,
+        borderWidth: "3px !important",
+        borderRadius: 10,
         marginRight: "15px !important",
-        marginTop: "20px !important"
+        marginLeft: "15px !important",
+        marginTop: "20px !important",
+        [theme?.breakpoints.only('xs')]: {
+            width: "80%",
+        },
+    },
+    dividerTextPic: {
+        margin: "0px !important"
     }
 });
 
@@ -96,7 +111,7 @@ const About = () => {
                     <Grid item sm={6} md={6} lg={6} className={classnames(classes.image)}>
                         <img src={require("../assets/images/me.jpg")} />
                     </Grid>
-                    <Grid item sm={6} md={6} lg={6} className={classes.text}>
+                    <Grid item sm={6} md={6} lg={6} className={classnames(classes.text, classes.textNextPic)}>
                         <p>
                             Il mio percorso formativo si orienta verso gli studi tecnici e si completa con il conseguimento della laurea in Architettura presso
                             l’Università degli Studi di Enna “Kore”, trattando in tesi di laurea il tema del recupero e restauro di un rudere dell’archeologia
@@ -108,7 +123,7 @@ const About = () => {
                 <Divider className={classnames(classes.dividerText)} flexItem
                     sx={{display: {xs: "block", sm: "none"}, margin: "10px 10px 30px 10px !important"}}/>
                 <Grid container className={classes.block} maxWidth={"md"}>
-                    <Grid item sm={8} md={8} lg={8} className={classes.text}>
+                    <Grid item sm={8} md={8} lg={8} className={classnames(classes.text, classes.textNextPic)}>
                         <p>
                             Già all’interno della facoltà ho partecipato a diversi progetti e concorsi di progettazione trovandomi, inoltre, sempre a contatto con il
                             mondo del lavoro collaborando con l’impresa edile di famiglia. Ho arricchito le mie conoscenze con viaggi di istruzione e corsi di
@@ -123,7 +138,7 @@ const About = () => {
                     <Grid item sm={2} md={2} lg={2} sx={{display: {xs: "none", sm: "none", md: "block"}}}>
                         <Divider className={classnames(classes.dividerText)} flexItem/>
                     </Grid>
-                    <Grid item sm={10} md={10} lg={10} className={classes.text}>
+                    <Grid item sm={10} md={10} lg={10} className={classnames(classes.text)}>
                         <p>
                             L’attività progettuale si sviluppa prevalentemente nel settore dell’abitativo, del restauro e del retail, oltre alla progettazione di installazioni
                             temporanee e allestimenti per mostre, eventi culturali e spettacoli teatrali.
@@ -136,7 +151,7 @@ const About = () => {
                     </Grid>
                 </Grid>
                 <Grid container className={classes.block} maxWidth={"md"}>
-                    <Grid item sm={6} md={6} lg={6} className={classnames(classes.text)}>
+                    <Grid item sm={6} md={6} lg={6} className={classnames(classes.text, classes.textNextPic)}>
                         <p>
                             Le mie esperienze lavorative più rilevanti mi hanno visto coinvolto in collaborazioni con il Comune di Piazza Armerina nella progettazione
                             e direzione dei lavori per il restauro della Basilica Cattedrale Maria SS delle Vittorie, progetto della Piazza Garibaldi e intervento di
@@ -160,7 +175,7 @@ const About = () => {
                     </Grid>
                 </Grid>
                 <Grid container className={classes.block} maxWidth={"md"}>
-                    <Grid item sm={10} md={10} lg={10} className={classnames(classes.image)}>
+                    <Grid item sm={9} md={9} lg={9} className={classnames(classes.image)}>
                         <img src={require("../assets/images/me5.jpg")} />
                     </Grid>
                 </Grid>

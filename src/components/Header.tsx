@@ -15,18 +15,13 @@ const useStyles = makeStyles({
             "& span":{
                 opacity: 1 + " !important",
             },
-            "& a":{
-                "&:hover":{
-                    color: variables.darkyellow
-                }
-            }
         },
         "& span": {
             opacity: 0,
-            transition: "opacity .5s ease-out"
+            transition: "opacity .2s ease-out"
         },
         "& a": {
-            transition: "color .5s ease-out"
+            transition: "color .2s ease-out"
         }
     },
     toolbar: {
@@ -34,36 +29,46 @@ const useStyles = makeStyles({
         margin: "auto",
         justifyContent: "center",
         minHeight: "45px !important",
-        fontWeight: 500,
+        fontWeight: 700,
         textTransform: "uppercase",
-        gap: 150,
-        marginLeft: 100,
         [theme?.breakpoints.down('md')]: {
             gap: 10,
             marginLeft: 50,
         },
+        "& > .MuiGrid-container": {
+            gap: 200,
+            justifyContent: "center",
+        }
     },
     toolbarBox:{
         display: "flex",
         alignItems: "center",
+        flexBasis: "unset !important",
     },
     toolbarItem: {
         borderRadius: "5px",
         paddingTop: "1rem",
         paddingBottom: "1rem",
-        fontSize: "1.2rem",
+        fontSize: "1rem",
         letterSpacing: 4,
+        [theme?.breakpoints.down('lg')]: {
+            fontSize: ".9rem",
+            letterSpacing: 2.5,
+        },
         [theme?.breakpoints.down('md')]: {
-            fontSize: "1rem",
+            fontSize: ".9rem",
             letterSpacing: 2,
         },
+        "&:hover":{
+            color: variables.darkyellow,   
+        }
     },
     toolbarRightItems: {
         [theme?.breakpoints.up('lg')]: {
-            gap: 50,
+            gap: 90,
         },
         [theme?.breakpoints.down('xl')]: {
-            gap: 15,
+            gap: 50,
         },
         "& > a:last-child":{
             [theme?.breakpoints.up('sm')]: {
@@ -237,7 +242,7 @@ const Header = () => {
         <Box>
             <AppBar position="fixed" component="nav" className={classes.navbar} sx={{backgroundColor: navbarStyle.backgroundColor, color: navbarStyle.color, borderBottom: navbarStyle.borderBottom}}>
                 <Toolbar className={classes.toolbar} disableGutters sx={{ display: { xs: 'none', sm: 'flex' }}}>
-                    <Grid container>
+                    <Grid container maxWidth={"lg"}>
                         <Grid item xs={6} md={6} lg={6} className={classes.toolbarBox}>
                             <Link to={"/"} key={"/"} onClick={() => changeLocation('/')} className={classnames(classes.toolbarItem)}>
                                 A
@@ -265,7 +270,7 @@ const Header = () => {
                                     </Link>
                                 )
                             })}
-                            <Link to={"/"} key={"/"} onClick={() => changeLocation("/")} style={{visibility: isHome() ? "hidden" : "visible"}}>
+                            <Link to={"/"} key={"/"} onClick={() => changeLocation("/")}>
                                 <svg
                                     className={classnames(classes.toolbarLogo)}
                                     xmlns="http://www.w3.org/2000/svg"
@@ -412,9 +417,6 @@ const Header = () => {
                             </Link>
                         </Grid>
                     </Grid>
-                    <Box className={classnames(classes.toolbarBox)} >
-                        
-                    </Box>
                 </Toolbar>
                 <Box className={classes.menubar} id={"menubar"}>
                     <Box className={classnames(classes.toolbarItem, classes.toolbarBox)} onClick={handleMenuExpandClick}  id={"menubar"}>
