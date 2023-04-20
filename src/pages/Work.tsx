@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Box, Divider } from "@mui/material";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
@@ -53,6 +53,11 @@ const useStyles = makeStyles({
         gridColumnGap: 20,
         gridRowGap: 20,
         marginBottom: 50,
+        [theme?.breakpoints.down('md')]: {
+            margin: "0px 10px",
+            gridTemplateColumns: "1fr",
+            gridAutoRows: "1fr",
+        },
     },
     projectCard:{
         position: "relative",
@@ -73,7 +78,7 @@ const useStyles = makeStyles({
     projectDetails: {
         width: "100%",
         height: "100%",
-        backgroundColor: "rgba(0, 0, 0, 0.48)",
+        backgroundColor: "rgba(0, 0, 0, 0.38)",
         opacity: 0,
         transition: "opacity .6s ease",
         color: variables.white,
@@ -84,7 +89,12 @@ const useStyles = makeStyles({
         "&:hover":{
             opacity: 1,
             transition: "opacity .6s ease"
-        }
+        },
+        [theme?.breakpoints.only('xs')]: {
+            padding: 20,
+            opacity: 1,
+            backgroundColor: "rgba(0, 0, 0, 0.28)",
+        },
     },
     projectSubtitle: {
         display: "flex",
@@ -115,6 +125,12 @@ const useStyles = makeStyles({
 const Work = () => {
     const classes = useStyles(theme);
 
+    const [currentWidth, setCurrentWidth]= useState(window.innerWidth);
+
+    useEffect(()=>{
+      window.addEventListener('resize', () => setCurrentWidth(window.innerWidth))
+    },[]);
+  
     const getProjects = () => {
         var groups:GroupModel[] = projects;
         var randomProjects: ProjectRandomGridModel[] = [], i = 0;
@@ -149,8 +165,15 @@ const Work = () => {
         return randomProjects;
     }
 
-    const assignGridItemStyle = (project:ProjectModel|ProjectRandomGridModel) => {
-        switch(project.orientation) { 
+    const assignGridPosition = (project:ProjectModel|ProjectRandomGridModel) => {
+        if(currentWidth <= theme.breakpoints.values.md){
+            console.log()
+            return {
+                gridColumn: "auto/span 1",
+                gridRow: "auto/span 1"
+            }
+        }
+        switch(project.orientation) {
             case "square":
                 return {
                     gridColumn: "auto/span 1",
@@ -166,7 +189,7 @@ const Work = () => {
                     gridColumn: "auto/span 1",
                     gridRow: "auto/span 2"
                 }
-            case "wide": 
+            case "wide":
                 return {
                     gridColumn: "auto/span 3",
                     gridRow: "auto/span 1"
@@ -184,7 +207,7 @@ const Work = () => {
                 <Box className={classes.workContainer}>
                     {getProjects().map((project) => {
                         return(
-                            <Box className={classes.projectCard} key={project.id} sx={assignGridItemStyle(project)}>
+                            <Box className={classes.projectCard} key={project.id} sx={assignGridPosition(project)}>
                                 <Link to={"/project/"+project.id}>
                                     <Box className={classes.projectBackground} style={{backgroundImage: `url(${require("../assets/images/work/previews/"+project.cover+".png")})`}}>
                                         <Box className={classes.projectDetails}>

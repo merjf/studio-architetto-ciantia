@@ -17,18 +17,18 @@ const useStyles = makeStyles({
         backgroundColor: variables.black,
         gap: 15,
         textTransform: "uppercase",
-        color: variables.white,
+        color: variables.midgrey,
         [theme?.breakpoints.only('lg')]: {
-            fontSize: "12px",
+            fontSize: "14px",
         },
         [theme?.breakpoints.only('xl')]: {
-            fontSize: "13px",
+            fontSize: "15px",
         },
         [theme?.breakpoints.down('lg')]: {
-            fontSize: "11px",
+            fontSize: "14px",
         },
         [theme?.breakpoints.down('sm')]: {
-            fontSize: "11px",
+            fontSize: "13px",
         },
         [theme?.breakpoints.down('md')]: {
             flexDirection: "column",
@@ -64,11 +64,14 @@ const useStyles = makeStyles({
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         backgroundSize: "cover",
-        "&:hover":{
-            "& > path":{
-                fill: variables.darkyellow,   
-            }
+        "& > path":{
+            fill: variables.midgrey,
         }
+        // "&:hover":{
+        //     "& > path":{
+        //         fill: variables.darkyellow,
+        //     }
+        // }
     }
 });
 
@@ -82,7 +85,7 @@ const Footer = () => {
     return (
         <footer className={classes.footer}>
             <Box>
-                <Link to={"/"} onClick={() => changeLocation('/')}>
+                {/* <Link to={"/"} onClick={() => changeLocation('/')}> */}
                     <svg
                         className={classes.logo}
                         xmlns="http://www.w3.org/2000/svg"
@@ -225,7 +228,7 @@ const Footer = () => {
                                 2311.00,2219.00 1758.00,2219.00 1758.00,2219.00
                                 1758.00,2219.00 35.00,2219.00 35.00,2219.00 Z" />
                     </svg>
-                </Link>
+                {/* </Link> */}
             </Box>
             <Box className={classes.block}>
                 <a href="mailto:studioarchitettociantia@gmail.com"><span>studioarchitettociantia@gmail.com</span></a>

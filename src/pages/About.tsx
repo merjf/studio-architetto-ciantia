@@ -15,6 +15,10 @@ const useStyles = makeStyles({
     block:{
         margin: "auto",
         marginBottom: 30,
+        [theme?.breakpoints.only('xs')]: {
+            gap: 30,
+            margin: "30px 0px 0px 0px",
+        },
     },
     titleBox: {
         display: "flex",
@@ -38,7 +42,7 @@ const useStyles = makeStyles({
             color: variables.darkgrey,
         },
         [theme?.breakpoints.only('xs')]: {
-            marginBottom: 50,
+            marginBottom: 35,
         },
     },
     image: {
@@ -55,10 +59,15 @@ const useStyles = makeStyles({
         letterSpacing: 1.5,
         lineHeight: 1.5,
         padding: "0px 20px",
+        fontSize: "1.2rem",
         "& > p::first-letter": {
             fontWeight: "bold",
             fontSize: "3.25rem",
-            lineHeight: 1
+            marginLeft: 10,
+            lineHeight: 1,
+        },
+        "& > p > a:hover":{
+            textDecoration: "underline"
         }
     },
     textNextPic: {
@@ -67,16 +76,17 @@ const useStyles = makeStyles({
             padding: "0px 50px",
         },
         [theme?.breakpoints.only('xs')]: {
-            padding: 0,
+            padding: "0px 20px",
         },
     },
     aboutContainer: {
         margin: "0px 40px 50px 50px",
         display: "flex !important",
-        gap: 60,
+        gap: 10,
         flexDirection: "column",
         [theme?.breakpoints.only('xs')]: {
             gap: 0,
+            padding: "0px !important"
         },
     },
     dividerText: {
@@ -85,11 +95,12 @@ const useStyles = makeStyles({
         background: variables.darkyellow,
         borderWidth: "3px !important",
         borderRadius: 10,
-        marginRight: "15px !important",
-        marginLeft: "15px !important",
-        marginTop: "20px !important",
+        margin: "auto !important",
+        marginTop: "38px !important",
+        width: "70%",
         [theme?.breakpoints.only('xs')]: {
-            width: "80%",
+            width: "50%",
+            marginTop: "40px !important",
         },
     },
     dividerTextPic: {
@@ -107,21 +118,21 @@ const About = () => {
                 <h1>Profilo</h1>
             </Box>
             <Container className={classes.aboutContainer}>
-                <Grid container className={classes.block} maxWidth={"md"}>
+                <Grid container className={classes.block} maxWidth={"lg"}>
                     <Grid item sm={6} md={6} lg={6} className={classnames(classes.image)}>
                         <img src={require("../assets/images/me.jpg")} />
                     </Grid>
                     <Grid item sm={6} md={6} lg={6} className={classnames(classes.text, classes.textNextPic)}>
                         <p>
                             Il mio percorso formativo si orienta verso gli studi tecnici e si completa con il conseguimento della laurea in Architettura presso
-                            l’Università degli Studi di Enna “Kore”, trattando in tesi di laurea il tema del recupero e restauro di un rudere dell’archeologia
+                            l’<a href="https://unikore.it/" target="_blank"><i><b>Università degli Studi di Enna “Kore”</b></i></a>, trattando in tesi di laurea il tema del recupero e restauro di un rudere dell’archeologia
                             industriale denominato “ex Istituto tecnico Industriale” nel Comune di Piazza Armerina e della valorizzazione delle tradizioni storiche,
                             folcloristiche e culinarie della città.
                         </p>
                     </Grid>
                 </Grid>
                 <Divider className={classnames(classes.dividerText)} flexItem
-                    sx={{display: {xs: "block", sm: "none"}, margin: "10px 10px 30px 10px !important"}}/>
+                    sx={{display: {xs: "block", sm: "none"} }}/>
                 <Grid container className={classes.block} maxWidth={"md"}>
                     <Grid item sm={8} md={8} lg={8} className={classnames(classes.text, classes.textNextPic)}>
                         <p>
@@ -134,8 +145,8 @@ const About = () => {
                         <img src={require("../assets/images/me2.jpg")} />
                     </Grid>
                 </Grid>
-                <Grid container className={classes.block} maxWidth={"md"}>
-                    <Grid item sm={2} md={2} lg={2} sx={{display: {xs: "none", sm: "none", md: "block"}}}>
+                <Grid container className={classes.block} maxWidth={"lg"}>
+                    <Grid item sm={2} md={2} lg={2} sx={{display: {xs: "none", sm: "none", md: "flex"}}}>
                         <Divider className={classnames(classes.dividerText)} flexItem/>
                     </Grid>
                     <Grid item sm={10} md={10} lg={10} className={classnames(classes.text)}>
@@ -145,12 +156,12 @@ const About = () => {
                         </p>
                     </Grid>
                 </Grid>
-                <Grid container className={classes.block} maxWidth={"md"}>
+                <Grid container className={classes.block} maxWidth={"lg"}>
                     <Grid item sm={8} md={8} lg={8} className={classnames(classes.image)}>
                         <img src={require("../assets/images/me3.jpg")} />
                     </Grid>
                 </Grid>
-                <Grid container className={classes.block} maxWidth={"md"}>
+                <Grid container className={classes.block} maxWidth={"lg"}>
                     <Grid item sm={6} md={6} lg={6} className={classnames(classes.text, classes.textNextPic)}>
                         <p>
                             Le mie esperienze lavorative più rilevanti mi hanno visto coinvolto in collaborazioni con il Comune di Piazza Armerina nella progettazione
@@ -162,20 +173,20 @@ const About = () => {
                         <img src={require("../assets/images/me4.jpg")} />
                     </Grid>
                 </Grid>
-                <Grid container className={classes.block} maxWidth={"md"}>
+                <Grid container className={classes.block} maxWidth={"lg"}>
                     <Grid item sm={2} md={2} lg={2} sx={{display: {xs: "none", sm: "none", md: "block"}}}>
                         <Divider className={classnames(classes.dividerText)} flexItem/>
                     </Grid>
                     <Grid item sm={10} md={10} lg={10} className={classes.text}>
                         <p>
-                            Ho collaborato con lo studio di architettura KWGroup di Catania per la progettazione del
-                            nuovo Hilton Hotel di Capomulini (riqualificando la struttura alberghiera dell’ex Perla Jonica), cooperando con professionisti che esercitano
+                            Ho collaborato con lo studio di architettura <b><i>KWGroup</i></b> di Catania per la progettazione del
+                            nuovo <b><i>Hilton Hotel</i></b> di Capomulini (riqualificando la struttura alberghiera dell’ex Perla Jonica), cooperando con professionisti che esercitano
                             la loro professione nel settore del lusso come la stilista Marella Ferrera, l’architetto inglese Tom Russell e il landscape designer tedesco Knud Megerle.
                         </p>
                     </Grid>
                 </Grid>
-                <Grid container className={classes.block} maxWidth={"md"}>
-                    <Grid item sm={9} md={9} lg={9} className={classnames(classes.image)}>
+                <Grid container className={classes.block} maxWidth={"lg"}>
+                    <Grid item xs={12} sm={9} md={9} lg={9} className={classnames(classes.image)}>
                         <img src={require("../assets/images/me5.jpg")} />
                     </Grid>
                 </Grid>

@@ -18,7 +18,10 @@ const useStyles = makeStyles({
         },
         "& span": {
             opacity: 0,
-            transition: "opacity .2s ease-out"
+            transition: "opacity .2s ease-out",
+            [theme?.breakpoints.only('xs')]: {
+                opacity: "1 !important",
+            },
         },
         "& a": {
             transition: "color .2s ease-out"
@@ -33,11 +36,10 @@ const useStyles = makeStyles({
         textTransform: "uppercase",
         [theme?.breakpoints.down('md')]: {
             gap: 10,
-            marginLeft: 50,
+            margin: "auto"
         },
         "& > .MuiGrid-container": {
-            gap: 200,
-            justifyContent: "center",
+            justifyContent: "space-evenly",
         }
     },
     toolbarBox:{
@@ -69,6 +71,9 @@ const useStyles = makeStyles({
         },
         [theme?.breakpoints.down('xl')]: {
             gap: 50,
+        },
+        [theme?.breakpoints.down('md')]: {
+            gap: 10,
         },
         "& > a:last-child":{
             [theme?.breakpoints.up('sm')]: {
