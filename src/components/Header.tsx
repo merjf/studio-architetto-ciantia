@@ -31,7 +31,7 @@ const useStyles = makeStyles({
         width: "100%",
         margin: "auto",
         justifyContent: "center",
-        minHeight: "45px !important",
+        minHeight: "60px !important",
         fontWeight: 700,
         textTransform: "uppercase",
         [theme?.breakpoints.down('md')]: {
@@ -49,10 +49,9 @@ const useStyles = makeStyles({
     },
     toolbarItem: {
         borderRadius: "5px",
-        paddingTop: "1rem",
-        paddingBottom: "1rem",
-        fontSize: "1rem",
-        letterSpacing: 4,
+        padding: "1rem 0px",
+        fontSize: "1.1rem",
+        letterSpacing: 3.5,
         [theme?.breakpoints.down('lg')]: {
             fontSize: ".9rem",
             letterSpacing: 2.5,

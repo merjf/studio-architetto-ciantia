@@ -93,7 +93,7 @@ const useStyles = makeStyles({
         height: "2px !important",
         alignSelf: "center !important",
         background: variables.darkyellow,
-        borderWidth: "3px !important",
+        borderWidth: "2px !important",
         borderRadius: 10,
         margin: "auto !important",
         marginTop: "38px !important",
@@ -146,7 +146,7 @@ const About = () => {
                     </Grid>
                 </Grid>
                 <Grid container className={classes.block} maxWidth={"lg"}>
-                    <Grid item sm={2} md={2} lg={2} sx={{display: {xs: "none", sm: "none", md: "flex"}}}>
+                    <Grid item sm={2} md={2} lg={2} sx={{display: {xs: "none", sm: "none", md: "block"}}}>
                         <Divider className={classnames(classes.dividerText)} flexItem/>
                     </Grid>
                     <Grid item sm={10} md={10} lg={10} className={classnames(classes.text)}>

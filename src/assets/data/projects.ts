@@ -14,7 +14,7 @@ const projects = [{
         cover: "palco",
         imageNumber: 14,
         orientation: "square",
-        order: 5,
+        order: 9,
     },{
         id: 118,
         title: "Restauro Basilica Cattedrale Maria SS delle Vittorie",
@@ -25,7 +25,7 @@ const projects = [{
         cover: "cattedrale",
         imageNumber: 9,
         orientation: "vertical",
-        order: 8,
+        order: 6,
     },{
         id: 120,
         title: "Progetto di accessibilità, rampa per disabili",
@@ -36,7 +36,7 @@ const projects = [{
         cover: "rampa",
         imageNumber: 7,
         orientation: "horizontal",
-        order: 4,
+        order: 8,
     }]
 },{
     id: "interiors",
@@ -63,7 +63,7 @@ const projects = [{
         cover: "frette-noventa",
         imageNumber: 10,
         orientation: "horizontal",
-        order: 6,
+        order: 7,
     },{
         id: 104,
         title: "Casa TB",
@@ -74,7 +74,7 @@ const projects = [{
         cover: "casa-tb",
         imageNumber: 25,
         orientation: "horizontal",
-        order: 10,
+        order: 4,
     },{
         id: 115,
         title: "Casa DF",
@@ -85,7 +85,7 @@ const projects = [{
         cover: "casa-df",
         imageNumber: 19,
         orientation: "wide",
-        order: 7
+        order: 5
     },{
         id: 117,
         title: "Casa SC",
@@ -96,7 +96,7 @@ const projects = [{
         cover: "casa-sc",
         imageNumber: 11,
         orientation: "horizontal",
-        order: 9,
+        order: 3,
     },{
         id: 121,
         title: "Casa RA&F",
@@ -124,7 +124,7 @@ const projects = [{
         cover: "garden",
         imageNumber: 6,
         orientation: "horizontal",
-        order: 3,
+        order: 10,
     }]
 },{
     id: "miscellaneous",

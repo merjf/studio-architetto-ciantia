@@ -117,7 +117,7 @@ const useStyles = makeStyles({
     },
     projectSeparator: {
         width: 100,
-        border: "3px solid white",
+        border: "2px solid white",
         borderRadius: 20,
     }
 });
