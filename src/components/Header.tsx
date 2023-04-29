@@ -39,7 +39,7 @@ const useStyles = makeStyles({
             margin: "auto"
         },
         "& > .MuiGrid-container": {
-            justifyContent: "space-evenly",
+            justifyContent: "space-around",
         }
     },
     toolbarBox:{
@@ -61,7 +61,7 @@ const useStyles = makeStyles({
             letterSpacing: 2,
         },
         "&:hover":{
-            color: variables.darkyellow,   
+            color: variables.red,   
         }
     },
     toolbarRightItems: {
@@ -91,7 +91,7 @@ const useStyles = makeStyles({
         width: 45,
         "&:hover":{
             "& > path":{
-                fill: variables.darkyellow,   
+                fill: variables.red,   
             }
         }
     },
@@ -116,7 +116,7 @@ const useStyles = makeStyles({
         },
         "&:hover":{
             "& > path":{
-                fill: variables.darkyellow,   
+                fill: variables.red,   
             }
         }
     },
@@ -220,7 +220,7 @@ const Header = () => {
         if(item === "/"){
             return window.location.pathname === item
         }
-        return window.location.pathname.includes(item)
+        return (window.location.pathname.includes("project") && item === "/work") || window.location.pathname.includes(item)
     }
     const isHome = () => {
         return window.location.pathname.length === 1;

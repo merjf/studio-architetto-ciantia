@@ -28,7 +28,7 @@ const useStyles = makeStyles({
         "& > hr":{
             width: 150,
             height: 1,
-            border: "3px solid " + variables.darkyellow,
+            border: "3px solid " + variables.red,
             borderRadius: 25,
             marginRight: 15,
             [theme?.breakpoints.up('sm')]: {
@@ -92,7 +92,7 @@ const useStyles = makeStyles({
     dividerText: {
         height: "2px !important",
         alignSelf: "center !important",
-        background: variables.darkyellow,
+        background: variables.red,
         borderWidth: "2px !important",
         borderRadius: 10,
         margin: "auto !important",

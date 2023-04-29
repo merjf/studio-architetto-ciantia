@@ -23,7 +23,7 @@ const useStyles = makeStyles({
         "& > hr":{
             width: 150,
             height: 1,
-            border: "2px solid " + variables.darkyellow,
+            border: "2px solid " + variables.red,
             marginRight: 15,
             [theme?.breakpoints.up('sm')]: {
                 width: 150,

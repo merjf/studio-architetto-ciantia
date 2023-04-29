@@ -55,12 +55,12 @@ const useStyles = makeStyles({
             lineHeight: "1.2rem",
         },
         "& > a:hover":{
-            color: variables.darkyellow
+            color: variables.red
         }
     },
     logo: {
-        height: 50,
-        width: 65,
+        height: 70,
+        width: 85,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         backgroundSize: "cover",
@@ -69,7 +69,7 @@ const useStyles = makeStyles({
         }
         // "&:hover":{
         //     "& > path":{
-        //         fill: variables.darkyellow,
+        //         fill: variables.red,
         //     }
         // }
     }

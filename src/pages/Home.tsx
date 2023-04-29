@@ -42,7 +42,7 @@ const useStyles = makeStyles({
         fontSize: "4.275rem !important",
         color: variables.white + " !important",
         "&:hover": {
-            color: variables.darkyellow + " !important",
+            color: variables.red + " !important",
         }
     },
     logoContainer: (theme:any) =>({
