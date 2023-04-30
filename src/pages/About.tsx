@@ -112,7 +112,7 @@ const About = () => {
     const classes = useStyles(theme);
 
     return (
-        <Container className={classNames("main", classes.container)}>
+        <Container className={classNames("container", classes.container)}>
             <Box className={classes.titleBox}>
                 <Divider />
                 <h1>Profilo</h1>

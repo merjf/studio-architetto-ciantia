@@ -3,23 +3,35 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Outlet } from "react-router-dom";
 import { makeStyles } from '@mui/styles';
-import { Container } from "@mui/material";
+import variables from '../assets/style/variable.module.scss';
+import { Box } from "@mui/material";
+import { theme } from "../utils/Utils";
 
 const useStyles = makeStyles({
-    main: {
-        marginTop: "100px",
-        marginBottom: "100px",
-        textAlign: "center",
-    }
+    main: (theme:any) =>({
+        maxWidth: "unset !important",
+        position: "relative",
+        zIndex: 2,
+        backgroundColor: variables.white,
+        marginBottom: "400px !important",
+        [theme?.breakpoints.down('md')]: {
+            marginBottom: "570px !important",
+        },
+        [theme?.breakpoints.only('xs')]: {
+            marginBottom: "570px !important",
+        },
+    })
 })
 
 const Layout = () => {
-    const classes = useStyles();
+    const classes = useStyles(theme);
     
     return (
         <>
             <Header />
-            <Outlet />
+            <Box className={classes.main}>
+                <Outlet />
+            </Box>
             <Footer />
         </>
     )

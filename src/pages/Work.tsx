@@ -167,7 +167,6 @@ const Work = () => {
 
     const assignGridPosition = (project:ProjectModel|ProjectRandomGridModel) => {
         if(currentWidth <= theme.breakpoints.values.md){
-            console.log()
             return {
                 gridColumn: "auto/span 1",
                 gridRow: "auto/span 1"
@@ -198,7 +197,7 @@ const Work = () => {
     }
     
     return (
-        <Container className={classNames("main", classes.container)}>
+        <Container className={classNames("container", classes.container)}>
             <Box className={classes.titleBox}>
                 <Divider />
                 <h1>Portfolio</h1>

@@ -28,10 +28,18 @@ a {
   color: inherit;
 }
 
-.main {
+.container, .container-home{
   padding: 0px !important;
   max-width: unset !important;
-  position: relative;
+}
+
+.container{
+  padding-bottom: 50px !important;
+}
+
+.footer{
+  width: 100%;
+  width: -webkit-fill-available;
 }
 
 .block {

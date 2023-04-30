@@ -46,12 +46,11 @@ const App = () => {
                             return {
                                 id: (project as any).id,
                                 mainFolder: (project as any).mainFolder,
-                                cover: (project as any).cover,
                                 title: (project as any).title,
                                 description: (project as any).description,
-                                orientation: (project as any).orientation,
                                 place: (project as any).city,
                                 order: (project as any).order,
+                                images: (project as any).imageNumber,
                             }
                         }
                     }

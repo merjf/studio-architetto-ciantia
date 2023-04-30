@@ -84,7 +84,7 @@ const Home = () => {
     const classes = useStyles(theme);
 
     return (
-        <Container className={classNames("main", classes.block)}>
+        <Container className={classNames("container-home", classes.block)}>
             <Carousel
                 className={classes.carouselContainer}
                 navButtonsAlwaysVisible
