@@ -20,6 +20,7 @@ const useStyles = makeStyles({
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         backgroundSize: "cover",
+        backgroundColor: variables.black,
         [theme?.breakpoints.up('xl')]: {
             height: "100vh",
             width: "100%",
@@ -30,9 +31,13 @@ const useStyles = makeStyles({
         },
         [theme?.breakpoints.down('sm')]: {
             height: "100vh",
-            // width: "100%",
         },
     }),
+    imageOverlay: {
+        backgroundColor: variables.black,
+        opacity: 0.15,
+        width: "100%"
+    },
     arrowButton: {
        "&.MuiButtonBase-root:hover":{
             opacity: 1 + "!important",
@@ -42,7 +47,7 @@ const useStyles = makeStyles({
         fontSize: "4.275rem !important",
         color: variables.white + " !important",
         "&:hover": {
-            color: variables.red + " !important",
+            color: variables.darkyellow + " !important",
         }
     },
     logoContainer: (theme:any) =>({
@@ -111,6 +116,7 @@ const Home = () => {
                 {Array.from({length: 6}, (_, i) => i + 1).map((index) => (
                     <Box key={index} className={classes.carouselImage}
                         sx={{ backgroundImage: `url(${require("../assets/images/home/" + index + ".jpg")})`}}>
+                            <Box className={classes.imageOverlay}/>
                     </Box>
                 ))}
             </Carousel>

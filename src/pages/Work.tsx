@@ -25,7 +25,7 @@ const useStyles = makeStyles({
         "& > hr":{
             width: 150,
             height: 1,
-            border: "2px solid " + variables.red,
+            border: "2px solid " + variables.darkyellow,
             marginRight: 15,
             [theme?.breakpoints.up('sm')]: {
                 width: 150,
@@ -88,7 +88,13 @@ const useStyles = makeStyles({
         },
         "&:hover":{
             opacity: 1,
-            transition: "opacity .6s ease"
+            transition: "opacity .6s ease",
+            "& > div:last-child > hr":{
+                width: 70
+            },
+            "& > div:last-child": {
+                transform: "translateX(-25px)"
+            }
         },
         [theme?.breakpoints.only('xs')]: {
             padding: 20,
@@ -113,12 +119,19 @@ const useStyles = makeStyles({
         gap: 20,
         position: "absolute",
         bottom: 20,
-        right: 20,
+        right: 0,
+        transition: "all .4s ease-in-out"
     },
     projectSeparator: {
-        width: 70,
+        width: 120,
         border: "2px solid white",
         borderRadius: 20,
+    },
+    projectSeparatorViewMore: {
+        width: 1,
+        border: "2px solid white",
+        borderRadius: 20,
+        transition: "width .5s ease",
     }
 });
 
@@ -216,7 +229,7 @@ const Work = () => {
                                                 <h4>{project.place}</h4>
                                             </Box>
                                             <Box className={classes.projectViewMore}>
-                                                <hr className={classes.projectSeparator} />
+                                                <hr className={classes.projectSeparatorViewMore} />
                                                 <h4>view more</h4>
                                             </Box>
                                         </Box>

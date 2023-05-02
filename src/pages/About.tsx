@@ -5,6 +5,7 @@ import variables from '../assets/style/variable.module.scss';
 import { theme } from '../utils/Utils';
 import classNames from 'classnames';
 import classnames from 'classnames';
+import { Parallax } from 'react-scroll-parallax';
 
 const useStyles = makeStyles({
     container: {
@@ -28,7 +29,7 @@ const useStyles = makeStyles({
         "& > hr":{
             width: 150,
             height: 1,
-            border: "3px solid " + variables.red,
+            border: "3px solid " + variables.darkyellow,
             borderRadius: 25,
             marginRight: 15,
             [theme?.breakpoints.up('sm')]: {
@@ -51,6 +52,15 @@ const useStyles = makeStyles({
         "& > img":{
             width: "100%",
         }
+    },
+    imageWide:  {
+        position: "relative",
+        height: "100%",
+        minHeight: 700,
+        backgroundAttachment: "fixed",
+        backgroundPosition: "center",
+        backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
     },
     text: {
         alignItems: "center",
@@ -92,7 +102,7 @@ const useStyles = makeStyles({
     dividerText: {
         height: "2px !important",
         alignSelf: "center !important",
-        background: variables.red,
+        background: variables.darkyellow,
         borderWidth: "2px !important",
         borderRadius: 10,
         margin: "auto !important",
@@ -157,8 +167,8 @@ const About = () => {
                     </Grid>
                 </Grid>
                 <Grid container className={classes.block} maxWidth={"lg"}>
-                    <Grid item sm={8} md={8} lg={8} className={classnames(classes.image)}>
-                        <img src={require("../assets/images/me3.jpg")} />
+                <Grid item xs={12} sm={12} md={12} lg={12}>
+                        <Box sx={{backgroundImage: `url(${require("../assets/images/me3.jpg")})`}} className={classnames(classes.imageWide)}></Box>
                     </Grid>
                 </Grid>
                 <Grid container className={classes.block} maxWidth={"lg"}>
@@ -186,8 +196,8 @@ const About = () => {
                     </Grid>
                 </Grid>
                 <Grid container className={classes.block} maxWidth={"lg"}>
-                    <Grid item xs={12} sm={9} md={9} lg={9} className={classnames(classes.image)}>
-                        <img src={require("../assets/images/me5.jpg")} />
+                    <Grid item xs={12} sm={12} md={12} lg={12}>
+                        <Box sx={{backgroundImage: `url(${require("../assets/images/me5.jpg")})`}} className={classnames(classes.imageWide)}></Box>
                     </Grid>
                 </Grid>
             </Container> 

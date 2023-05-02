@@ -76,7 +76,7 @@ const useStyles = makeStyles({
             lineHeight: "1.2rem",
         },
         "& > a:hover":{
-            color: variables.red
+            color: variables.darkyellow
         }
     },
     logo: {
@@ -90,7 +90,7 @@ const useStyles = makeStyles({
         }
         // "&:hover":{
         //     "& > path":{
-        //         fill: variables.red,
+        //         fill: variables.darkyellow,
         //     }
         // }
     }
@@ -260,7 +260,7 @@ const Footer = () => {
                     <a href="https://goo.gl/maps/6k7efoD96G3d3uRJ6">
                         <p>Piazza Armerina<br/>
                             Via Mons. la Vaccara 24<br/>
-                            94015 Enna, Italy</p>
+                            94015 Enna, Italia</p>
                     </a>
                 </Box>
                 <Box className={classes.block}>

@@ -29,7 +29,7 @@ const useStyles = makeStyles({
         "& > hr":{
             width: 150,
             height: 1,
-            border: "2px solid " + variables.red,
+            border: "2px solid " + variables.darkyellow,
             marginRight: 15,
             [theme?.breakpoints.up('sm')]: {
                 width: 150,
@@ -46,13 +46,14 @@ const useStyles = makeStyles({
     },
     iconsBox: {
         display: "flex",
-        alignItems: "flex-end",
+        justifyContent: "flex-end",
+        marginBottom: 10,
         "& > svg": {
             cursor: "pointer",
             fill: variables.darkgrey
         },
         "& > svg:hover": {
-            fill: variables.red
+            fill: variables.darkyellow
         }
     },
     imagesContainer: {
@@ -89,12 +90,12 @@ const Project = () => {
                         <span>{project.place}</span>
                     </Box>
                 </Box>
+            </Box>
+            <Container className={classes.imagesContainer} maxWidth="xl">
                 <Box className={classes.iconsBox}>
                     <WindowIcon onClick={() => setGridSorting(true)} />
                     <ViewAgendaIcon onClick={() => setGridSorting(false)} />
                 </Box>
-            </Box>
-            <Container className={classes.imagesContainer} maxWidth="xl">
                 <ImageList cols={gridSorting ? 3 : 1} rowHeight={gridSorting ? "auto" : 760} gap={20}>
                     {Array.from({length: project.images}, (_, i) => i + 1).map((item) => (
                         <ImageListItem key={item}>

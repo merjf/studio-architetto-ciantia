@@ -10,7 +10,7 @@ const useStyles = makeStyles({
         width: 45,
         "&:hover":{
             "& > path":{
-                fill: variables.red,   
+                fill: variables.darkyellow,   
             }
         }
     })
@@ -31,7 +31,7 @@ const Logo = () => {
             width="233.934mm" height="190.924mm"
             viewBox="0 0 2763 2255">
             <path id="Selection"
-                fill={isHome() ? variables.white : variables.darkgrey}
+                fill={isHome() ? variables.white : variables.midgrey}
                 stroke="white" strokeWidth="1"
                 d="M 35.00,2219.00
                 C 35.00,2219.00 35.00,724.00 35.00,724.00

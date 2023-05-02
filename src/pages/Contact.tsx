@@ -1,11 +1,12 @@
-import React from 'react';
-import { Container, Box, Divider, Card, CardContent, CardActions, TextField } from "@mui/material";
+import React, { useRef } from 'react';
+import { Container, Box, Divider, Card, CardContent, CardActions, TextField, IconButton } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import variables from '../assets/style/variable.module.scss';
 import { theme } from '../utils/Utils';
 import classNames from 'classnames';
 import SendIcon from '@mui/icons-material/Send';
 import DeleteIcon from '@mui/icons-material/Delete';
+import emailjs from '@emailjs/browser';
 
 const useStyles = makeStyles({
     container: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles({
         "& > hr":{
             width: 150,
             height: 1,
-            border: "2px solid " + variables.red,
+            border: "2px solid " + variables.darkyellow,
             marginRight: 15,
             [theme?.breakpoints.up('sm')]: {
                 width: 150,
@@ -64,23 +65,56 @@ const useStyles = makeStyles({
         gap: 50,
         margin: "auto",
         width: 550,
+        letterSpacing: "1.5px !important",
     },
     cardActions: {
         paddingTop: "30px !important",
         display: "flex",
         justifyContent: "space-evenly",
-        "& > svg":{
-            fill: variables.darkgrey,
-            cursor: "pointer"
+        "& > button":{
+            "& > svg": {
+                fill: variables.darkgrey,
+                cursor: "pointer"
+            },
+            "&.active":{
+                backgroundColor: "transparent",
+                // "& > svg > span":{
+                //     backgroundColor: "transparent",
+                // },
+            },
+            "&.focusVisible":{
+                boxShadow: "0 4px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 5px rgba(0, 127, 255, 0.5)",
+                outline: "none",
+            },
         },
-        "& > svg:hover":{
-            fill: variables.red
-        }
+        "& > button:hover":{
+            backgroundColor: variables.white,
+            "& > svg": {
+                fill: variables.darkyellow
+            }
+        },
     }
 });
 
 const Contact = () => {
     const classes = useStyles(theme);
+    const [formStatus, setFormStatus] = React.useState('Send')
+    const form = useRef();
+
+    const onSubmit = (e) => {
+        e.preventDefault()
+        setFormStatus('Submitting...');
+        emailjs.sendForm('service_hl0jjhd', 'template_wxrbhvf', form.current, 'k3SM_BpaU2V2jILdD')
+            .then((result) => {
+                console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+        });
+    }
+
+    // const cleanForm = (e) => {
+    //     form.current.reset();
+    // }
 
     return (
         <Container className={classNames("container", classes.container)}>
@@ -94,30 +128,30 @@ const Contact = () => {
                 </Box>
             </Box>
             <Card sx={{ maxWidth: 900}} className={classes.contactCard}>
-                <CardContent className={classes.contactCardContent}>
-                    <Box sx={{display: "flex", gap: 10}}>
-                        <Box>
+                <form ref={form} onSubmit={onSubmit}>
+                    <CardContent className={classes.contactCardContent}>
+                        <Box sx={{display: "flex", flexDirection: "column"}}>
                             <span>Nome</span>
-                            <TextField id="standard-basic" variant="standard" />
+                            <TextField id="user_name" name="user_name" variant="standard" placeholder="John Doe" />
                         </Box>
-                        <Box>
-                            <span>Cognome</span>
-                            <TextField id="standard-basic" variant="standard" />
+                        <Box sx={{display: "flex", flexDirection: "column"}}>
+                            <span>E-mail</span>
+                            <TextField id="user_email" name="user_email" variant="standard" placeholder="john.doe@email.com"/>
                         </Box>
-                    </Box>
-                    <Box sx={{display: "flex", flexDirection: "column"}}>
-                        <span>E-mail</span>
-                        <TextField id="standard-basic" variant="standard" />
-                    </Box>
-                    <Box sx={{display: "flex", flexDirection: "column"}}>
-                        <span>Oggetto</span>
-                        <TextField id="standard-basic" variant="standard" multiline rows={4} />
-                    </Box>
-                </CardContent>
-                <CardActions className={classes.cardActions}>
-                    <DeleteIcon fontSize='large' />
-                    <SendIcon fontSize='large' />
-                </CardActions>
+                        <Box sx={{display: "flex", flexDirection: "column"}}>
+                            <span>Messaggio</span>
+                            <TextField id="message" name="message" variant="standard" multiline rows={4} placeholder="Oggetto email"/>
+                        </Box>
+                    </CardContent>
+                    <CardActions className={classes.cardActions}>
+                        <IconButton aria-label="Clear form" type="reset" >
+                            <DeleteIcon fontSize='large' />
+                        </IconButton>
+                        <IconButton aria-label="Send email" type="submit">
+                            <SendIcon fontSize='large'/>
+                        </IconButton>
+                    </CardActions>
+                </form>
             </Card>
         </Container>
     )

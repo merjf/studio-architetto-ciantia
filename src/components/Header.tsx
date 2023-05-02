@@ -62,8 +62,11 @@ const useStyles = makeStyles({
             letterSpacing: 2,
         },
         "&:hover":{
-            color: variables.red,   
+            color: variables.darkyellow,   
         }
+    },
+    toolbarItemSelected: {
+        color: variables.darkgrey
     },
     toolbarRightItems: {
         [theme?.breakpoints.up('lg')]: {
@@ -104,11 +107,11 @@ const useStyles = makeStyles({
         height: 40,
         width: 55,
         "& > path":{
-            fill: variables.darkgrey
+            fill: variables.midgrey
         },
         "&:hover":{
             "& > path":{
-                fill: variables.red,   
+                fill: variables.darkyellow,   
             }
         }
     },
@@ -224,7 +227,7 @@ const Header = () => {
                             borderBottom: "unset"})
         } else {
             setNavbarStyle({backgroundColor: variables.white + " !important",
-                            color: variables.darkgrey + " !important",
+                            color: variables.midgrey + " !important",
                             borderBottom: "1px solid " + variables.lightgrey
             })
         }
@@ -273,7 +276,7 @@ const Header = () => {
                             <Grid item xs={6} md={6} lg={6} className={classnames(classes.toolbarRightItems, classes.toolbarBox)}>
                                 {menuItems.filter(item => item.displayedForToolbar ).map((item) => {
                                     return (
-                                        <Link to={item.link} onClick={() => changeLocation(item.link)} key={item.link} className={classnames(classes.toolbarItem)}>
+                                        <Link to={item.link} onClick={() => changeLocation(item.link)} key={item.link} className={classnames(classes.toolbarItem, isMenuItemSelected(item.link) ? classes.toolbarItemSelected : "")}>
                                             {item.capitalLetter}
                                             <span style={{opacity: isMenuItemSelected(item.link) ? 1 : 0}}>
                                                 {item.label}
