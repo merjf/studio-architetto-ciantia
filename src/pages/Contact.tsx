@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Container, Box, Divider, Card, CardContent, CardActions, TextField, IconButton } from "@mui/material";
+import { Container, Box, Divider, Card, CardContent, CardActions, TextField, IconButton, Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import variables from '../assets/style/variable.module.scss';
 import { theme } from '../utils/Utils';
@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import SendIcon from '@mui/icons-material/Send';
 import DeleteIcon from '@mui/icons-material/Delete';
 import emailjs from '@emailjs/browser';
+import { relative } from 'node:path/win32';
 
 const useStyles = makeStyles({
     container: {
@@ -47,17 +48,24 @@ const useStyles = makeStyles({
         gap: 30,
     },
     contactBackground: {
+        position: "relative",
         width: "100%",
-        minHeight: 400,
+        minHeight: 500,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         backgroundSize: "cover",
+        backgroundAttachment: "fixed",
     },
     contactCard: {
         margin: "auto",
         marginTop: 100,
         marginBottom: 100,
         padding: "40px 0px 20px 0px",
+        letterSpacing: "1.5px !important",
+        display: "flex",
+        alignItems: "center",
+        flexDirection: "column",
+        gap: 40,
     },
     contactCardContent: {
         display: "flex",
@@ -65,13 +73,37 @@ const useStyles = makeStyles({
         gap: 50,
         margin: "auto",
         width: 550,
-        letterSpacing: "1.5px !important",
+    },
+    contactCardField: {
+        display: "flex",
+        flexDirection: "column",
+        gap: 10,
+    },
+    contactCardTextField: {
+        '& .MuiInput-underline': {
+            "&:hover fieldset": {
+                borderBottomColor: variables.red,
+            },
+            '&:after': {
+                borderBottomColor: variables.darkyellow,
+            },
+        },
+        '& .MuiOutlinedInput-root': {
+            '&:hover fieldset': {
+                borderColor: variables.darkgrey,
+            },
+            '&.Mui-focused fieldset': {
+                borderColor: variables.darkyellow
+            },
+        },
     },
     cardActions: {
         paddingTop: "30px !important",
         display: "flex",
         justifyContent: "space-evenly",
         "& > button":{
+            backgroundColor: variables.white,
+            color: variables.darkgrey,
             "& > svg": {
                 fill: variables.darkgrey,
                 cursor: "pointer"
@@ -88,33 +120,29 @@ const useStyles = makeStyles({
             },
         },
         "& > button:hover":{
-            backgroundColor: variables.white,
-            "& > svg": {
-                fill: variables.darkyellow
-            }
+            backgroundColor: variables.darkyellow,
+            color: variables.white,
         },
     }
 });
 
 const Contact = () => {
     const classes = useStyles(theme);
-    const [formStatus, setFormStatus] = React.useState('Send')
+    const [formStatus, setFormStatus] = React.useState('Ready')
     const form = useRef();
 
     const onSubmit = (e) => {
         e.preventDefault()
         setFormStatus('Submitting...');
+        console.log(form.current)
         emailjs.sendForm('service_hl0jjhd', 'template_wxrbhvf', form.current, 'k3SM_BpaU2V2jILdD')
             .then((result) => {
-                console.log(result.text);
+                console.log("odbsaoba")
+                setFormStatus('Sent');
             }, (error) => {
-                console.log(error.text);
+                setFormStatus('Error');
         });
     }
-
-    // const cleanForm = (e) => {
-    //     form.current.reset();
-    // }
 
     return (
         <Container className={classNames("container", classes.container)}>
@@ -127,29 +155,27 @@ const Contact = () => {
                     sx={{backgroundImage: `url(${require("../assets/images/contatti.jpg")})`}}>
                 </Box>
             </Box>
-            <Card sx={{ maxWidth: 900}} className={classes.contactCard}>
+            <Card sx={{ maxWidth: 700}} className={classes.contactCard}>
+                <h2>Richiesta Informazioni</h2>
                 <form ref={form} onSubmit={onSubmit}>
                     <CardContent className={classes.contactCardContent}>
-                        <Box sx={{display: "flex", flexDirection: "column"}}>
+                        <Box className={classes.contactCardField}>
                             <span>Nome</span>
-                            <TextField id="user_name" name="user_name" variant="standard" placeholder="John Doe" />
+                            <TextField id="user_name" name="user_name" variant="standard" placeholder="John Doe" className={classes.contactCardTextField} />
                         </Box>
-                        <Box sx={{display: "flex", flexDirection: "column"}}>
+                        <Box className={classes.contactCardField}>
                             <span>E-mail</span>
-                            <TextField id="user_email" name="user_email" variant="standard" placeholder="john.doe@email.com"/>
+                            <TextField id="user_email" name="user_email" variant="standard" placeholder="john.doe@email.com" className={classes.contactCardTextField}/>
                         </Box>
-                        <Box sx={{display: "flex", flexDirection: "column"}}>
+                        <Box className={classes.contactCardField}>
                             <span>Messaggio</span>
-                            <TextField id="message" name="message" variant="standard" multiline rows={4} placeholder="Oggetto email"/>
+                            <TextField id="message" name="message" variant="outlined" multiline rows={4} placeholder="Oggetto email" className={classes.contactCardTextField}/>
                         </Box>
                     </CardContent>
                     <CardActions className={classes.cardActions}>
-                        <IconButton aria-label="Clear form" type="reset" >
-                            <DeleteIcon fontSize='large' />
-                        </IconButton>
-                        <IconButton aria-label="Send email" type="submit">
-                            <SendIcon fontSize='large'/>
-                        </IconButton>
+                        <Button variant="contained" endIcon={<SendIcon fontSize='large' />} onClick={onSubmit}>
+                            Invia&nbsp;
+                        </Button>
                     </CardActions>
                 </form>
             </Card>

@@ -16,7 +16,6 @@ const useStyles = makeStyles({
     })
 })
 
-
 const Logo = () => {
     const classes = useStyles(theme);
     
