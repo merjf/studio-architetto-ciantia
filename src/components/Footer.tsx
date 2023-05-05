@@ -19,8 +19,8 @@ const useStyles = makeStyles({
             padding: "80px 30px 40px 80px",
         },
         [theme?.breakpoints.only('xs')]: {
-            height: 350,
-            padding: "80px 15px 40px 15px",
+            height: 500,
+            padding: "100px 15px 0px 15px",
         },
     }),
     row: {

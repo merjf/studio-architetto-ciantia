@@ -18,7 +18,7 @@ const useStyles = makeStyles({
             marginBottom: "570px !important",
         },
         [theme?.breakpoints.only('xs')]: {
-            marginBottom: "570px !important",
+            marginBottom: "600px !important",
         },
     })
 })

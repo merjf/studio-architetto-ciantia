@@ -35,7 +35,7 @@ const useStyles = makeStyles({
             },
         },
         "& > h1": {
-            color: variables.darkgrey,
+            color: variables.black,
         }
     }),
     workInner:{

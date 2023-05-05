@@ -25,7 +25,7 @@ const useStyles = makeStyles({
         alignItems: "center",
         marginLeft: 20,
         marginBottom: 80,
-        color: variables.darkgrey,
+        color: variables.black,
         "& > hr":{
             width: 150,
             height: 1,
@@ -50,7 +50,7 @@ const useStyles = makeStyles({
         marginBottom: 10,
         "& > svg": {
             cursor: "pointer",
-            fill: variables.darkgrey
+            fill: variables.black
         },
         "& > svg:hover": {
             fill: variables.darkyellow

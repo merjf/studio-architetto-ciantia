@@ -37,7 +37,7 @@ const useStyles = makeStyles({
             },
         },
         "& > h1": {
-            color: variables.darkgrey,
+            color: variables.black,
         }
     }),
     contactContainer: {
@@ -90,7 +90,7 @@ const useStyles = makeStyles({
         },
         '& .MuiOutlinedInput-root': {
             '&:hover fieldset': {
-                borderColor: variables.darkgrey,
+                borderColor: variables.black,
             },
             '&.Mui-focused fieldset': {
                 borderColor: variables.darkyellow
@@ -103,9 +103,9 @@ const useStyles = makeStyles({
         justifyContent: "space-evenly",
         "& > button":{
             backgroundColor: variables.white,
-            color: variables.darkgrey,
+            color: variables.black,
             "& > svg": {
-                fill: variables.darkgrey,
+                fill: variables.black,
                 cursor: "pointer"
             },
             "&.active":{

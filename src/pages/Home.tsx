@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Container } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { theme } from '../utils/Utils';
@@ -35,7 +35,7 @@ const useStyles = makeStyles({
     }),
     imageOverlay: {
         backgroundColor: variables.black,
-        opacity: 0.15,
+        opacity: 0.2,
         width: "100%"
     },
     arrowButton: {
@@ -88,6 +88,14 @@ interface LogoPosition{
 const Home = () => {
     const classes = useStyles(theme);
 
+    const [currentWidth, setCurrentWidth]= useState(window.innerWidth);
+
+    useEffect(()=>{
+        console.log(currentWidth)
+        console.log(theme.breakpoints.values.sm)
+        window.addEventListener('resize', () => setCurrentWidth(window.innerWidth))
+    },[]);
+
     return (
         <Container className={classNames("container-home", classes.block)}>
             <Carousel
@@ -106,6 +114,7 @@ const Home = () => {
                 }} 
                 navButtonsWrapperProps={{
                     style: {
+                        display: currentWidth <= theme.breakpoints.values.sm ? 'none' : 'block'
                         // top: 'unset',
                         // height: "unset"
                     }
