@@ -73,6 +73,12 @@ const useStyles = makeStyles({
         gap: 50,
         margin: "auto",
         width: 550,
+        [theme?.breakpoints.down('md')]: {
+            width: "70%",
+        },
+        [theme?.breakpoints.only('md')]: {
+            width: "80%",
+        },  
     },
     contactCardField: {
         display: "flex",
@@ -134,10 +140,8 @@ const Contact = () => {
     const onSubmit = (e) => {
         e.preventDefault()
         setFormStatus('Submitting...');
-        console.log(form.current)
         emailjs.sendForm('service_hl0jjhd', 'template_wxrbhvf', form.current, 'k3SM_BpaU2V2jILdD')
             .then((result) => {
-                console.log("odbsaoba")
                 setFormStatus('Sent');
             }, (error) => {
                 setFormStatus('Error');
@@ -155,30 +159,30 @@ const Contact = () => {
                     sx={{backgroundImage: `url(${require("../assets/images/contatti.jpg")})`}}>
                 </Box>
             </Box>
-            <Card sx={{ maxWidth: 700}} className={classes.contactCard}>
-                <h2>Richiesta Informazioni</h2>
-                <form ref={form} onSubmit={onSubmit}>
-                    <CardContent className={classes.contactCardContent}>
-                        <Box className={classes.contactCardField}>
-                            <span>Nome</span>
-                            <TextField id="user_name" name="user_name" variant="standard" placeholder="John Doe" className={classes.contactCardTextField} />
-                        </Box>
-                        <Box className={classes.contactCardField}>
-                            <span>E-mail</span>
-                            <TextField id="user_email" name="user_email" variant="standard" placeholder="john.doe@email.com" className={classes.contactCardTextField}/>
-                        </Box>
-                        <Box className={classes.contactCardField}>
-                            <span>Messaggio</span>
-                            <TextField id="message" name="message" variant="outlined" multiline rows={4} placeholder="Oggetto email" className={classes.contactCardTextField}/>
-                        </Box>
-                    </CardContent>
-                    <CardActions className={classes.cardActions}>
-                        <Button variant="contained" endIcon={<SendIcon fontSize='large' />} onClick={onSubmit}>
-                            Invia&nbsp;
-                        </Button>
-                    </CardActions>
+            <form ref={form} onSubmit={onSubmit}>
+                <Card sx={{ maxWidth: {xs: 370, sm: 500, md: 700} }} className={classes.contactCard}>
+                    <h2>Richiesta Informazioni</h2>
+                        <CardContent className={classes.contactCardContent}>
+                            <Box className={classes.contactCardField}>
+                                <span>Nome</span>
+                                <TextField id="user_name" name="user_name" variant="standard" placeholder="John Doe" className={classes.contactCardTextField} />
+                            </Box>
+                            <Box className={classes.contactCardField}>
+                                <span>E-mail</span>
+                                <TextField id="user_email" name="user_email" variant="standard" placeholder="john.doe@email.com" className={classes.contactCardTextField}/>
+                            </Box>
+                            <Box className={classes.contactCardField}>
+                                <span>Messaggio</span>
+                                <TextField id="message" name="message" variant="outlined" multiline rows={4} placeholder="Oggetto email" className={classes.contactCardTextField}/>
+                            </Box>
+                        </CardContent>
+                        <CardActions className={classes.cardActions}>
+                            <Button variant="contained" endIcon={<SendIcon fontSize='large' />} onClick={onSubmit}>
+                                Invia&nbsp;
+                            </Button>
+                        </CardActions>
+                    </Card>
                 </form>
-            </Card>
         </Container>
     )
 }

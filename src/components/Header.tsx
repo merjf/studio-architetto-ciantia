@@ -5,7 +5,7 @@ import { makeStyles } from "@mui/styles";
 import variables from '../assets/style/variable.module.scss';
 import classnames from "classnames";
 import { theme } from '../utils/Utils';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
 import Logo from "./Logo";
 
@@ -19,12 +19,16 @@ const useStyles = makeStyles({
         },
         "& span": {
             opacity: 0,
+            WebkitTransition: "opacity .2s ease-out",
+            MozTransition: "opacity .2s ease-out",
             transition: "opacity .2s ease-out",
             [theme?.breakpoints.only('xs')]: {
                 opacity: "1 !important",
             },
         },
         "& a": {
+            WebkitTransition: "color .2s ease-out",
+            MozTransition: "color .2s ease-out",
             transition: "color .2s ease-out"
         }
     },
@@ -90,16 +94,24 @@ const useStyles = makeStyles({
             },
         }
     },
+    menubarOpen: {
+        background: variables.white + " !important",
+    },
     menubar: (theme:any) =>({
+        display: "flex",
         justifyContent: "space-between",
         padding: "0px 5px 0px 15px",
-        [theme?.breakpoints.up('xs')]: {
-            display: "none"
-        },
-        [theme?.breakpoints.down('sm')]: {
-            display: "flex"
-        },
+        background: "transparent",
+        WebkitTransition: "background .5s ease-in-out",
+        MozTransition: "background .5s ease-in-out",
+        transition: "background .5s ease-in-out",
     }),
+    menubarButton: {
+        color: variables.white,
+    },
+    menubarButtonOpen: {
+        color: variables.midgrey,
+    },
     menubarItem:{
 
     },
@@ -116,16 +128,24 @@ const useStyles = makeStyles({
         }
     },
     collapse: {
-        color: variables.black,
+        color: variables.darkgrey,
         width: "100%",
         backgroundColor: variables.white,
         boxShadow: "0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)",
     },
-    drawer: {
-        padding: "0px 3px",
-        display: "flex",
+    drawerMenu: {
+        overflow: "hidden",
         flexDirection: "column",
         alignItems: "start",
+        height: 0,
+        position: "absolute",
+        width: "100%",
+        paddingTop: 65,
+        zIndex: -1,
+        backgroundColor: "transparent",
+        WebkitTransition: " all .5s ease",
+        MozTransition: " all .5s ease",
+        transition: "all .5s ease",
         "& > .MuiList-root":{
             padding: "0px",
         },
@@ -140,11 +160,23 @@ const useStyles = makeStyles({
                 }
             }
         },
+        [theme?.breakpoints.up('xs')]: {
+            display: "none"
+        },
+        [theme?.breakpoints.down('sm')]: {
+            display: "flex"
+        },
     },
-    drawerItem: {
-        "&:hover": {
-            backgroundColor: variables.lightgrey,
-            color: variables.lightblue,
+    drawerMenuOpen: {
+        height: 225,
+        backgroundColor: variables.white,
+        boxShadow: "0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)",
+    },
+    drawerMenuItem: {
+        color: variables.darkgrey,
+        "& > .Mui-selected":{
+            backgroundColor: variables.darkyellow + " !important",
+            color: variables.white,
         }
     },
 })
@@ -185,7 +217,16 @@ const Header = () => {
                                                                 borderBottom: "1px solid " + variables.lightgrey});
     const [menuExpanded, setMenuExpanded] = React.useState(false);
     const [menuClosedOutside, setMenuClosedOutside] = React.useState(false);
+    const [currentWidth, setCurrentWidth] = useState(window.innerWidth);
     const menubarCollapseRef = useRef(null);
+
+    const isHome = () => {
+        return window.location.pathname.length === 1;
+    }
+
+    const isMobile = () => {
+        return currentWidth <= theme.breakpoints.values.md;
+    }
 
     const handleMenuExpandClick = () => {
         if(!menuClosedOutside){
@@ -210,8 +251,9 @@ const Header = () => {
             };
         }, [ref]);
     }
-
-    useOutsideAlerter(menubarCollapseRef);
+    if(isMobile()){
+        useOutsideAlerter(menubarCollapseRef);
+    }
 
     const isMenuItemSelected = (item) => {
         if(item === "/"){
@@ -221,7 +263,7 @@ const Header = () => {
     }
 
     useEffect(() => {
-        if(window.location.pathname.length === 1){
+        if(isHome() && !menuExpanded){
             setNavbarStyle({backgroundColor: "transparent !important",
                             color: variables.white + " !important",
                             borderBottom: "unset"})
@@ -231,7 +273,7 @@ const Header = () => {
                             borderBottom: "1px solid " + variables.lightgrey
             })
         }
-    }, [navigate])
+    }, [navigate, menuExpanded])
 
     const changeLocation = (placeToGo) => {
         navigate(placeToGo, { replace: true });
@@ -245,7 +287,7 @@ const Header = () => {
         });
       
         return (
-          <Slide appear={false} direction="down" in={!trigger}>
+          <Slide appear={false} direction="down" in={!trigger && !isMobile()}>
             {children}
           </Slide>
         );
@@ -253,9 +295,10 @@ const Header = () => {
 
     return (
         <Box>
-            <AppBar position="fixed" component="nav" className={classes.navbar} sx={{backgroundColor: navbarStyle.backgroundColor, color: navbarStyle.color, borderBottom: navbarStyle.borderBottom}}>
-                <HideOnScroll>
-                    <Toolbar className={classes.toolbar} disableGutters sx={{ display: { xs: 'none', sm: 'flex' }}}>
+            <HideOnScroll>
+                <AppBar position="fixed" component="nav" className={classes.navbar}
+                    sx={{backgroundColor: menuExpanded && isHome() ? 'transparent' : navbarStyle.backgroundColor, color: navbarStyle.color, borderBottom: menuExpanded && isHome() ? 'none' : navbarStyle.borderBottom, display: { xs: 'none', sm: 'flex' }}}>
+                    <Toolbar className={classes.toolbar} disableGutters>
                         <Grid container maxWidth={"lg"}>
                             <Grid item xs={6} md={6} lg={6} className={classes.toolbarBox}>
                                 <Link to={"/"} key={"/"} onClick={() => changeLocation('/')} className={classnames(classes.toolbarItem)}>
@@ -276,7 +319,7 @@ const Header = () => {
                             <Grid item xs={6} md={6} lg={6} className={classnames(classes.toolbarRightItems, classes.toolbarBox)}>
                                 {menuItems.filter(item => item.displayedForToolbar ).map((item) => {
                                     return (
-                                        <Link to={item.link} onClick={() => changeLocation(item.link)} key={item.link} className={classnames(classes.toolbarItem, isMenuItemSelected(item.link) ? classes.toolbarItemSelected : "")}>
+                                        <Link to={item.link} onClick={() => changeLocation(item.link)} key={"desktop-" + item.link} className={classnames(classes.toolbarItem, isMenuItemSelected(item.link) ? classes.toolbarItemSelected : "")}>
                                             {item.capitalLetter}
                                             <span style={{opacity: isMenuItemSelected(item.link) ? 1 : 0}}>
                                                 {item.label}
@@ -285,37 +328,38 @@ const Header = () => {
                                     )
                                 })}
                                 <Link to={"/"} key={"/"} onClick={() => changeLocation("/")}>
-                                <Logo />
+                                    <Logo menuExpanded={false}/>
                                 </Link>
                             </Grid>
                         </Grid>
-                    </Toolbar>    
-                </HideOnScroll>
-                <Box className={classes.menubar} id={"menubar"}>
-                    <Box className={classnames(classes.toolbarItem, classes.toolbarBox)} id={"menubar"}>
-                        <Link to={"/"} key={"/"} onClick={() => changeLocation("/")}>
-                            <Logo />
-                        </Link>
-                    </Box>
-                    <IconButton disableRipple aria-label="more" id="menubar" aria-haspopup="true" onClick={handleMenuExpandClick}>
-                        <MoreVertIcon id="menubar"/>
-                    </IconButton>
-                </Box>
-                <Collapse in={menuExpanded} timeout="auto" unmountOnExit className={classes.collapse}>
-                        <Box className={classnames(classes.drawer)} ref={menubarCollapseRef}>
-                            <List>
-                                {menuItems.map((item) => (
-                                    <Link key={item.link} to={item.link} onClick={() => changeLocation(item.link)}>
-                                        <ListItem disablePadding className={classes.drawerItem}>
-                                            <ListItemButton onClick={handleMenuExpandClick} selected={isMenuItemSelected(item.link)}>
-                                                {item.capitalLetter}{item.label}
-                                            </ListItemButton>
-                                        </ListItem>
-                                    </Link>
-                                ))}
-                            </List>
+                    </Toolbar>
+                </AppBar>
+            </HideOnScroll>
+            <AppBar position="fixed" component="nav" className={classes.navbar} 
+                sx={{backgroundColor: menuExpanded && isHome() ? 'transparent' : navbarStyle.backgroundColor, color: navbarStyle.color, borderBottom: menuExpanded && isHome() ? 'none' : navbarStyle.borderBottom, display: { xs: 'flex', sm: 'none' }}}>
+                    <Box className ={classnames(classes.menubar)} id={"menubar"}>
+                        <Box className={classnames(classes.toolbarItem, classes.toolbarBox)} id={"menubar"}>
+                            <Link to={"/"} key={"/"} onClick={() => changeLocation("/")}>
+                                <Logo menuExpanded={menuExpanded}/>
+                            </Link>
                         </Box>
-                </Collapse>
+                        <IconButton disableRipple aria-label="Menu" id={"menubar"} aria-haspopup="true" onClick={handleMenuExpandClick}>
+                            <MenuIcon fontSize="large" className={classnames(classes.menubarButton, menuExpanded || !isHome() ? classes.menubarButtonOpen : "")} id={"menubar"}/>
+                        </IconButton>
+                    </Box>
+                    <Box id={"menubar"} className={classnames(menuExpanded ? classes.drawerMenuOpen : '', classes.drawerMenu)} ref={menubarCollapseRef}>
+                        <List>
+                            {menuItems.map((item) => (
+                                <Link key={item.link} to={item.link} onClick={() => changeLocation(item.link)}>
+                                    <ListItem disablePadding className={classes.drawerMenuItem}>
+                                        <ListItemButton onClick={handleMenuExpandClick} selected={isMenuItemSelected(item.link)}>
+                                            {item.capitalLetter}{item.label}
+                                        </ListItemButton>
+                                    </ListItem>
+                                </Link>
+                            ))}
+                        </List>
+                    </Box>
             </AppBar>
         </Box>
     )

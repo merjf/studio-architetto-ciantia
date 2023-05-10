@@ -88,12 +88,14 @@ interface LogoPosition{
 const Home = () => {
     const classes = useStyles(theme);
 
-    const [currentWidth, setCurrentWidth]= useState(window.innerWidth);
+    const [currentWidth, setCurrentWidth] = useState(window.innerWidth);
+    const [startingIndex, setStartingIndex] = useState(1); 
 
     useEffect(()=>{
-        console.log(currentWidth)
-        console.log(theme.breakpoints.values.sm)
         window.addEventListener('resize', () => setCurrentWidth(window.innerWidth))
+        if(currentWidth <= theme.breakpoints.values.sm){
+            setStartingIndex(6);
+        }
     },[]);
 
     return (
@@ -124,7 +126,7 @@ const Home = () => {
                 PrevIcon={<KeyboardArrowLeftIcon className={classes.arrowIcons}/>} >
                 {Array.from({length: 6}, (_, i) => i + 1).map((index) => (
                     <Box key={index} className={classes.carouselImage}
-                        sx={{ backgroundImage: `url(${require("../assets/images/home/" + index + ".jpg")})`}}>
+                        sx={{ backgroundImage: `url(${require("../assets/images/home/" + (index + startingIndex) + ".jpg")})`}}>
                             <Box className={classes.imageOverlay}/>
                     </Box>
                 ))}

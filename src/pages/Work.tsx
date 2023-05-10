@@ -80,6 +80,8 @@ const useStyles = makeStyles({
         height: "100%",
         backgroundColor: "rgba(0, 0, 0, 0.38)",
         opacity: 0,
+        WebkitTransition: "opacity .6s ease",
+        MozTransition: "opacity .6s ease",
         transition: "opacity .6s ease",
         color: variables.white,
         padding: 50,
@@ -88,6 +90,8 @@ const useStyles = makeStyles({
         },
         "&:hover":{
             opacity: 1,
+            WebkitTransition: "opacity .6s ease",
+            MozTransition: "opacity .6s ease",
             transition: "opacity .6s ease",
             "& > div:last-child > hr":{
                 width: 70
@@ -120,18 +124,31 @@ const useStyles = makeStyles({
         position: "absolute",
         bottom: 20,
         right: 0,
-        transition: "all .4s ease-in-out"
+        WebkitTransition: "all .4s ease-in-out",
+        MozTransition: "all .4s ease-in-out",
+        transition: "all .4s ease-in-out",
+        [theme?.breakpoints.only('xs')]: {
+            right: 10,
+        },
     },
     projectSeparator: {
         width: 120,
         border: "2px solid white",
         borderRadius: 20,
+        [theme?.breakpoints.only('xs')]: {
+            width: 90,
+        },
     },
     projectSeparatorViewMore: {
         width: 1,
         border: "2px solid white",
         borderRadius: 20,
+        WebkitTransition: "width .5s ease",
+        MozTransition: "width .5s ease",
         transition: "width .5s ease",
+        [theme?.breakpoints.only('xs')]: {
+            width: 40,
+        },
     }
 });
 

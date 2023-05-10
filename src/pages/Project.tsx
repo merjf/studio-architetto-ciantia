@@ -21,22 +21,29 @@ const useStyles = makeStyles({
         paddingBottom: 10,
     },
     titleBox: (theme:any) =>({
+        position: "relative",
         display: "flex",
         alignItems: "center",
         marginLeft: 20,
         marginBottom: 80,
         color: variables.black,
         "& > hr":{
+            position: "absolute",
+            top: 30,
+            left: -20,
             width: 150,
             height: 1,
             border: "2px solid " + variables.darkyellow,
-            marginRight: 15,
+            marginRight: 10,
             [theme?.breakpoints.up('sm')]: {
                 width: 150,
             },
             [theme?.breakpoints.down('md')]: {
-                width: 100,
+                width: 45,
             },
+        },
+        [theme?.breakpoints.down('md')]: {
+            marginBottom: 20,
         },
     }),
     titleDetails: {
@@ -56,6 +63,9 @@ const useStyles = makeStyles({
             fill: variables.darkyellow
         }
     },
+    iconSelected: {
+        fill: variables.darkyellow + " !important"
+    },
     imagesContainer: {
 
     },
@@ -69,7 +79,7 @@ const Project = () => {
     const project:any = useLoaderData();
 
     const [currentWidth, setCurrentWidth] = useState(window.innerWidth);
-    const [gridSorting, setGridSorting] = useState(false);
+    const [gridSorting, setGridSorting] = useState(true);
 
     useEffect(()=>{
       window.addEventListener('resize', () => setCurrentWidth(window.innerWidth))
@@ -93,8 +103,8 @@ const Project = () => {
             </Box>
             <Container className={classes.imagesContainer} maxWidth="xl">
                 <Box className={classes.iconsBox}>
-                    <WindowIcon onClick={() => setGridSorting(true)} />
-                    <ViewAgendaIcon onClick={() => setGridSorting(false)} />
+                    <WindowIcon onClick={() => setGridSorting(true)} className={gridSorting ? classes.iconSelected : ""}/>
+                    <ViewAgendaIcon onClick={() => setGridSorting(false)} className={gridSorting ? "" : classes.iconSelected}/>
                 </Box>
                 <ImageList cols={gridSorting ? 3 : 1} rowHeight={gridSorting ? "auto" : 760} gap={20}>
                     {Array.from({length: project.images}, (_, i) => i + 1).map((item) => (

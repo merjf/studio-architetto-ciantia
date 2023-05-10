@@ -17,10 +17,16 @@ const useStyles = makeStyles({
         [theme?.breakpoints.down('md')]: {
             height: 450,
             padding: "80px 30px 40px 80px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-around",
         },
         [theme?.breakpoints.only('xs')]: {
             height: 500,
             padding: "100px 15px 0px 15px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-around",
         },
     }),
     row: {

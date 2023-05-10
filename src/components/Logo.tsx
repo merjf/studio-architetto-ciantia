@@ -16,11 +16,15 @@ const useStyles = makeStyles({
     })
 })
 
-const Logo = () => {
+interface LogoProps {
+    menuExpanded: boolean
+}
+
+const Logo = (props: LogoProps) => {
     const classes = useStyles(theme);
     
     const isHome = () => {
-        return window.location.pathname.length === 1;
+        return window.location.pathname.length === 1 && !props.menuExpanded;
     }
 
     return (
