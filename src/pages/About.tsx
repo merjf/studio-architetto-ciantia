@@ -51,7 +51,7 @@ const useStyles = makeStyles({
     },
     titleBox: {
         display: "flex",
-        alignItems: "center",
+        alignItems: "baseline",
         marginLeft: 20,
         marginBottom: 80,
         "& > hr":{

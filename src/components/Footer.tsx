@@ -263,16 +263,16 @@ const Footer = () => {
                     <a href="tel:+393701212833"><span>+39 370 1212833</span></a>
                 </Box>
                 <Box className={classes.block}>
-                    <a href="https://goo.gl/maps/6k7efoD96G3d3uRJ6">
+                    <a target={"_blank"} href="https://goo.gl/maps/6k7efoD96G3d3uRJ6">
                         <p>Piazza Armerina<br/>
                             Via Mons. la Vaccara 24<br/>
                             94015 Enna, Italia</p>
                     </a>
                 </Box>
                 <Box className={classes.block}>
-                    <a href="https://www.linkedin.com/in/salvatore-ciantia-6a904699/"><span>Linkedin</span></a>
-                    <a href="https://www.instagram.com/salvatore_ciantia_architetto/"><span>Instagram</span></a>
-                    <a href="https://www.facebook.com/salvatore.ciantia.3"><span>Facebook</span></a>
+                    <a target={"_blank"} href="https://www.linkedin.com/in/salvatore-ciantia-6a904699/"><span>Linkedin</span></a>
+                    <a target={"_blank"} href="https://www.instagram.com/salvatore_ciantia_architetto/"><span>Instagram</span></a>
+                    <a target={"_blank"} href="https://www.facebook.com/salvatore.ciantia.3"><span>Facebook</span></a>
                 </Box>
             </Box>
             <Box className={classnames(classes.row, classes.rightsRow)}>

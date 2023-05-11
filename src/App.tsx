@@ -9,6 +9,7 @@ import About from "./pages/About";
 import Project from "./pages/Project";
 import projects from './assets/data/projects'
 import { GroupModel, ProjectRandomGridModel } from "./utils/Utils";
+import ScrollToTop from "./utils/ScrollToTop";
 
 const App = () => {
 
@@ -63,7 +64,7 @@ const App = () => {
     }]);
 
     return (
-        <RouterProvider router={router}/>
+            <RouterProvider router={router}/>
     )
 }
 

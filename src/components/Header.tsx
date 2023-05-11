@@ -297,7 +297,7 @@ const Header = () => {
         <Box>
             <HideOnScroll>
                 <AppBar position="fixed" component="nav" className={classes.navbar}
-                    sx={{backgroundColor: menuExpanded && isHome() ? 'transparent' : navbarStyle.backgroundColor, color: navbarStyle.color, borderBottom: menuExpanded && isHome() ? 'none' : navbarStyle.borderBottom, display: { xs: 'none', sm: 'flex' }}}>
+                    sx={{backgroundColor: menuExpanded && isHome() ? 'transparent' : navbarStyle.backgroundColor, color: navbarStyle.color, borderBottom: menuExpanded && isHome() ? 'none' : navbarStyle.borderBottom, display: { xs: 'none', sm: 'block', md: 'flex' }}}>
                     <Toolbar className={classes.toolbar} disableGutters>
                         <Grid container maxWidth={"lg"}>
                             <Grid item xs={6} md={6} lg={6} className={classes.toolbarBox}>

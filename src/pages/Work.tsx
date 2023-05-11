@@ -19,19 +19,23 @@ const useStyles = makeStyles({
     },
     titleBox: (theme:any) =>({
         display: "flex",
-        alignItems: "center",
+        alignItems: "baseline",
         marginLeft: 20,
         marginBottom: 80,
         "& > hr":{
-            width: 150,
-            height: 1,
-            border: "2px solid " + variables.darkyellow,
-            marginRight: 15,
+            border: "2.5px solid " + variables.darkyellow,
+            borderRadius: 25,
+            marginRight: 20,
+            marginLeft: -30,
+            marginTop: 17,
             [theme?.breakpoints.up('sm')]: {
-                width: 150,
+                width: 130,
             },
             [theme?.breakpoints.down('md')]: {
                 width: 100,
+            },
+            [theme?.breakpoints.only('xs')]: {
+                width: 80,
             },
         },
         "& > h1": {
@@ -165,30 +169,34 @@ const Work = () => {
         var groups:GroupModel[] = projects;
         var randomProjects: ProjectRandomGridModel[] = [], i = 0;
         for(let group of groups){
-            for(let project of group.projects){
-                if((project as any).mainFolder !== undefined){
+            if(group.type !== 'miscellaneous'){
+                for(let project of group.projects){
+                    if((project as any).mainFolder !== undefined){
+                        randomProjects.push({
+                            id: (project as any).id,
+                            mainFolder: (project as any).mainFolder,
+                            cover: (project as any).cover,
+                            title: (project as any).title,
+                            description: (project as any).description,
+                            orientation: (project as any).orientation,
+                            place: (project as any).city,
+                            order: (project as any).order,
+                        })
+                    }
+                }
+            } else {
+                for(let subgroup of group.projects){
                     randomProjects.push({
-                        id: (project as any).id,
-                        mainFolder: (project as any).mainFolder,
-                        cover: (project as any).cover,
-                        title: (project as any).title,
-                        description: (project as any).description,
-                        orientation: (project as any).orientation,
-                        place: (project as any).city,
-                        order: (project as any).order,
+                        id: (subgroup as any).id,
+                        mainFolder: (subgroup as any).projects[0].mainFolder,
+                        cover: (subgroup as any).cover,
+                        title: (subgroup as any).name,
+                        description: (subgroup as any).description,
+                        orientation: (subgroup as any).orientation,
+                        place: (subgroup as any).city,
+                        order: (subgroup as any).order,
                     })
                 }
-                // } else {
-                //     randomProjects.push({
-                //         id: i++,
-                //         mainFolder: project.mainFolder,
-                //         cover: project.cover,
-                //         title: project.title,
-                //         description: project.description,
-                //         orientation: project.orientation,
-                //         order: project.order,
-                //     })
-                // }
             }
         }
         randomProjects = randomProjects.sort((a, b) => a.order - b.order)
@@ -247,7 +255,7 @@ const Work = () => {
                                             </Box>
                                             <Box className={classes.projectViewMore}>
                                                 <hr className={classes.projectSeparatorViewMore} />
-                                                <h4>view more</h4>
+                                                <h4>più dettagli</h4>
                                             </Box>
                                         </Box>
                                     </Box>

@@ -129,14 +129,16 @@ const projects = [{
 },{
     id: "miscellaneous",
     name: "Miscellaneous",
-    type: "group",
+    type: "miscellaneous",
     projects: [{
         id: "product-design",
         name: "Product Design",
         type: "grid",
-        cover: "1",
+        cover: "interior-design",
         orientation: "square",
         order: 12,
+        city: "Piazza Armerina, Italia",
+        place: "Piazza Armerina, Enna",
         projects: [{
             id: 105,
             mainFolder: "product-design",
@@ -157,9 +159,11 @@ const projects = [{
         id: "various",
         name: "Progetti",
         type: "grid",
-        cover: "5",
-        orientation: "vertical",
-        order: 12,
+        cover: "projects",
+        orientation: "horizontal",
+        order: 11,
+        city: "Piazza Armerina, Italia",
+        place: "Piazza Armerina, Enna",
         projects: [{
             id: 108,
             mainFolder: "projects",

@@ -6,6 +6,7 @@ import { makeStyles } from '@mui/styles';
 import variables from '../assets/style/variable.module.scss';
 import { Box } from "@mui/material";
 import { theme } from "../utils/Utils";
+import ScrollToTop from "../utils/ScrollToTop";
 
 const useStyles = makeStyles({
     main: (theme:any) =>({
@@ -28,11 +29,13 @@ const Layout = () => {
     
     return (
         <>
-            <Header />
-            <Box className={classes.main}>
-                <Outlet />
-            </Box>
-            <Footer />
+            <ScrollToTop>
+                <Header />
+                <Box className={classes.main}>
+                    <Outlet />
+                </Box>
+                <Footer />
+            </ScrollToTop>
         </>
     )
 }

@@ -22,24 +22,33 @@ const useStyles = makeStyles({
     },
     titleBox: (theme:any) =>({
         position: "relative",
+        alignItems: "baseline",
         display: "flex",
-        alignItems: "center",
         marginLeft: 20,
         marginBottom: 80,
         color: variables.black,
         "& > hr":{
-            position: "absolute",
-            top: 30,
-            left: -20,
-            width: 150,
-            height: 1,
-            border: "2px solid " + variables.darkyellow,
-            marginRight: 10,
+            border: "2.5px solid " + variables.darkyellow,
+            borderRadius: 25,
+            marginRight: 20,
+            marginLeft: -30,
+            marginTop: 17,
+            [theme?.breakpoints.up('md')]: {
+                width: 100,
+            },
             [theme?.breakpoints.up('sm')]: {
-                width: 150,
+                width: 130,
             },
             [theme?.breakpoints.down('md')]: {
-                width: 45,
+                width: 100,
+            },
+            [theme?.breakpoints.only('xs')]: {
+                position: "absolute",
+                marginLeft: 0,
+                marginTop: 0,
+                top: 30,
+                left: -20,
+                width: 38,
             },
         },
         [theme?.breakpoints.down('md')]: {
