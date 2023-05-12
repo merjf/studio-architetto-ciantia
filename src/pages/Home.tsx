@@ -48,7 +48,10 @@ const useStyles = makeStyles({
         color: variables.white + " !important",
         "&:hover": {
             color: variables.darkyellow + " !important",
-        }
+        },
+        [theme?.breakpoints.only('xs')]: {
+            fontSize: "3.5rem !important"
+        },
     },
     logoContainer: (theme:any) =>({
         position: "absolute",
@@ -98,6 +101,15 @@ const Home = () => {
         }
     },[]);
 
+    const getIconStyleForMobile = () => {
+        if(currentWidth <= theme.breakpoints.values.sm){
+            return {
+                top: 'unset',
+                bottom: 10
+            }
+        }
+    }
+
     return (
         <Container className={classNames("container-home", classes.block)}>
             <Carousel
@@ -115,11 +127,7 @@ const Home = () => {
                     }
                 }} 
                 navButtonsWrapperProps={{
-                    style: {
-                        display: currentWidth <= theme.breakpoints.values.sm ? 'none' : 'block'
-                        // top: 'unset',
-                        // height: "unset"
-                    }
+                    style: getIconStyleForMobile(),
                 }}
                 sx={{height: "100vh"}}
                 NextIcon={<KeyboardArrowRightIcon className={classes.arrowIcons}/>}

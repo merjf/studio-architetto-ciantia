@@ -26,7 +26,6 @@ const useStyles = makeStyles({
             }
         },
         [theme?.breakpoints.only('xs')]: {
-            margin: "30px 0px 0px 0px",
             "& > div": {
                 maxWidth: "100%"
             }

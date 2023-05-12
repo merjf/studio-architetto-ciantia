@@ -73,6 +73,9 @@ const useStyles = makeStyles({
         alignItems: "center",
         flexDirection: "column",
         gap: 40,
+        [theme?.breakpoints.only('xs')]: {
+            marginBottom: 0,
+        },
     },
     contactCardContent: {
         display: "flex",
@@ -180,7 +183,7 @@ const Contact = () => {
     const onSubmit = (e) => {
         e.preventDefault()
         setFormStatus('submitting');
-        setFormStatus('error');
+        setFormStatus('sent');
         // emailjs.sendForm('service_hl0jjhd', 'template_wxrbhvf', form.current, 'k3SM_BpaU2V2jILdD')
         //     .then((result) => {
         //         setFormStatus('sent');

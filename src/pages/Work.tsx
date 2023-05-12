@@ -48,6 +48,9 @@ const useStyles = makeStyles({
         width: "100% !important",
         padding: "0px !important",
         marginBottom: 100,
+        [theme?.breakpoints.only('xs')]: {
+            marginBottom: 0,
+        },
     },
     workContainer: {
         display: "grid",
