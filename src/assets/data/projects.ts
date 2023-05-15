@@ -142,18 +142,18 @@ const projects = [{
         projects: [{
             id: 105,
             mainFolder: "product-design",
-            windowImage: "1",
-            zoomedImage: "2"
+            squarePic: "1",
+            widePic: "2"
         },{
             id: 106,
             mainFolder: "product-design",
-            windowImage: "3",
-            zoomedImage: "4"
+            squarePic: "3",
+            widePic: "4"
         },{
             id: 107,
             mainFolder: "product-design",
-            windowImage: "5",
-            zoomedImage: "6"
+            squarePic: "5",
+            widePic: "6"
         }]
     },{
         id: "various",
@@ -167,43 +167,43 @@ const projects = [{
         projects: [{
             id: 108,
             mainFolder: "projects",
-            windowImage: "1",
-            zoomedImage: "2"
+            squarePic: "1",
+            widePic: "2"
         },{
             id: 109,
             mainFolder: "projects",
-            windowImage: "3",
-            zoomedImage: "4"
+            squarePic: "3",
+            widePic: "4"
         },{
             id: 110,
             mainFolder: "projects",
-            windowImage: "5",
-            zoomedImage: "6"
+            squarePic: "5",
+            widePic: "6"
         },{
             id: 111,
             mainFolder: "projects",
-            windowImage: "7",
-            zoomedImage: "8"
+            squarePic: "7",
+            widePic: "8"
         },{
             id: 112,
             mainFolder: "projects",
-            windowImage: "9",
-            zoomedImage: "10"
+            squarePic: "9",
+            widePic: "10"
         },{
             id: 113,
             mainFolder: "projects",
-            windowImage: "11",
-            zoomedImage: "12"
+            squarePic: "11",
+            widePic: "12"
         },{
             id: 114,
             mainFolder: "projects",
-            windowImage: "13",
-            zoomedImage: "14"
+            squarePic: "13",
+            widePic: "14"
         },{
             id: 119,
             mainFolder: "projects",
-            windowImage: "15",
-            zoomedImage: "16"
+            squarePic: "15",
+            widePic: "16"
         }]
     }]
 }];

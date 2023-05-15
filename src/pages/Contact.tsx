@@ -183,13 +183,15 @@ const Contact = () => {
     const onSubmit = (e) => {
         e.preventDefault()
         setFormStatus('submitting');
-        setFormStatus('sent');
-        // emailjs.sendForm('service_hl0jjhd', 'template_wxrbhvf', form.current, 'k3SM_BpaU2V2jILdD')
-        //     .then((result) => {
-        //         setFormStatus('sent');
-        //     }, (error) => {
-        //         setFormStatus('error');
-        // });
+        setTimeout(() => {
+            setFormStatus('sent');
+            // emailjs.sendForm('service_hl0jjhd', 'template_wxrbhvf', form.current, 'k3SM_BpaU2V2jILdD')
+            //     .then((result) => {
+            //         setFormStatus('sent');
+            //     }, (error) => {
+            //         setFormStatus('error');
+            // });
+        }, 2500);
     }
 
     const getStatus = () => {
@@ -197,7 +199,7 @@ const Contact = () => {
             case 'ready':
                 return 'Invia'
             case 'submitting':
-                return 'Invio in corso'
+                return '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0'
             case 'sent':
                 return 'Messaggio Inviato'
             case 'error':
@@ -234,7 +236,7 @@ const Contact = () => {
             case 'error':
                 return <CloseIcon fontSize='large' />
             default: 
-                return <SendIcon fontSize='large' />
+                return <></>
         }
     }
 
@@ -266,7 +268,7 @@ const Contact = () => {
                             </Box>
                             <Box className={classes.contactCardField}>
                                 <span>E-mail</span>
-                                <TextField id="user_email" name="user_email" variant="standard" value={userEmail} onChange={(event) => setUserEmail(event.target.value)} placeholder="john.doe@email.com" className={classes.contactCardTextField}/>
+                                <TextField id="user_email" name="user_email" type="email" variant="standard" value={userEmail} onChange={(event) => setUserEmail(event.target.value)} placeholder="john.doe@email.com" className={classes.contactCardTextField}/>
                             </Box>
                             <Box className={classes.contactCardField}>
                                 <span>Messaggio</span>

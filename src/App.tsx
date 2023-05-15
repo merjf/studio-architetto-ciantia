@@ -41,20 +41,47 @@ const App = () => {
             element: <Project />,
             loader: ({ params }) => {
                 var groups: GroupModel[] = projects;
-                for(let group of groups){
-                    for(let project of group.projects){
-                        if(project.id == params.id){
-                            return {
-                                id: (project as any).id,
-                                mainFolder: (project as any).mainFolder,
-                                title: (project as any).title,
-                                description: (project as any).description,
-                                place: (project as any).city,
-                                order: (project as any).order,
-                                images: (project as any).imageNumber,
+                switch(params.id){
+                    case 'product-design':
+                    case 'various':
+                        for(let group of groups){
+                            if(group.type === 'miscellaneous'){
+                                for(let project of group.projects){
+                                    if(project.id === params.id){
+                                        var images:[] = (project as any).projects.map(singleProject => {
+                                            return [singleProject.squarePic, singleProject.widePic]
+                                        });
+                                        return {
+                                            id: (project as any).id,
+                                            mainFolder: (project as any).projects[0].mainFolder,
+                                            title: (project as any).name,
+                                            description: (project as any).description,
+                                            place: (project as any).city,
+                                            order: (project as any).order,
+                                            images: images,
+                                        }
+                                    }
+                                }
                             }
                         }
-                    }
+                        break;
+                    default:
+                        for(let group of groups){
+                            for(let project of group.projects){
+                                if(project.id == params.id){
+                                    return {
+                                        id: (project as any).id,
+                                        mainFolder: (project as any).mainFolder,
+                                        title: (project as any).title,
+                                        description: (project as any).description,
+                                        place: (project as any).city,
+                                        order: (project as any).order,
+                                        images: (project as any).imageNumber,
+                                    }
+                                }
+                            }
+                        }
+                        break;
                 }
             },
         },{

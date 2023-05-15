@@ -79,7 +79,8 @@ const useStyles = makeStyles({
 
     },
     imgInColumn: {
-        maxHeight: "750px !important"
+        maxHeight: "750px !important",
+        objectFit: "contain !important" as any,
     }
 });
 
@@ -116,7 +117,7 @@ const Project = () => {
                     <ViewAgendaIcon onClick={() => setGridSorting(false)} className={gridSorting ? "" : classes.iconSelected}/>
                 </Box>
                 <ImageList cols={gridSorting ? 3 : 1} rowHeight={gridSorting ? "auto" : 760} gap={20}>
-                    {Array.from({length: project.images}, (_, i) => i + 1).map((item) => (
+                    {typeof(project.images) === "number" && Array.from({length: project.images}, (_, i) => i + 1).map((item) => (
                         <ImageListItem key={item}>
                             <img
                                 src={require("../assets/images/work/"+project.mainFolder+"/"+item+".jpg")}
@@ -127,7 +128,19 @@ const Project = () => {
                             />
                         </ImageListItem>
                     ))}
-                    </ImageList>
+                    {Array.isArray(project.images) && project.images.map((item) => (
+                        <ImageListItem key={item}>
+                            <img
+                                src={gridSorting ? require("../assets/images/work/"+project.mainFolder+"/"+item[0]+".jpg") : 
+                                                    require("../assets/images/work/"+project.mainFolder+"/"+item[1]+".jpg")}
+                                srcSet={gridSorting ? require("../assets/images/work/"+project.mainFolder+"/"+item[0]+".jpg") : 
+                                                    require("../assets/images/work/"+project.mainFolder+"/"+item[1]+".jpg")}
+                                alt={project.title}
+                                loading="lazy"
+                                className={gridSorting ? "" : classes.imgInColumn}/>
+                        </ImageListItem>
+                    ))}
+                </ImageList>
             </Container>
         </Container>
     )

@@ -26,8 +26,8 @@ export class ProjectModel {
 export class ProjectGridModel {
   id: number | undefined;
   mainFolder: string | undefined;
-  windowImage: string | undefined;
-  zoomedImage: string | undefined;
+  squarePic: string | undefined;
+  widePic: string | undefined;
 }
 export class GroupModel {
   name: string | undefined;
