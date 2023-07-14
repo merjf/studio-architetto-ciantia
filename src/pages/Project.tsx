@@ -76,7 +76,7 @@ const useStyles = makeStyles({
         fill: variables.darkyellow + " !important"
     },
     imagesContainer: {
-
+        minHeight: "100%"
     },
     imgInColumn: {
         maxHeight: "750px !important",
@@ -117,13 +117,13 @@ const Project = () => {
                     <ViewAgendaIcon onClick={() => setGridSorting(false)} className={gridSorting ? "" : classes.iconSelected}/>
                 </Box>
                 <ImageList cols={gridSorting ? 3 : 1} rowHeight={gridSorting ? "auto" : 760} gap={20}>
-                    {typeof(project.images) === "number" && Array.from({length: project.images}, (_, i) => i + 1).map((item) => (
+                    {typeof(project.images) === "number" && Array.from({length: project.images}, (_, i) => i + 1).map((item, index) => (
                         <ImageListItem key={item}>
                             <img
                                 src={require("../assets/images/work/"+project.mainFolder+"/"+item+".jpg")}
                                 srcSet={require("../assets/images/work/"+project.mainFolder+"/"+item+".jpg")}
                                 alt={project.title}
-                                loading="lazy"
+                                loading={index > 9 ? "lazy" : undefined}
                                 className={gridSorting ? "" : classes.imgInColumn}
                             />
                         </ImageListItem>

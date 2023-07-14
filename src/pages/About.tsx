@@ -112,7 +112,6 @@ const useStyles = makeStyles({
         padding: "0px 20px",
         fontSize: "1.2rem",
         "& > p::first-letter": {
-            fontWeight: "bold",
             fontSize: "2.5rem",
             marginLeft: -2,
             lineHeight: 1,
