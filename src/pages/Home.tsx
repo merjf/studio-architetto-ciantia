@@ -132,7 +132,7 @@ const Home = () => {
                 sx={{height: "100vh"}}
                 NextIcon={<KeyboardArrowRightIcon className={classes.arrowIcons}/>}
                 PrevIcon={<KeyboardArrowLeftIcon className={classes.arrowIcons}/>} >
-                {Array.from({length: 6}, (_, i) => i + 1).map((index) => (
+                {Array.from({length: 5}, (_, i) => i + 1).map((index) => (
                     <Box key={index} className={classes.carouselImage}
                         sx={{ backgroundImage: `url(${require("../assets/images/home/" + (index + startingIndex) + ".jpg")})`}}>
                             <Box className={classes.imageOverlay}/>

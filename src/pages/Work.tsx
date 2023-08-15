@@ -57,8 +57,8 @@ const useStyles = makeStyles({
         margin: "0px 40px",
         gridTemplateColumns: "repeat(3, 1fr)",
         gridAutoRows: "1fr",
-        gridColumnGap: 20,
-        gridRowGap: 20,
+        // gridColumnGap: 20,
+        // gridRowGap: 20,
         marginBottom: 50,
         [theme?.breakpoints.down('md')]: {
             margin: "0px 10px",
@@ -249,7 +249,7 @@ const Work = () => {
                         return(
                             <Box className={classes.projectCard} key={project.id} sx={assignGridPosition(project)}>
                                 <Link to={"/project/"+project.id}>
-                                    <Box className={classes.projectBackground} style={{backgroundImage: `url(${require("../assets/images/work/previews/"+project.cover+".png")})`}}>
+                                    <Box className={classes.projectBackground} style={{backgroundImage: `url(${require("../assets/images/previews/"+project.cover+".png")})`}}>
                                         <Box className={classes.projectDetails}>
                                             <h2>{project.title}</h2>
                                             <Box className={classes.projectSubtitle}>
