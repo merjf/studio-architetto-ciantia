@@ -7,12 +7,17 @@ import classNames from 'classnames';
 import { useLoaderData } from 'react-router-dom';
 import WindowIcon from '@mui/icons-material/Window';
 import ViewAgendaIcon from '@mui/icons-material/ViewAgenda';
+import ImageCarousel from '../components/ImageCarousel';
 
 const useStyles = makeStyles({
     container: {
         minHeight: "100vh",
         margin: "auto",
         marginTop: 100,
+        [theme?.breakpoints.down('md')]: {
+            paddingTop: "100px !important",
+            marginTop: 0
+        },
     },
     block:{
         display: "flex",
@@ -78,9 +83,22 @@ const useStyles = makeStyles({
     imagesContainer: {
         minHeight: "100%"
     },
-    imgInColumn: {
+    imgInColumn: (theme:any) =>({
         maxHeight: "750px !important",
         objectFit: "contain !important" as any,
+        [theme?.breakpoints.down('md')]: {
+            maxHeight: "500px !important",
+            maxWidth: "490px",
+            margin: "auto"
+        },
+    }),
+    imgInGrid: {
+        [theme?.breakpoints.down('md')]: {
+            cursor: "pointer",
+            "&:hover":{
+                opacity: 0.8,
+            }
+        },
     }
 });
 
@@ -90,13 +108,26 @@ const Project = () => {
 
     const [currentWidth, setCurrentWidth] = useState(window.innerWidth);
     const [gridSorting, setGridSorting] = useState(true);
+    const [openImageCarousel, setOpenImageCarousel] = useState(false);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+    const handleCloseImageCarousel = () => {
+      setOpenImageCarousel(false);
+    };
 
     useEffect(()=>{
       window.addEventListener('resize', () => setCurrentWidth(window.innerWidth))
     },[]);
 
-    const isGridContainer = () => {
-        return currentWidth > theme.breakpoints.values.md
+    const isScreenMdOrBelow = () => {
+        return currentWidth <= theme.breakpoints.values.md
+    }
+
+    const openDialogImage = (index:number) => {
+        if(isScreenMdOrBelow){
+            setOpenImageCarousel(true)
+            setCurrentImageIndex(index);
+        }
     }
 
     return (
@@ -116,7 +147,7 @@ const Project = () => {
                     <WindowIcon onClick={() => setGridSorting(true)} className={gridSorting ? classes.iconSelected : ""}/>
                     <ViewAgendaIcon onClick={() => setGridSorting(false)} className={gridSorting ? "" : classes.iconSelected}/>
                 </Box>
-                <ImageList cols={gridSorting ? 3 : 1} rowHeight={gridSorting ? "auto" : 760} gap={20}>
+                <ImageList cols={gridSorting ? 3 : 1} rowHeight={gridSorting || isScreenMdOrBelow() ? "auto" : 760} gap={20}>
                     {typeof(project.images) === "number" && Array.from({length: project.images}, (_, i) => i + 1).map((item, index) => (
                         <ImageListItem key={item}>
                             <img
@@ -124,7 +155,8 @@ const Project = () => {
                                 srcSet={require("../assets/images/work/"+project.mainFolder+"/"+item+".jpg")}
                                 alt={project.title}
                                 loading={index > 9 ? "lazy" : undefined}
-                                className={gridSorting ? "" : classes.imgInColumn}
+                                className={gridSorting ? classes.imgInGrid : classes.imgInColumn}
+                                onClick={() => openDialogImage(index)}
                             />
                         </ImageListItem>
                     ))}
@@ -142,6 +174,11 @@ const Project = () => {
                     ))}
                 </ImageList>
             </Container>
+            <ImageCarousel
+                currentImageIndex={currentImageIndex}
+                project={project}
+                open={openImageCarousel}
+                onClose={handleCloseImageCarousel}/>
         </Container>
     )
 }

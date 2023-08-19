@@ -25,6 +25,9 @@ const useStyles = makeStyles({
             [theme?.breakpoints.only('xs')]: {
                 opacity: "1 !important",
             },
+            [theme?.breakpoints.down('md')]: {
+                opacity: "1 !important",
+            },
         },
         "& a": {
             WebkitTransition: "color .2s ease-out",
@@ -215,8 +218,8 @@ const Header = () => {
     const [navbarStyle, setNavbarStyle] = useState<NavbarStyle>({backgroundColor: variables.white + " !important",
                                                                 color: variables.black + " !important",
                                                                 borderBottom: "1px solid " + variables.lightgrey});
-    const [menuExpanded, setMenuExpanded] = React.useState(false);
-    const [menuClosedOutside, setMenuClosedOutside] = React.useState(false);
+    const [menuExpanded, setMenuExpanded] = useState(false);
+    const [menuClosedOutside, setMenuClosedOutside] = useState(false);
     const [currentWidth, setCurrentWidth] = useState(window.innerWidth);
     const menubarCollapseRef = useRef(null);
 
@@ -225,7 +228,7 @@ const Header = () => {
     }
 
     const isMobile = () => {
-        return currentWidth <= theme.breakpoints.values.md;
+        return currentWidth <= theme.breakpoints.values.sm;
     }
 
     const handleMenuExpandClick = () => {
@@ -283,15 +286,15 @@ const Header = () => {
     function HideOnScroll(props: any) {
         const { children, window } = props;
         const trigger = useScrollTrigger({
-          target: window ? window() : undefined,
+            target: window ? window() : undefined,
         });
       
         return (
-          <Slide appear={false} direction="down" in={!trigger && !isMobile()}>
-            {children}
-          </Slide>
+            <Slide appear={false} direction="down" in={!trigger && !isMobile()}>
+                {children}
+            </Slide>
         );
-      }
+    }
 
     return (
         <Box>

@@ -17,6 +17,10 @@ const useStyles = makeStyles({
         minHeight: "100vh",
         margin: "auto",
         marginTop: 100,
+        [theme?.breakpoints.down('md')]: {
+            paddingTop: "100px !important",
+            marginTop: 0
+        },
     },
     block:{
         margin: "auto",
@@ -184,13 +188,13 @@ const Contact = () => {
         e.preventDefault()
         setFormStatus('submitting');
         setTimeout(() => {
-            setFormStatus('sent');
-            // emailjs.sendForm('service_hl0jjhd', 'template_wxrbhvf', form.current, 'k3SM_BpaU2V2jILdD')
-            //     .then((result) => {
-            //         setFormStatus('sent');
-            //     }, (error) => {
-            //         setFormStatus('error');
-            // });
+            // setFormStatus('sent');
+            emailjs.sendForm('service_hl0jjhd', 'template_wxrbhvf', form.current, 'k3SM_BpaU2V2jILdD')
+                .then((result) => {
+                    setFormStatus('sent');
+                }, (error) => {
+                    setFormStatus('error');
+            });
         }, 2500);
     }
 

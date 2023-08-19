@@ -92,17 +92,17 @@ const Home = () => {
     const classes = useStyles(theme);
 
     const [currentWidth, setCurrentWidth] = useState(window.innerWidth);
-    const [startingIndex, setStartingIndex] = useState(1); 
+    const [startingIndex, setStartingIndex] = useState(0); 
 
     useEffect(()=>{
         window.addEventListener('resize', () => setCurrentWidth(window.innerWidth))
         if(currentWidth <= theme.breakpoints.values.sm){
-            setStartingIndex(6);
+            setStartingIndex(9);
         }
     },[]);
 
     const getIconStyleForMobile = () => {
-        if(currentWidth <= theme.breakpoints.values.sm){
+        if(isMobile()){
             return {
                 top: 'unset',
                 bottom: 10
@@ -110,12 +110,17 @@ const Home = () => {
         }
     }
 
+    const isMobile = () => {
+        return currentWidth <= theme.breakpoints.values.sm;
+    }
+
+
     return (
         <Container className={classNames("container-home", classes.block)}>
             <Carousel
                 className={classes.carouselContainer}
-                navButtonsAlwaysVisible
-                autoPlay={false}
+                navButtonsAlwaysVisible={!isMobile()}
+                autoPlay={true}
                 indicators={false}
                 fullHeightHover={false}
                 navButtonsProps={{
@@ -132,7 +137,7 @@ const Home = () => {
                 sx={{height: "100vh"}}
                 NextIcon={<KeyboardArrowRightIcon className={classes.arrowIcons}/>}
                 PrevIcon={<KeyboardArrowLeftIcon className={classes.arrowIcons}/>} >
-                {Array.from({length: 5}, (_, i) => i + 1).map((index) => (
+                {Array.from({length: 9}, (_, i) => i + 1).map((index) => (
                     <Box key={index} className={classes.carouselImage}
                         sx={{ backgroundImage: `url(${require("../assets/images/home/" + (index + startingIndex) + ".jpg")})`}}>
                             <Box className={classes.imageOverlay}/>

@@ -12,6 +12,10 @@ const useStyles = makeStyles({
         minHeight: "100vh",
         margin: "auto",
         marginTop: 100,
+        [theme?.breakpoints.down('md')]: {
+            paddingTop: "100px !important",
+            marginTop: 0
+        },
     },
     block:{
         margin: "auto",

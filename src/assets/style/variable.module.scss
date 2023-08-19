@@ -1,6 +1,7 @@
 $black:  #111111;
 $white: #ffffff;
 $dark-white: #fbfbfb;
+$trasparent: hsla(0, 0, 0, 0%);
 $light-grey: #f1f1f1;
 $mid-grey: #ccc;
 $dark-grey: #4e4e4e;
@@ -24,4 +25,5 @@ $green: #5ca32d;
     darkgrey: $dark-grey;
     lightyellow: $light-yellow;
     darkyellow: $dark-yellow;
+    trasparent: $trasparent;
 }

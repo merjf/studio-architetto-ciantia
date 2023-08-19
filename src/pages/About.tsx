@@ -12,6 +12,10 @@ const useStyles = makeStyles({
         minHeight: "100vh",
         margin: "auto",
         marginTop: 100,
+        [theme?.breakpoints.down('md')]: {
+            paddingTop: "100px !important",
+            marginTop: 0
+        },
     },
     block:{
         alignSelf: "center",
@@ -188,7 +192,7 @@ const About = () => {
                     <Grid item sm={7} md={7} lg={7} className={classnames(classes.text, classes.textNextPic)}>
                         <p>
                             Il mio percorso formativo si orienta verso gli studi tecnici e si completa con il conseguimento della laurea in Architettura presso
-                            l’<a href="https://unikore.it/" target="_blank"><b>Università degli Studi di Enna “Kore”</b></a>, trattando in tesi di laurea il tema del recupero e restauro di un rudere dell’archeologia
+                            l’<a target="_blank" href="https://unikore.it/"><b>Università degli Studi di Enna “Kore”</b></a>, trattando in tesi di laurea il tema del recupero e restauro di un rudere dell’archeologia
                             industriale denominato “ex Istituto tecnico Industriale” nel Comune di Piazza Armerina e della valorizzazione delle tradizioni storiche,
                             folcloristiche e culinarie della città.
                         </p>
@@ -243,9 +247,11 @@ const About = () => {
                     <Grid item sm={12} md={12} lg={12} className={classnames(classes.text, classes.textOnly)}>
                         <Divider className={classnames(classes.dividerText)}/>
                         <p>
-                            Ho collaborato con lo studio di architettura <a href="https://kwg-architects.com/"><b>KWGroup</b></a> di Catania per la progettazione del
-                            nuovo <a href="https://www.hiltonhotels.it/"><b>Hilton Hotel</b></a> di Capomulini (riqualificando la struttura alberghiera dell’ex Perla Jonica), cooperando con professionisti che esercitano
+                            Ho collaborato con lo studio di architettura <a target="_blank" href="https://kwg-architects.com/"><b>KWGroup</b></a> di Catania per la progettazione del
+                            nuovo <a target="_blank" href="https://www.hiltonhotels.it/"><b>Hilton Hotel</b></a> di Capomulini (riqualificando la struttura alberghiera dell’ex Perla Jonica), cooperando con professionisti che esercitano
                             la loro professione nel settore del lusso come la stilista Marella Ferrera, l’architetto inglese Tom Russell e il landscape designer tedesco Knud Megerle.
+                            Un rilevante progetto è quello per il palco all’interno del Teatro Antico Odeon di Catania, realizzato in occasione degli spettacoli dell’Amenanos Festival del 2019. Dal 2021 ho intrapreso
+                            un’importante collaborazione per i refitting dei punti vendita <a target="_blank" href="https://eu.frette.com/it_IT/homepage/"><b>FRETTE</b></a> in Italia.
                         </p>
                     </Grid>
                 </Grid>

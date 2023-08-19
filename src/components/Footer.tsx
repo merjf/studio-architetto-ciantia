@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box } from "@mui/material";
 import { makeStyles } from '@mui/styles';
 import variables from '../assets/style/variable.module.scss';
@@ -29,6 +29,12 @@ const useStyles = makeStyles({
             justifyContent: "space-around",
         },
     }),
+    footerLandscape: {
+        height: "250px !important",
+        padding: "40px 10px 40px 10px !important",
+        flexDirection: "column !important" as any,
+        alignItems: "center",
+    },
     row: {
         display: "flex",
         alignItems: "center",
@@ -61,6 +67,11 @@ const useStyles = makeStyles({
             alignItems: "flex-start",
         },
     },
+    socialRowLandscape: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 15,
+    },
     rightsRow: {
         marginTop: 100,
         marginRight: "2rem",
@@ -71,6 +82,9 @@ const useStyles = makeStyles({
             marginTop: 50,
             marginRight: 0,
         },
+    },
+    rightsRowLandscape: {
+        marginTop: 0,
     },
     block: {
         display: "flex",
@@ -85,6 +99,9 @@ const useStyles = makeStyles({
             color: variables.darkyellow
         }
     },
+    blockLandscape: {
+        minWidth: 110,
+    },
     logo: {
         height: 70,
         width: 85,
@@ -94,24 +111,40 @@ const useStyles = makeStyles({
         "& > path":{
             fill: variables.midgrey,
         }
-        // "&:hover":{
-        //     "& > path":{
-        //         fill: variables.darkyellow,
-        //     }
-        // }
     }
 });
 
 const Footer = () => {
     const navigate = useNavigate();
     const classes = useStyles(theme);
+
+    const [screenOrientationLabel, setScreenOrientationLabel] = useState((window.matchMedia("(orientation: portrait)").matches) ? 'portrait' : 'landscape');
+    const [currentWidth, setCurrentWidth] = useState(window.innerWidth);
+
     const changeLocation = (placeToGo) => {
         navigate(placeToGo, { replace: true });
         window.location.reload();
     }
+
+    const setScreenOrientation = () => {
+        if (window.matchMedia("(orientation: portrait)").matches) {
+            setScreenOrientationLabel('portrait')
+        }
+        if (window.matchMedia("(orientation: landscape)").matches) {
+            setScreenOrientationLabel('landscape')
+        }
+    }
+    window.addEventListener("resize", setScreenOrientation);
+    const isMobile = () => {
+        return currentWidth <= theme.breakpoints.values.sm;
+    }
+    const isMobileLandscapeOrientation = () => {
+        return isMobile() && screenOrientationLabel === 'landscape';
+    };
+
     return (
-        <footer className={classnames(classes.footer, "footer")}>
-            <Box className={classnames(classes.row, classes.socialRow)}>
+        <footer className={classnames(classes.footer, "footer", isMobileLandscapeOrientation() ? classes.footerLandscape : "")}>
+            <Box className={classnames(classes.row, classes.socialRow, isMobileLandscapeOrientation() ? classes.socialRowLandscape : "")}>
                 <Box>
                     {/* <Link to={"/"} onClick={() => changeLocation('/')}> */}
                         <svg
@@ -258,24 +291,24 @@ const Footer = () => {
                         </svg>
                     {/* </Link> */}
                 </Box>
-                <Box className={classes.block}>
+                <Box className={classnames(classes.block, isMobileLandscapeOrientation() ? classes.blockLandscape : "")}>
                     <a href="mailto:studioarchitettociantia@gmail.com"><span>studioarchitettociantia@gmail.com</span></a>
                     <a href="tel:+393701212833"><span>+39 370 1212833</span></a>
                 </Box>
-                <Box className={classes.block}>
+                <Box className={classnames(classes.block, isMobileLandscapeOrientation() ? classes.blockLandscape : "")}>
                     <a target={"_blank"} href="https://goo.gl/maps/6k7efoD96G3d3uRJ6">
                         <p>Piazza Armerina<br/>
                             Via Mons. la Vaccara 24<br/>
                             94015 Enna, Italia</p>
                     </a>
                 </Box>
-                <Box className={classes.block}>
+                <Box className={classnames(classes.block, isMobileLandscapeOrientation() ? classes.blockLandscape : "")}>
                     <a target={"_blank"} href="https://www.linkedin.com/in/salvatore-ciantia-6a904699/"><span>Linkedin</span></a>
                     <a target={"_blank"} href="https://www.instagram.com/salvatore_ciantia_architetto/"><span>Instagram</span></a>
                     <a target={"_blank"} href="https://www.facebook.com/salvatore.ciantia.3"><span>Facebook</span></a>
                 </Box>
             </Box>
-            <Box className={classnames(classes.row, classes.rightsRow)}>
+            <Box className={classnames(classes.row, classes.rightsRow, isMobileLandscapeOrientation() ? classes.rightsRowLandscape : "")}>
                 © Copyright 2023 Salvatore Ciantia Architetto.<br></br>
                 All rights reserved.
             </Box>
