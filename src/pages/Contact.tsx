@@ -189,13 +189,13 @@ const Contact = () => {
         setFormStatus('submitting');
         setTimeout(() => {
             // setFormStatus('sent');
-            emailjs.sendForm('service_hl0jjhd', 'template_wxrbhvf', form.current, 'k3SM_BpaU2V2jILdD')
+            emailjs.sendForm('service_idh34re', 'template_wxrbhvf', form.current, 'k3SM_BpaU2V2jILdD')
                 .then((result) => {
                     setFormStatus('sent');
                 }, (error) => {
                     setFormStatus('error');
             });
-        }, 2500);
+        }, 1500);
     }
 
     const getStatus = () => {

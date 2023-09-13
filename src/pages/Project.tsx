@@ -119,12 +119,16 @@ const Project = () => {
       window.addEventListener('resize', () => setCurrentWidth(window.innerWidth))
     },[]);
 
+    const isMobile = () => {
+        return currentWidth <= theme.breakpoints.values.sm;
+    }
+
     const isScreenMdOrBelow = () => {
         return currentWidth <= theme.breakpoints.values.md
     }
 
     const openDialogImage = (index:number) => {
-        if(isScreenMdOrBelow){
+        if(isMobile() && isScreenMdOrBelow()){
             setOpenImageCarousel(true)
             setCurrentImageIndex(index);
         }
