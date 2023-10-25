@@ -73,7 +73,7 @@ const App = () => {
                                         mainFolder: (project as any).mainFolder,
                                         title: (project as any).title,
                                         description: (project as any).description,
-                                        place: (project as any).city,
+                                        place: (project as any).place,
                                         order: (project as any).order,
                                         images: (project as any).imageNumber,
                                     }
