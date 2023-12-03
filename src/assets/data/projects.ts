@@ -236,6 +236,11 @@ const projects = [{
             mainFolder: "projects",
             squarePic: "15",
             widePic: "16"
+        },{
+            id: 125,
+            mainFolder: "projects",
+            squarePic: "17",
+            widePic: "18"
         }]
     }]
 }];
