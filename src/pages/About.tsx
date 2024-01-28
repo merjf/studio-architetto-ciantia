@@ -187,7 +187,7 @@ const About = () => {
             <Container className={classes.aboutContainer}>
                 <Grid container className={classes.block} maxWidth={"lg"} justifyContent="center" alignItems="center" columnSpacing={{xs: 0, sm: 4}}>
                     <Grid item sm={4} md={4} lg={4} className={classnames(classes.image)}>
-                        <img src={require("../assets/images/me.jpg")} className={"darkborder"}/>
+                        <img src={require("../assets/images/me.jpg")} className={"darkborder"} loading="lazy"/>
                     </Grid>
                     <Grid item sm={7} md={7} lg={7} className={classnames(classes.text, classes.textNextPic)}>
                         <p>
@@ -208,7 +208,7 @@ const About = () => {
                         </p>
                     </Grid>
                     <Grid item sm={4} md={4} lg={4} className={classnames(classes.image)}>
-                        <img src={require("../assets/images/me2.jpg")} className={"lightborder"}/>
+                        <img src={require("../assets/images/me2.jpg")} className={"lightborder"} loading="lazy"/>
                     </Grid>
                 </Grid>
                 <Grid container className={classnames(classes.block, classes.blockImageOnly)} maxWidth={"lg"} justifyContent="center" alignItems="center" columnSpacing={{xs: 0, sm: 4}}>
@@ -228,7 +228,7 @@ const About = () => {
                 <Divider className={classnames(classes.divider)} flexItem sx={{display: {xs: "block", md: "none"} }}/>
                 <Grid container className={classes.block} maxWidth={"lg"} justifyContent="center" alignItems="center" columnSpacing={{xs: 0, sm: 4}}>
                     <Grid item sm={4} md={4} lg={4} className={classnames(classes.image)}>
-                        <img src={require("../assets/images/me4.jpg")} className={"lightborder"}/>
+                        <img src={require("../assets/images/me4.jpg")} className={"lightborder"} loading="lazy"/>
                     </Grid>
                     <Grid item sm={6} md={6} lg={6} className={classnames(classes.text, classes.textNextPic)}>
                         <p>

@@ -156,9 +156,8 @@ const Project = () => {
                         <ImageListItem key={item}>
                             <img
                                 src={require("../assets/images/work/"+project.mainFolder+"/"+item+".jpg")}
-                                srcSet={require("../assets/images/work/"+project.mainFolder+"/"+item+".jpg")}
+                                loading="lazy"
                                 alt={project.title}
-                                loading={index > 9 ? "lazy" : undefined}
                                 className={gridSorting ? classes.imgInGrid : classes.imgInColumn}
                                 onClick={() => openDialogImage(index)}
                             />
@@ -168,8 +167,6 @@ const Project = () => {
                         <ImageListItem key={item}>
                             <img
                                 src={gridSorting ? require("../assets/images/work/"+project.mainFolder+"/"+item[0]+".jpg") : 
-                                                    require("../assets/images/work/"+project.mainFolder+"/"+item[1]+".jpg")}
-                                srcSet={gridSorting ? require("../assets/images/work/"+project.mainFolder+"/"+item[0]+".jpg") : 
                                                     require("../assets/images/work/"+project.mainFolder+"/"+item[1]+".jpg")}
                                 alt={project.title}
                                 loading="lazy"
