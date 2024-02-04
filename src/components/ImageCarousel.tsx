@@ -71,7 +71,7 @@ const ImageCarousel = (props: ImageCarouselProps) => {
                 sx={{height: "100vh"}}>
                 {Array.from({length: props.project.images}, (_, i) => i + 1).map((item, index) => (
                     <Box key={index} className={classes.carouselImage}
-                        sx={{ backgroundImage: `url(${require("../assets/images/work/"+props.project.mainFolder+"/"+item+".jpg")})`}}>
+                        sx={{ backgroundImage: `url(${require("../assets/images/work/"+props.project.mainFolder+"/"+item+".webp")})`}}>
                     </Box>
                 ))}
             </Carousel>

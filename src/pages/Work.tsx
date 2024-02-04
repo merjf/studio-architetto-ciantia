@@ -253,7 +253,7 @@ const Work = () => {
                         return(
                             <Box className={classes.projectCard} key={project.id} sx={assignGridPosition(project)}>
                                 <Link to={"/project/"+project.id}>
-                                    <Box className={classes.projectBackground} style={{backgroundImage: `url(${require("../assets/images/previews/"+project.cover+".png")})`}}>
+                                    <Box className={classes.projectBackground} style={{backgroundImage: `url(${require("../assets/images/previews/"+project.cover+".webp")})`}}>
                                         <Box className={classes.projectDetails}>
                                             <h2>{project.title}</h2>
                                             <Box className={classes.projectSubtitle}>

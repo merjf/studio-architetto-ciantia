@@ -155,7 +155,7 @@ const Project = () => {
                     {typeof(project.images) === "number" && Array.from({length: project.images}, (_, i) => i + 1).map((item, index) => (
                         <ImageListItem key={item}>
                             <img
-                                src={require("../assets/images/work/"+project.mainFolder+"/"+item+".jpg")}
+                                src={require("../assets/images/work/"+project.mainFolder+"/"+item+".webp")}
                                 loading="lazy"
                                 alt={project.title}
                                 className={gridSorting ? classes.imgInGrid : classes.imgInColumn}
@@ -166,8 +166,8 @@ const Project = () => {
                     {Array.isArray(project.images) && project.images.map((item) => (
                         <ImageListItem key={item}>
                             <img
-                                src={gridSorting ? require("../assets/images/work/"+project.mainFolder+"/"+item[0]+".jpg") : 
-                                                    require("../assets/images/work/"+project.mainFolder+"/"+item[1]+".jpg")}
+                                src={gridSorting ? require("../assets/images/work/"+project.mainFolder+"/"+item[0]+".webp") : 
+                                                    require("../assets/images/work/"+project.mainFolder+"/"+item[1]+".webp")}
                                 alt={project.title}
                                 loading="lazy"
                                 className={gridSorting ? "" : classes.imgInColumn}/>

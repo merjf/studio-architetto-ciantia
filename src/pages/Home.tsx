@@ -139,7 +139,7 @@ const Home = () => {
                 PrevIcon={<KeyboardArrowLeftIcon className={classes.arrowIcons}/>} >
                 {Array.from({length: 9}, (_, i) => i + 1).map((index) => (
                     <Box key={index} className={classes.carouselImage}
-                        sx={{ backgroundImage: `url(${require("../assets/images/home/" + (index + startingIndex) + ".jpg")})`}}>
+                        sx={{ backgroundImage: `url(${require("../assets/images/home/" + (index + startingIndex) + ".webp")})`}}>
                             <Box className={classes.imageOverlay}/>
                     </Box>
                 ))}
