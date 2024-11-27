@@ -75,6 +75,9 @@ const useStyles = makeStyles({
     toolbarItemSelected: {
         color: variables.black
     },
+    toolbarItemSelectedMain: {
+        color: variables.white
+    },
     toolbarRightItems: {
         [theme?.breakpoints.up('lg')]: {
             gap: 90,
@@ -304,17 +307,17 @@ const Header = () => {
                     <Toolbar className={classes.toolbar} disableGutters>
                         <Grid container maxWidth={"lg"}>
                             <Grid item xs={6} md={6} lg={6} className={classes.toolbarBox}>
-                                <Link to={"/"} key={"/"} onClick={() => changeLocation('/')} className={classnames(classes.toolbarItem)}>
+                                <Link to={"/"} key={"/"} onClick={() => changeLocation('/')} className={classnames(classes.toolbarItem, isMenuItemSelected("/") ? [classes.toolbarItemSelected, classes.toolbarItemSelectedMain] : "")}>
                                     A
-                                    <span>
+                                    <span style={{opacity: isMenuItemSelected("/") ? 1 : 0}}>
                                         rchitetto&nbsp;
                                     </span>
                                     S 
-                                    <span>
+                                    <span style={{opacity: isMenuItemSelected("/") ? 1 : 0}}>
                                         alvatore&nbsp;
                                     </span>
                                     C 
-                                    <span>
+                                    <span style={{opacity: isMenuItemSelected("/") ? 1 : 0}}>
                                         iantia
                                     </span>
                                 </Link>
