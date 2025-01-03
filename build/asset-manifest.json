@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.14303300.css",
-    "main.js": "/static/js/main.cf04d37b.js",
+    "main.css": "/static/css/main.5de41427.css",
+    "main.js": "/static/js/main.bcaca972.js",
     "static/media/5.webp": "/static/media/5.4f4d0af7d45aef202969.webp",
     "static/media/3.webp": "/static/media/3.a9539eeb66b9315b9842.webp",
     "static/media/6.webp": "/static/media/6.76153b46686a63e5f9b7.webp",
@@ -36,7 +36,15 @@
     "static/media/24.webp": "/static/media/24.0d25e8124ebe4fb34450.webp",
     "static/media/garden.webp": "/static/media/garden.5eec5cb7f5305480d961.webp",
     "static/media/interior-design.webp": "/static/media/interior-design.c0085537fea38ff9ee9f.webp",
+    "static/media/gothamssm_xlightitalic.otf": "/static/media/gothamssm_xlightitalic.341e06db0934c238d316.otf",
+    "static/media/gothamssm_bolditalic.otf": "/static/media/gothamssm_bolditalic.2d661b6db331e7a5ca97.otf",
+    "static/media/gothamssm_lightitalic.otf": "/static/media/gothamssm_lightitalic.d2bc1aef48f7dea07bc6.otf",
     "static/media/26.webp": "/static/media/26.a173b0bbd44dfb8950ee.webp",
+    "static/media/gothamssm_mediumitalic.otf": "/static/media/gothamssm_mediumitalic.0cfa67cf9efab8c61e5a.otf",
+    "static/media/gothamssm_bold.otf": "/static/media/gothamssm_bold.3724afbbb63161384804.otf",
+    "static/media/gothamssm_xlight.otf": "/static/media/gothamssm_xlight.5d583a2edcc7e37dfc52.otf",
+    "static/media/gothamssm_medium.otf": "/static/media/gothamssm_medium.900495a1707caea44098.otf",
+    "static/media/gothamssm_light.otf": "/static/media/gothamssm_light.363ec693f50a36bfefe8.otf",
     "static/media/projects.webp": "/static/media/projects.3ea78c6857f883dbb32f.webp",
     "static/media/27.webp": "/static/media/27.e792defca3cdf236f193.webp",
     "static/media/me5.jpg": "/static/media/me5.2d723900441bb56c9e48.jpg",
@@ -54,11 +62,11 @@
     "static/media/frette-agira.webp": "/static/media/frette-agira.166414983a37126eebcd.webp",
     "static/media/frette-noventa.webp": "/static/media/frette-noventa.cd54262e4dbd2faac721.webp",
     "index.html": "/index.html",
-    "main.14303300.css.map": "/static/css/main.14303300.css.map",
-    "main.cf04d37b.js.map": "/static/js/main.cf04d37b.js.map"
+    "main.5de41427.css.map": "/static/css/main.5de41427.css.map",
+    "main.bcaca972.js.map": "/static/js/main.bcaca972.js.map"
   },
   "entrypoints": [
-    "static/css/main.14303300.css",
-    "static/js/main.cf04d37b.js"
+    "static/css/main.5de41427.css",
+    "static/js/main.bcaca972.js"
   ]
 }
