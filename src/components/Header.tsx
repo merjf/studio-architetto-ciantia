@@ -75,6 +75,9 @@ const useStyles = makeStyles({
     toolbarItemSelected: {
         color: variables.black
     },
+    toolbarItemSelectedMain: {
+        color: variables.white
+    },
     toolbarRightItems: {
         [theme?.breakpoints.up('lg')]: {
             gap: 90,

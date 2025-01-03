@@ -1,5 +1,7 @@
 import { GroupModel } from '../../utils/Utils'
 
+const lastId:number = 126;
+
 const projects = [{
     id: "restoration",
     name: "Restauro",
@@ -14,7 +16,7 @@ const projects = [{
         cover: "palco",
         imageNumber: 14,
         orientation: "horizontal",
-        order: 14,
+        order: 15,
     },{
         id: 118,
         title: "Basilica Cattedrale Maria SS delle Vittorie",
@@ -25,7 +27,7 @@ const projects = [{
         cover: "cattedrale",
         imageNumber: 9,
         orientation: "vertical",
-        order: 13,
+        order: 14,
     },{
         id: 120,
         title: "Basilica Cattedrale Maria SS delle Vittorie",
@@ -36,7 +38,7 @@ const projects = [{
         cover: "rampa",
         imageNumber: 7,
         orientation: "horizontal",
-        order: 15,
+        order: 17,
     }]
 },{
     id: "interiors",
@@ -128,6 +130,17 @@ const projects = [{
         mainFolder: "villa-gerace",
         cover: "villa-gerace",
         imageNumber: 16,
+        orientation: "horizontal",
+        order: 10,
+    },{
+        id: 126,
+        title: "Maria Aiello Hairstyle",
+        description: "Hair salon",
+        city: "Enna",
+        place: "Enna, Italia",
+        mainFolder: "maria-aiello-hairstyle",
+        cover: "maria-aiello-hairstyle",
+        imageNumber: 19,
         orientation: "wide",
         order: 9,
     },{
@@ -155,8 +168,8 @@ const projects = [{
         mainFolder: "private-garden",
         cover: "garden",
         imageNumber: 6,
-        orientation: "horizontal",
-        order: 11,
+        orientation: "wide",
+        order: 13,
     }]
 },{
     id: "miscellaneous",
@@ -168,7 +181,7 @@ const projects = [{
         type: "grid",
         cover: "interior-design",
         orientation: "square",
-        order: 10,
+        order: 11,
         city: "Piazza Armerina",
         place: "Piazza Armerina, Enna, Italia",
         projects: [{

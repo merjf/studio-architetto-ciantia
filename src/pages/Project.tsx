@@ -107,7 +107,7 @@ const Project = () => {
     const project:any = useLoaderData();
 
     const [currentWidth, setCurrentWidth] = useState(window.innerWidth);
-    const [gridSorting, setGridSorting] = useState(true);
+    const [gridSorting, setGridSorting] = useState(false);
     const [openImageCarousel, setOpenImageCarousel] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
