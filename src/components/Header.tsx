@@ -283,6 +283,17 @@ const Header = () => {
         window.location.reload();
     }
 
+    const getSpan = (index:number) => {
+        switch(index){
+            case 1:
+                return "rchitetto ".toString();
+            case 2:
+                return "alvatore ".toString();
+            case 3:
+                return "iantia".toString();
+        }
+    }
+
     function HideOnScroll(props: any) {
         const { children, window } = props;
         const trigger = useScrollTrigger({
@@ -305,18 +316,9 @@ const Header = () => {
                         <Grid container maxWidth={"lg"}>
                             <Grid item xs={6} md={6} lg={6} className={classes.toolbarBox}>
                                 <Link to={"/"} key={"/"} onClick={() => changeLocation('/')} className={classnames(classes.toolbarItem)}>
-                                    A
-                                    <span>
-                                        rchitetto&nbsp;
-                                    </span>
-                                    S 
-                                    <span>
-                                        alvatore&nbsp;
-                                    </span>
-                                    C 
-                                    <span>
-                                        iantia
-                                    </span>
+                                    A<span>{getSpan(1)}</span>
+                                    S<span>{getSpan(2)}</span>
+                                    C<span>{getSpan(3)}</span>
                                 </Link>
                             </Grid>
                             <Grid item xs={6} md={6} lg={6} className={classnames(classes.toolbarRightItems, classes.toolbarBox)}>
