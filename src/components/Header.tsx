@@ -8,6 +8,7 @@ import { theme } from '../utils/Utils';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
 import Logo from "./Logo";
+import { Opacity } from "@mui/icons-material";
 
 const useStyles = makeStyles({
     navbar: {
@@ -76,7 +77,11 @@ const useStyles = makeStyles({
         color: variables.black
     },
     toolbarItemSelectedMain: {
-        color: variables.white
+        color: variables.white,
+        opacity: 1,
+        "& span": {
+            opacity: 1,
+        }
     },
     toolbarRightItems: {
         [theme?.breakpoints.up('lg')]: {
@@ -318,7 +323,7 @@ const Header = () => {
                     <Toolbar className={classes.toolbar} disableGutters>
                         <Grid container maxWidth={"lg"}>
                             <Grid item xs={6} md={6} lg={6} className={classes.toolbarBox}>
-                                <Link to={"/"} key={"/"} onClick={() => changeLocation('/')} className={classnames(classes.toolbarItem)}>
+                                <Link to={"/"} key={"/"} onClick={() => changeLocation('/')} className={classnames(classes.toolbarItem, isMenuItemSelected("/") ? classes.toolbarItemSelectedMain : "")}>
                                     A<span>{getSpan(1)}</span>
                                     S<span>{getSpan(2)}</span>
                                     C<span>{getSpan(3)}</span>
