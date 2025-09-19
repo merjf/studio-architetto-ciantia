@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.5de41427.css",
-    "main.js": "/static/js/main.6948f3f9.js",
+    "main.js": "/static/js/main.77654fbe.js",
     "static/media/5.webp": "/static/media/5.4f4d0af7d45aef202969.webp",
     "static/media/3.webp": "/static/media/3.a9539eeb66b9315b9842.webp",
     "static/media/6.webp": "/static/media/6.76153b46686a63e5f9b7.webp",
@@ -63,10 +63,10 @@
     "static/media/frette-noventa.webp": "/static/media/frette-noventa.cd54262e4dbd2faac721.webp",
     "index.html": "/index.html",
     "main.5de41427.css.map": "/static/css/main.5de41427.css.map",
-    "main.6948f3f9.js.map": "/static/js/main.6948f3f9.js.map"
+    "main.77654fbe.js.map": "/static/js/main.77654fbe.js.map"
   },
   "entrypoints": [
     "static/css/main.5de41427.css",
-    "static/js/main.6948f3f9.js"
+    "static/js/main.77654fbe.js"
   ]
 }

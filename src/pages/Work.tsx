@@ -140,6 +140,9 @@ const useStyles = makeStyles({
         transition: "all .4s ease-in-out",
         [theme?.breakpoints.only('xs')]: {
             right: 10,
+             "& > h4, & > hr": {
+                display: "none",
+            },
         },
     },
     projectSeparator: {
