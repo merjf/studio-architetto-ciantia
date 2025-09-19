@@ -61,8 +61,8 @@ const useStyles = makeStyles({
         margin: "0px 40px",
         gridTemplateColumns: "repeat(3, 1fr)",
         gridAutoRows: "1fr",
-        // gridColumnGap: 20,
-        // gridRowGap: 20,
+        gridColumnGap: 5,
+        gridRowGap: 5,
         marginBottom: 50,
         [theme?.breakpoints.down('md')]: {
             margin: "0px 10px",

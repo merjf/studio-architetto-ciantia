@@ -87,10 +87,12 @@ const useStyles = makeStyles({
             width: "100%",
             [theme?.breakpoints.up('md')]: {
                 "&.darkborder": {
-                    border: "2px solid " + variables.darkgrey,
+                    border: ".5px solid " + variables.darkgrey,
+                    borderRadius: 10,
                 },
                 "&.lightborder": {
-                    border: "2px solid " + variables.darkgrey,
+                    border: ".5px solid " + variables.darkgrey,
+                    borderRadius: 10,
                 },
             },
         }
