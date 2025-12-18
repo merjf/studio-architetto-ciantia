@@ -194,7 +194,7 @@ const Work = () => {
                         })
                     }
                 }
-            } else {
+            } else if(false){
                 for(let subgroup of group.projects){
                     randomProjects.push({
                         id: (subgroup as any).id,
@@ -211,6 +211,29 @@ const Work = () => {
         }
         randomProjects = randomProjects.sort((a, b) => a.order - b.order)
         return randomProjects;
+    }
+
+    const getOtherProjects = () => {
+        var groups:GroupModel[] = projects;
+        var otherProjects: ProjectRandomGridModel[] = [], i = 0;
+        for(let group of groups){
+            if(group.type === 'miscellaneous'){
+                for(let subgroup of group.projects){
+                    otherProjects.push({
+                        id: (subgroup as any).id,
+                        mainFolder: (subgroup as any).projects[0].mainFolder,
+                        cover: (subgroup as any).cover,
+                        title: (subgroup as any).name,
+                        description: (subgroup as any).description,
+                        orientation: (subgroup as any).orientation,
+                        place: (subgroup as any).city,
+                        order: (subgroup as any).order,
+                    })
+                }
+            }
+        }
+        otherProjects = otherProjects.sort((a, b) => a.order - b.order)
+        return otherProjects;
     }
 
     const assignGridPosition = (project:ProjectModel|ProjectRandomGridModel) => {
@@ -253,6 +276,37 @@ const Work = () => {
             <Container className={classes.workInner} maxWidth="xl">
                 <Box className={classes.workContainer}>
                     {getProjects().map((project) => {
+                        return(
+                            <Box className={classes.projectCard} key={project.id} sx={assignGridPosition(project)}>
+                                <Link to={"/project/"+project.id}>
+                                    <Box className={classes.projectBackground} style={{backgroundImage: `url(${require("../assets/images/previews/"+project.cover+".webp")})`}}>
+                                        <Box className={classes.projectDetails}>
+                                            <h2>{project.title}</h2>
+                                            <Box className={classes.projectSubtitle}>
+                                                <hr className={classes.projectSeparator} />
+                                                <h4>{project.place}</h4>
+                                            </Box>
+                                            <Box className={classes.projectViewMore}>
+                                                <hr className={classes.projectSeparatorViewMore} />
+                                                <h4>più dettagli</h4>
+                                            </Box>
+                                        </Box>
+                                    </Box>
+                                </Link>
+                            </Box>
+                        )
+                    })}
+                </Box>
+            </Container>
+            <Container className={classes.block}>
+            </Container>
+            <Box className={classes.titleBox}>
+                <Divider />
+                <h1>Altri lavori</h1>
+            </Box>
+            <Container className={classes.workInner} maxWidth="xl">
+                <Box className={classes.workContainer}>
+                    {getOtherProjects().map((project) => {
                         return(
                             <Box className={classes.projectCard} key={project.id} sx={assignGridPosition(project)}>
                                 <Link to={"/project/"+project.id}>

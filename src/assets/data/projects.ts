@@ -1,6 +1,6 @@
 import { GroupModel } from '../../utils/Utils'
 
-const lastId:number = 126;
+const lastId:number = 127;
 
 const projects = [{
     id: "restoration",
@@ -53,7 +53,7 @@ const projects = [{
         mainFolder: "frette-agira",
         cover: "frette-agira",
         imageNumber: 13,
-        orientation: "horizontal",
+        orientation: "vertical",
         order: 8,
     },{
         id: 103,
@@ -130,7 +130,7 @@ const projects = [{
         mainFolder: "villa-gerace",
         cover: "villa-gerace",
         imageNumber: 16,
-        orientation: "horizontal",
+        orientation: "wide",
         order: 10,
     },{
         id: 126,
@@ -141,7 +141,7 @@ const projects = [{
         mainFolder: "maria-aiello-hairstyle",
         cover: "maria-aiello-hairstyle",
         imageNumber: 19,
-        orientation: "wide",
+        orientation: "horizontal",
         order: 9,
     },{
         id: 124,
@@ -152,8 +152,19 @@ const projects = [{
         mainFolder: "frette-caserta",
         cover: "frette-caserta",
         imageNumber: 26,
-        orientation: "wide",
+        orientation: "horizontal",
         order: 12,
+    }, {
+        id: 127,
+        title: "Al Ritrovo",
+        description: "Lounge Bar",
+        city: "Piazza Armerina",
+        place: "Piazza Armerina, Enna, Italia",
+        mainFolder: "al-ritrovo",
+        cover: "al-ritrovo",
+        imageNumber: 17,
+        orientation: "square",
+        order: 13,
     }],
 },{
     id: "gardens",
